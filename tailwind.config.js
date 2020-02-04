@@ -38,6 +38,9 @@ module.exports = {
       fontSize: {
         "7xl": "6rem",
       },
+      colors: {
+        bittersweet: "#FF725C",
+      },
     },
   },
   variants: {},
