@@ -40,6 +40,9 @@ module.exports = {
       },
       colors: {
         bittersweet: "#FF725C",
+        logCabin: "#131411",
+        hello: "rgba(255, 255, 255, 0.08)",
+        world: "#A1A39D",
       },
     },
   },
