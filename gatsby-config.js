@@ -6,5 +6,9 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [`gatsby-plugin-postcss`, `gatsby-plugin-transition-link`],
+  plugins: [
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-transition-link`,
+    `gatsby-plugin-remove-serviceworker`,
+  ],
 }
