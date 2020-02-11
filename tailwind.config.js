@@ -44,6 +44,12 @@ module.exports = {
         hello: "rgba(255, 255, 255, 0.08)",
         world: "#A1A39D",
       },
+      inset: {
+        "-16": "-4rem",
+        "-4": "-1rem",
+        "-2": "-0.5rem",
+        "-3": "-0.75rem",
+      },
     },
   },
   variants: {},
