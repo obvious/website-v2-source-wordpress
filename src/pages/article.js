@@ -2,7 +2,10 @@ import React from "react"
 import { Link } from "gatsby"
 
 export default () => (
-  <div className="flex flex-col justify-start antialiased bg-logCabin min-h-screen">
+  <div
+    className="flex flex-col justify-start antialiased min-h-screen"
+    style={{ backgroundColor: "#FBFCF7" }}
+  >
     <header className="bg-black px-20 font-sans">
       <div className="container py-4 text-gray-500 flex items-center justify-between">
         <Link className="text-white" to="/">
@@ -29,110 +32,110 @@ export default () => (
         </ul>
       </div>
     </header>
-    <main className="container px-20 py-20 flex">
-      <div className="flex-col flex inline-flex w-2/5">
-        <div className="relative inline-block self-start mb-10 w-48">
-          <div className="bg-white relative p-2 z-40 shadow-md">
-            <img src="../images/287.png" alt="" />
-          </div>
-          <div className="bg-white p-2 absolute w-full h-full inline-block -bottom-2 -right-2 z-20 shadow-md"></div>
-          <div className="bg-white p-2 absolute w-full h-full -bottom-4 -right-4 z-10 shadow-md"></div>
-        </div>
-        <h3 className="text-white font-sans font-medium leading-tight text-2xl">
-          User Research & the Next Billion Stories
-        </h3>
-        <p className="font-serif text-gray-300 mt-4 leading-snug">
-          A fresh approach to context and location of those just coming online.
-          Here we chronicle the learnings, insights and processes that we’ve
-          learnt along the way
-        </p>
-        <span className="text-white font-sans font-medium text-sm mt-8 border-b border-gray-300 pb-2">
-          Colophon
+    <main className="container px-20 py-20">
+      <h1 className="font-sans text-4xl font-semibold leading-tight my-4">
+        Saving Millions of Lives from Cardiovascular Disease
+      </h1>
+      <h2 className="font-sans font-semibold text-sm text-world leading-tight my-4">
+        We partnered with the Indian Hypertension Control Initiative (IHCI) on
+        their mission to save 100 million lives from cardiovascular disease.
+      </h2>
+      <div className="my-4">
+        <span className="text-black uppercase font-sans font-semibold text-xs">
+          January 8, 2019
         </span>
-        <div className="mt-2">
-          <span className="font-serif text-gray-300 text-xs italic font-medium">
-            Curated by 
-          </span>
-          <span className="font-sans uppercase text-bittersweet text-xs font-medium">
-            Padmini Ray Murray
+        <span className="text-world font-serif italic text-xs"> by </span>
+        <span className="uppercase font-sans font-semibold text-xs text-bittersweet">
+          Tanushree Jindal
+        </span>
+      </div>
+      <div>
+        <img src="" alt="" />
+      </div>
+      <div>
+        <p className="font-serif text-sm">
+          We created a digital + physical + service product for improving
+          hypertension control across populations. This is how clinicians use
+          Simple:
+        </p>
+        <ol className="font-serif text-sm">
+          <li>
+            Record patient blood pressures and medications over time to improve
+            treatment.
+          </li>
+          <li>Make sure patients keep getting their BP checked regularly.</li>
+        </ol>
+        <div>
+          <p className="font-serif italic text-sm font-black">
+            The strategy was to do this well at the individual healthcare
+            facility level and then to scale it up to districts, states, all of
+            India and other countries.
+          </p>
+          <div>
+            <span className="text-xs text-black font-sans font-semibold">
+              N Chandrashekhar Ramanujam
+            </span>
+            <span className="text-xs text-black font-sans font-medium">
+              CEO, Gojhuk
+            </span>
+          </div>
+        </div>
+        <p className="font-serif text-sm">
+          We started the project with a design sprint, where we ideated, arrived
+          at a concept, and prototyped and validated it with real clinicians in
+          a week. Our team then designed an engineered a functional prototype
+          Android app in the next 45 days. We took that prototype to the rural
+          Punjab and tested it with real users. In just 5 months, Simple had
+          launched in 20 clinics and was recording real patient data in live
+          clinical environments. Simple is now being used at healthcare
+          facilties in urban clinics to primary healthcare centres in remote
+          villages in India. Our work is already making a positive impact at the
+          population level.
+        </p>
+        <div>
+          <span className="text-black font-light font-sans text-5xl">$1 M</span>
+          <span className="font-sans font-semibold text-xs text-world tracking-wide">
+            Revenue in the first year of starting operations
           </span>
         </div>
         <div>
-          <span className="font-serif text-gray-300 text-xs italic font-medium">
-            Cover Illustration by 
-          </span>
-          <span className="font-sans uppercase text-bittersweet text-xs font-medium">
-            Chippy Robin
+          <span className="text-black font-light font-sans text-5xl">$1 M</span>
+          <span className="font-sans font-semibold text-xs text-world tracking-wide">
+            Patients in the eighty months
           </span>
         </div>
-      </div>
-      <div className="w-3/5 pl-16">
-        <Link to="/article">
-          <div className="bg-white p-6 mb-6 rounded-sm min-h-xs">
-            <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
-              A day in the life of a Simple engineer
-            </h3>
-            <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
-              <span className="uppercase font-sans">January 8, 2019</span>
-              <span className="font-serif italic"> by </span>
-              <span className="font-sans uppercase">Sanchita Agarwal</span>
-            </h4>
-            <p className="font-serif text-sm font-medium text-gray-800">
-              When I joined Obvious, Simple — an open-source app for clinicians
-              to track patients with high blood pressure — was in beta, and
-              since then has been at the heart of my work. I’ve been working on
-              the app for more than a year now, and it has been quite a...
-            </p>
+        <div>
+          <span className="text-black font-light font-sans text-5xl">$1 M</span>
+          <span className="font-sans font-semibold text-xs text-world tracking-wide">
+            To go from the first prototype to launch
+          </span>
+        </div>
+        <p className="font-serif text-sm">
+          Simple competes with and is quicker than the existing pen and paper
+          system, even for first time smartphone users. Previously, clinicians
+          spent a couple of minutes just to find each patient’s treatment card
+          from a stack of hundreds, but now users only had to scan a QR code to
+          look up their record.
+        </p>
+        <div>
+          <div>
+            <span>Paper Card System</span>
+            <span>4 min</span>
           </div>
-        </Link>
-        <div className="bg-white p-6 mb-6 rounded-sm min-h-xs">
-          <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
-            A day in the life of a Simple engineer
-          </h3>
-          <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
-            <span className="uppercase font-sans">January 8, 2019</span>
-            <span className="font-serif italic"> by </span>
-            <span className="font-sans uppercase">Sanchita Agarwal</span>
-          </h4>
-          <p className="font-serif text-sm font-medium text-gray-800">
-            When I joined Obvious, Simple — an open-source app for clinicians to
-            track patients with high blood pressure — was in beta, and since
-            then has been at the heart of my work. I’ve been working on the app
-            for more than a year now, and it has been quite a...
-          </p>
+          <div>
+            <span>Simple</span>
+            <span>24 sec</span>
+          </div>
         </div>
-        <div className="bg-white p-6 mb-6 rounded-sm min-h-xs">
-          <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
-            A day in the life of a Simple engineer
-          </h3>
-          <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
-            <span className="uppercase font-sans">January 8, 2019</span>
-            <span className="font-serif italic"> by </span>
-            <span className="font-sans uppercase">Sanchita Agarwal</span>
-          </h4>
-          <p className="font-serif text-sm font-medium text-gray-800">
-            When I joined Obvious, Simple — an open-source app for clinicians to
-            track patients with high blood pressure — was in beta, and since
-            then has been at the heart of my work. I’ve been working on the app
-            for more than a year now, and it has been quite a...
-          </p>
+        <div>
+          <img src="" alt="" />
         </div>
-        <div className="bg-white p-6 mb-6 rounded-sm min-h-xs">
-          <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
-            A day in the life of a Simple engineer
-          </h3>
-          <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
-            <span className="uppercase font-sans">January 8, 2019</span>
-            <span className="font-serif italic"> by </span>
-            <span className="font-sans uppercase">Sanchita Agarwal</span>
-          </h4>
-          <p className="font-serif text-sm font-medium text-gray-800">
-            When I joined Obvious, Simple — an open-source app for clinicians to
-            track patients with high blood pressure — was in beta, and since
-            then has been at the heart of my work. I’ve been working on the app
-            for more than a year now, and it has been quite a...
-          </p>
-        </div>
+        <p className="font-serif text-sm">
+          Nurses and doctors are using Simple everyday to save lives and are
+          proud of their contributions to this large mission. They can now spend
+          more time actually treating and counselling patients, rather than
+          recording data.
+        </p>
       </div>
     </main>
   </div>
