@@ -29,82 +29,107 @@ export default () => (
         </ul>
       </div>
     </header>
-    <main className="container px-20">
-      <h1 className="py-10 text-gray-200 text-5xl leading-none tracking-tight font-medium font-sans">
-        A blurb about our evolving curations on how we're tackling some complex
-        global challenges.
-      </h1>
-      <div className="py-2">
-        <h3 className="text-white font-semibold font-sans text-lg border-b border-gray-500 py-2">
-          Recent Articles
+    <main className="container px-20 py-20 flex">
+      <div className="flex-col flex inline-flex w-2/5">
+        <div className="relative inline-block self-start mb-10 w-48">
+          <div className="bg-white relative p-2 z-40 shadow-md">
+            <img src="../images/287.png" alt="" />
+          </div>
+          <div className="bg-white p-2 absolute w-full h-full inline-block -bottom-2 -right-2 z-20 shadow-md"></div>
+          <div className="bg-white p-2 absolute w-full h-full -bottom-4 -right-4 z-10 shadow-md"></div>
+        </div>
+        <h3 className="text-white font-sans font-medium leading-tight text-2xl">
+          User Research & the Next Billion Stories
         </h3>
-        <div className="flex-wrap flex py-4">
-          <div className="rounded bg-hello w-2/5 mr-4 p-4 flex flex-col justify-between h-40">
-            <h4 className="text-white font-sans font-semibold text-lg">
-              A day in the life of a Simple engineer
-            </h4>
-            <span className="text-hello font-sans uppercase tracking-wide font-semibold text-sm">
-              January 8, 2019
-            </span>
-          </div>
-          <div className="rounded bg-hello w-2/5 mr-4 p-4 flex flex-col justify-between h-40">
-            <h4 className="text-white font-sans font-semibold text-lg">
-              Rahul is cool
-            </h4>
-            <span className="text-hello font-sans uppercase tracking-wide font-semibold text-sm">
-              January 8, 2019
-            </span>
-          </div>
+        <p className="font-serif text-gray-300 mt-4 leading-snug">
+          A fresh approach to context and location of those just coming online.
+          Here we chronicle the learnings, insights and processes that we’ve
+          learnt along the way
+        </p>
+        <span className="text-white font-sans font-medium text-sm mt-8 border-b-2 border-gray-300 pb-2">
+          Colophon
+        </span>
+        <div className="mt-2">
+          <span className="font-serif text-gray-300 text-xs italic font-medium">
+            Curated by 
+          </span>
+          <span className="font-sans uppercase text-bittersweet text-xs font-medium">
+            Padmini Ray Murray
+          </span>
+        </div>
+        <div>
+          <span className="font-serif text-gray-300 text-xs italic font-medium">
+            Cover Illustration by 
+          </span>
+          <span className="font-sans uppercase text-bittersweet text-xs font-medium">
+            Chippy Robin
+          </span>
         </div>
       </div>
-      <div>
-        <h2 className="text-white font-semibold font-sans text-lg border-b border-gray-500 py-2">
-          All Publications
-        </h2>
-        <div className="flex flex-wrap justify-between py-4">
-          <Link className="w-2/5" to="/publication">
-            <div className="flex-col flex inline-flex">
-              <div className="relative inline-block self-start mb-10">
-                <div className="bg-white relative p-2 z-40 shadow-md">
-                  <img src="../images/287.png" alt="" />
-                </div>
-                <div className="bg-white p-2 absolute w-full h-full inline-block -bottom-2 -right-2 z-20 shadow-md"></div>
-                <div className="bg-white p-2 absolute w-full h-full -bottom-4 -right-4 z-10 shadow-md"></div>
-              </div>
-              <span className="bg-yellow-400 rounded px-2 py-1 font-sans text-sm font-medium self-start">
-                New
-              </span>
-              <span className="font-sans text-xl text-white font-semibold self-start mt-2">
-                Inside Obvious
-              </span>
-              <p className="font-serif text-white text-base self-start mt-2 leading-relaxed">
-                A fresh approach to context and location of those just coming
-                online. Here we chronicle the learnings, insights and processes
-                that we’ve learnt along the way
-              </p>
-            </div>
-          </Link>
-          <div className="flex-col flex inline-flex w-2/5">
-            <div className="relative inline-block self-start mb-10">
-              <div className="bg-white relative p-2 z-40 shadow-md">
-                <img src="../images/image.png" alt="" />
-              </div>
-              <div className="bg-white p-2 absolute w-full h-full inline-block -bottom-2 -right-2 z-20 shadow-md"></div>
-              <div className="bg-white p-2 absolute w-full h-full -bottom-4 -right-4 z-10 shadow-md"></div>
-            </div>
-            <span className="rounded bg-blue-400 px-2 py-1 font-sans text-sm font-medium self-start">
-              Recently Updated
-            </span>
-
-            <span className="font-sans text-xl text-white font-semibold self-start mt-2">
-              Obvious at Large
-            </span>
-            <p className="font-serif text-white text-base self-start mt-2 leading-relaxed">
-              A fresh approach to context and location of those just coming
-              online. Here we chronicle the learnings, insights and processes
-              that we’ve learnt along the way
-            </p>
-          </div>
+      <div className="w-3/5 pl-16">
+        <div className="bg-white p-6 mb-6">
+          <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
+            A day in the life of a Simple engineer
+          </h3>
+          <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
+            <span className="uppercase font-sans">January 8, 2019</span>
+            <span className="font-serif italic"> by </span>
+            <span className="font-sans uppercase">Sanchita Agarwal</span>
+          </h4>
+          <p className="font-serif text-sm">
+            When I joined Obvious, Simple — an open-source app for clinicians to
+            track patients with high blood pressure — was in beta, and since
+            then has been at the heart of my work. I’ve been working on the app
+            for more than a year now, and it has been quite a...
+          </p>
+        </div>
+        <div className="bg-white p-6 mb-6">
+          <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
+            A day in the life of a Simple engineer
+          </h3>
+          <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
+            <span className="uppercase font-sans">January 8, 2019</span>
+            <span className="font-serif italic"> by </span>
+            <span className="font-sans uppercase">Sanchita Agarwal</span>
+          </h4>
+          <p className="font-serif text-sm">
+            When I joined Obvious, Simple — an open-source app for clinicians to
+            track patients with high blood pressure — was in beta, and since
+            then has been at the heart of my work. I’ve been working on the app
+            for more than a year now, and it has been quite a...
+          </p>
+        </div>
+        <div className="bg-white p-6 mb-6">
+          <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
+            A day in the life of a Simple engineer
+          </h3>
+          <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
+            <span className="uppercase font-sans">January 8, 2019</span>
+            <span className="font-serif italic"> by </span>
+            <span className="font-sans uppercase">Sanchita Agarwal</span>
+          </h4>
+          <p className="font-serif text-sm">
+            When I joined Obvious, Simple — an open-source app for clinicians to
+            track patients with high blood pressure — was in beta, and since
+            then has been at the heart of my work. I’ve been working on the app
+            for more than a year now, and it has been quite a...
+          </p>
+        </div>
+        <div className="bg-white p-6 mb-6">
+          <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
+            A day in the life of a Simple engineer
+          </h3>
+          <h4 className="text-xs border-gray-300 font-medium text-gray-600 py-3">
+            <span className="uppercase font-sans">January 8, 2019</span>
+            <span className="font-serif italic"> by </span>
+            <span className="font-sans uppercase">Sanchita Agarwal</span>
+          </h4>
+          <p className="font-serif text-sm">
+            When I joined Obvious, Simple — an open-source app for clinicians to
+            track patients with high blood pressure — was in beta, and since
+            then has been at the heart of my work. I’ve been working on the app
+            for more than a year now, and it has been quite a...
+          </p>
         </div>
       </div>
     </main>
