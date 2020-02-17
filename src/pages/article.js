@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import SiteHeader from "../components/SiteHeader"
+
 export default () => (
   <div
     className="flex flex-col justify-start antialiased min-h-screen"
