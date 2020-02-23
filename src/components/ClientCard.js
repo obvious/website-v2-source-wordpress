@@ -1,7 +1,7 @@
 import React from "react"
 
 export default ({ client, width, className }) => {
-  if (width == "half") {
+  if (width === "half") {
     return (
       <div className={`w-1/2 ${className}`}>
         <div className="rounded bg-bittersweet p-4 h-full">
