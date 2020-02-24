@@ -1,13 +1,43 @@
-import React from "react"
+import React, { useState } from "react"
+import { Link } from "gatsby"
 
 import SiteHeader from "../components/SiteHeader"
 import SiteFooter from "../components/SiteFooter"
 
 export default ({ children, showFooter = true }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const toggleIsOpen = () => setIsOpen(!isOpen)
   return (
     <div className="flex flex-col justify-start antialiased bg-logCabin min-h-screen">
-      <SiteHeader />
-      <main className="container px-20">{children}</main>
+      <SiteHeader isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
+      <main className="container mx-auto relative">
+        {isOpen && (
+          <div className="px-10 text-world flex justify-end text-right py-4 absolute z-10 bg-black w-screen border-world border-t">
+            <ul>
+              <Link className="px-2" activeClassName="text-white" to="/clients">
+                <li>Clients</li>
+              </Link>
+              <Link
+                className="px-2"
+                activeClassName="text-white"
+                to="/publications"
+              >
+                <li>Publications</li>
+              </Link>
+              <a className="px-2" href="https://playbook.obvious.in/">
+                <li>Playbook</li>
+              </a>
+              <a className="px-2" href="https://obvious.in/services/">
+                <li>Company</li>
+              </a>
+              <Link className="px-2" activeClassName="text-white" to="/contact">
+                <li>Contact</li>
+              </Link>
+            </ul>
+          </div>
+        )}
+        <div className="px-10 sm:px-20">{children}</div>
+      </main>
       {showFooter && <SiteFooter />}
     </div>
   )
