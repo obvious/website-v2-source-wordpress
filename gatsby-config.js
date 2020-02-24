@@ -10,5 +10,6 @@ module.exports = {
     `gatsby-plugin-postcss`,
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-remove-serviceworker`,
+    // `gatsby-plugin-layout`,
   ],
 }
