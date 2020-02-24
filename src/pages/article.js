@@ -3,17 +3,20 @@ import React from "react"
 
 import ArticleLayout from "../layouts/ArticleLayout"
 import Quote from "../components/Quote"
+import ArticleTitle from "../components/ArticleTitle"
+import ArticleSubtitle from "../components/ArticleSubtitle"
+import PopupStatistic from "../components/PopupStatistic"
 
 export default () => (
   <ArticleLayout>
     <main className="container px-20 py-20">
-      <h1 className="font-sans text-4xl font-semibold leading-tight my-4">
+      <ArticleTitle>
         Saving Millions of Lives from Cardiovascular Disease
-      </h1>
-      <h2 className="font-sans font-semibold text-sm text-world leading-tight my-4">
+      </ArticleTitle>
+      <ArticleSubtitle>
         We partnered with the Indian Hypertension Control Initiative (IHCI) on
         their mission to save 100 million lives from cardiovascular disease.
-      </h2>
+      </ArticleSubtitle>
       <div className="my-4">
         <span className="text-black uppercase font-sans font-semibold text-xs">
           January 8, 2019
@@ -82,14 +85,8 @@ export default () => (
           look up their record.
         </p>
         <div>
-          <div>
-            <span>Paper Card System</span>
-            <span>4 min</span>
-          </div>
-          <div>
-            <span>Simple</span>
-            <span>24 sec</span>
-          </div>
+          <PopupStatistic title="Paper Card System" statistic="4 min" />
+          <PopupStatistic title="Simple" statistic="24 sec" />
         </div>
         <div>
           <img src="" alt="" />
