@@ -36,7 +36,8 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        "7xl": "6rem",
+        "7xl": "5rem",
+        "8xl": "6rem",
       },
       colors: {
         bittersweet: "#FF725C",

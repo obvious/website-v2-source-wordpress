@@ -16,6 +16,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "gatsby": "^2.19.7",
     "gatsby-plugin-layout": "^1.1.22",
     "gatsby-plugin-postcss": "^2.1.20",
