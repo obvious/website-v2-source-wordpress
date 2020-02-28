@@ -33,6 +33,7 @@
     "@storybook/addons": "^5.3.13",
     "@storybook/react": "^5.3.13",
     "babel-loader": "^8.0.6",
+    "gatsby-source-graphql": "^2.1.33",
     "prettier": "^1.19.1",
     "tailwindcss": "^1.2.0"
   },

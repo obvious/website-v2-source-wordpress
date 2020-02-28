@@ -11,5 +11,13 @@ module.exports = {
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-remove-serviceworker`,
     // `gatsby-plugin-layout`,
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "WP",
+        fieldName: "WP",
+        url: "https://content.obvious.in/wp/graphql",
+      },
+    },
   ],
 }

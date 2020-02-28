@@ -1,12 +1,13 @@
 import React from "react"
 import classNames from "classnames"
 
-export default ({ client, statistic, description, half, className }) => {
+export default ({ client, statistic, description, fullWidth, className }) => {
+  console.log(fullWidth)
   return (
     <div
       className={classNames(
         `col-span-2`,
-        half ? `sm:col-span-1` : `sm:col-span-2`,
+        fullWidth ? `sm:col-span-2` : `sm:col-span-1`,
         className
       )}
     >
