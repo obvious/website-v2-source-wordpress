@@ -10,7 +10,7 @@ export default ({ children, showFooter = true }) => {
   return (
     <div className="flex flex-col justify-start antialiased bg-logCabin min-h-screen">
       <SiteHeader isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
-      <main className="container mx-auto relative">
+      <main className="container mx-auto">
         {isOpen && (
           <div className="px-10 text-world flex justify-end text-right py-4 absolute z-10 bg-black w-screen border-world border-t">
             <ul>
@@ -36,7 +36,7 @@ export default ({ children, showFooter = true }) => {
             </ul>
           </div>
         )}
-        <div className="px-10 sm:px-20">{children}</div>
+        <div className="px-10 sm:px-20 sm:py-10">{children}</div>
       </main>
       {showFooter && <SiteFooter />}
     </div>
