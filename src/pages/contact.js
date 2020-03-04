@@ -18,7 +18,7 @@ export default ({ data }) => {
           title={page.contact.form.title}
           description={page.contact.form.description}
         />
-        <ContactDetails contactAsideBlock={page.contact.details} />
+        <ContactDetails details={page.contact.details} />
       </div>
     </Layout>
   )
