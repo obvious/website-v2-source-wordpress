@@ -1,13 +1,13 @@
 import React from "react"
 
-export default ({ contactForm }) => {
+export default ({ title, description }) => {
   return (
     <div className="w-3/6">
       <h2 className="text-lg font-semibold text-white font-sans">
-        {contactForm.formtitle}
+        {title}
       </h2>
       <p className="text-sm py-2 font-serif">
-        {contactForm.formdescription}
+        {description}
       </p>
       <input
         className="bg-transparent border border-gray-400 rounded p-4 text-sm w-full my-1 font-sans"

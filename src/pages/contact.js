@@ -14,8 +14,11 @@ export default ({ data }) => {
     <Layout>
       <HeroTitle>{page.contact.hero}</HeroTitle>
       <div className="flex text-gray-400">
-        <ContactForm contactForm={page.contact.contactform} />
-        <ContactDetails contactAsideBlock={page.contact.contactasideblock} />
+        <ContactForm
+          title={page.contact.form.title}
+          description={page.contact.form.description}
+        />
+        <ContactDetails contactAsideBlock={page.contact.details} />
       </div>
     </Layout>
   )
@@ -27,15 +30,18 @@ export const query = graphql`
       page(id: "cGFnZTozMQ==") {
         contact {
           hero
-          contactform {
-            formtitle
-            formdescription
-          }
-          contactasideblock {
+          form {
             title
             description
-            linktext
-            link
+          }
+          details {
+            title
+            description
+            link {
+              text
+              href
+              isexternal
+            }
           }
         }
       }
