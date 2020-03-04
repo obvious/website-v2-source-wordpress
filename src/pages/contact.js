@@ -11,7 +11,12 @@ export default () => (
     <HeroTitle>Get in touch.</HeroTitle>
     <div className="flex text-gray-400">
       <ContactForm />
-      <ContactDetails />
     </div>
   </Layout>
 )
+              <ContactDetails
+                title={title}
+                description={description}
+                link={link}
+                linkText={linktext}
+              />
