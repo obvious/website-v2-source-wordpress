@@ -15,19 +15,7 @@ export default ({ data }) => {
       <HeroTitle>{page.contact.hero}</HeroTitle>
       <div className="flex text-gray-400">
         <ContactForm />
-        {page.contact.contactasideblock.map(
-          ({ title, description, hasLink, linktext, link }) => (
-            <div className="w-2/6 ml-auto flex flex-col">
-              <ContactDetails
-                title={title}
-                description={description}
-                link={link}
-                linkText={linktext}
-              />
-            </div>
-          )
-        )}
-        <ContactDetails />
+        <ContactDetails contactAsideBlock={page.contact.contactasideblock} />
       </div>
     </Layout>
   )
@@ -45,7 +33,6 @@ export const query = graphql`
           contactasideblock {
             title
             description
-            haslink
             linktext
             link
           }
