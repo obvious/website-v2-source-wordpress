@@ -40,7 +40,7 @@ export const query = graphql`
             link {
               text
               href
-              isexternal
+              typeoflink
             }
           }
         }
