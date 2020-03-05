@@ -1,16 +1,12 @@
 import React from "react"
-// import { Link } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../layouts/index"
 import HeroTitle from "../components/HeroTitle"
 import ClientList from "../components/ClientList"
 import FeaturedClient from "../components/FeaturedClient"
 
-export default () => (
   <Layout>
-    <HeroTitle>
-      A blurb about our clients and we transform ideas into household names.
-    </HeroTitle>
     <div className="flex text-gray-400 flex-wrap justify-between">
       <FeaturedClient
         client="Quintype"
@@ -79,3 +75,37 @@ export default () => (
     </div>
   </Layout>
 )
+export default ({ data }) => {
+  const {
+    WP: { page },
+  } = data
+      <HeroTitle>{page.client.hero}</HeroTitle>
+
+export const query = graphql`
+  {
+    WP {
+      page(id: "cGFnZTo0Mg==") {
+        client {
+          hero
+          featuredclientblock {
+            client
+            description
+            link {
+              text
+              href
+              typeoflink
+            }
+          }
+          listofclientlistblocks {
+            clientlistblock {
+              title
+              namelist {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
