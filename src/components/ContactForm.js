@@ -1,14 +1,13 @@
 import React from "react"
 
-export default ({ clients, category }) => {
+export default ({ title, description }) => {
   return (
     <div className="w-3/6">
       <h2 className="text-lg font-semibold text-white font-sans">
-        Business Enquiries
+        {title}
       </h2>
       <p className="text-sm py-2 font-serif">
-        Interested in partnering with us? Tell us about your product and the
-        goals you want it to realise.
+        {description}
       </p>
       <input
         className="bg-transparent border border-gray-400 rounded p-4 text-sm w-full my-1 font-sans"
