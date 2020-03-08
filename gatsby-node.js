@@ -10,8 +10,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const today = moment()
   const aMonthAgo = moment(today).subtract(30, "days")
 
-  console.log(today, aMonthAgo)
-
   createPage({
     path: `publications`,
     component: publicationsTemplate,
