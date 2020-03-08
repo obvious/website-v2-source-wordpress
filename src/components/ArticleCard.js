@@ -1,9 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
 
+const kebabcase = require(`lodash.kebabcase`)
+
 export default ({ title, excerpt, date, author }) => {
   return (
-    <Link to="/article">
+    <Link to={`articles/${kebabcase(title)}`}>
       <div className="bg-white p-6 mb-6 rounded-sm min-h-xs">
         <h3 className="font-sans text-2xl leading-tight font-semibold border-gray-300 border-b-2 pb-2">
           {title}

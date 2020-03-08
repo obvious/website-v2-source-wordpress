@@ -14,6 +14,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               title
             }
           }
+          articles {
+            nodes {
+              id
+              title
+              articles {
+                metadata {
+                  title
+                }
+              }
+            }
+          }
         }
       }
     `
@@ -30,6 +41,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     createPage({
       path: `publications/${kebabcase(title)}`,
       component: publicationTemplate,
+      context: {
+        id,
+      },
+    })
+  })
+
+  const articleTemplate = path.resolve(`src/templates/article.js`)
+  result.data.WP.articles.nodes.forEach(node => {
+    const { id, articles } = node
+    createPage({
+      path: `articles/${kebabcase(articles.metadata.title)}`,
+      component: articleTemplate,
       context: {
         id,
       },

@@ -1,5 +1,4 @@
 import React from "react"
-// import { Link } from "gatsby"
 
 import Layout from "../layouts/index"
 import ArticleCard from "../components/ArticleCard"
@@ -7,7 +6,6 @@ import StackedImage from "../components/StackedImage"
 import Colophon from "../components/Colophon"
 
 export default ({ data }) => {
-  console.log(data.WP.publication)
   const {
     WP: { publication },
   } = data
@@ -65,7 +63,6 @@ export const query = graphql`
             }
             article {
               ... on WP_Article {
-                content
                 articles {
                   metadata {
                     author
