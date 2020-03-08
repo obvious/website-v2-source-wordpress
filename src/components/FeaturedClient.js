@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../layouts"
 
 export default ({ featuredClientBlock }) => (
   <div className="flex text-gray-400 flex-wrap justify-between">
