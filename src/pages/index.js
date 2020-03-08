@@ -11,7 +11,7 @@ export default ({ data }) => {
     WP: { page },
   } = data
   return (
-    <Layout showFooter={false}>
+    <Layout>
       <HeroTitle>{page.hero.title}</HeroTitle>
       <div className="grid grid-cols-2 gap-2 py-2 pb-10">
         {page.hero.featuredclients.map(

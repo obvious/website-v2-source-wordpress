@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import SiteHeader from "../components/SiteHeader"
 import SiteFooter from "../components/SiteFooter"
 
-export default ({ children, showFooter = true }) => {
+export default ({ children, showFooter = false }) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggleIsOpen = () => setIsOpen(!isOpen)
   return (
