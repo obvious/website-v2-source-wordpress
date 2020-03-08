@@ -3,9 +3,11 @@ import { Link } from "gatsby"
 
 import StackedImage from "./StackedImage"
 
+const kebabcase = require(`lodash.kebabcase`)
+
 export default ({ title, description, tags, coverImage }) => {
   return (
-    <Link className="w-2/5" to="/publication">
+    <Link className="w-2/5" to={`publications/${kebabcase(title)}`}>
       <div className="flex-col flex inline-flex">
         <StackedImage image={coverImage} />
 

@@ -13,9 +13,10 @@ export default ({ title, excerpt, date, author }) => {
           <span className="font-serif italic"> by </span>
           <span className="font-sans uppercase">{author}</span>
         </h4>
-        <p className="font-serif text-sm font-medium text-gray-800">
-          {excerpt}
-        </p>
+        <div
+          dangerouslySetInnerHTML={{ __html: excerpt }}
+          className="font-serif text-sm font-medium text-gray-800"
+        ></div>
       </div>
     </Link>
   )
