@@ -27,9 +27,6 @@ export default ({ children, showFooter = false }) => {
               <a className="px-2" href="https://playbook.obvious.in/">
                 <li>Playbook</li>
               </a>
-              <a className="px-2" href="https://obvious.in/services/">
-                <li>Company</li>
-              </a>
               <Link className="px-2" activeClassName="text-white" to="/contact">
                 <li>Contact</li>
               </Link>
