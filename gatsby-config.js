@@ -11,6 +11,7 @@ module.exports = {
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-remove-serviceworker`,
     // `gatsby-plugin-layout`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-graphql`,
       options: {

@@ -1,4 +1,6 @@
 import React from "react"
+import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
 // import Quote from "../components/Quote"
@@ -12,6 +14,9 @@ export default ({ data }) => {
   } = data
   return (
     <ArticleLayout>
+      <Helmet>
+        <title>{article.articles.metadata.title} | Articles | Obvious</title>
+      </Helmet>
       <main className="container px-20 py-20">
         <ArticleTitle>{article.articles.metadata.title}</ArticleTitle>
         <ArticleSubtitle>{article.articles.metadata.subtitle}</ArticleSubtitle>

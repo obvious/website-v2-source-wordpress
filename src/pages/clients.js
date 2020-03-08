@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
 import HeroTitle from "../components/HeroTitle"
@@ -12,6 +13,9 @@ export default ({ data }) => {
   } = data
   return (
     <Layout>
+      <Helmet>
+        <title>Clients | Obvious</title>
+      </Helmet>
       <HeroTitle>{page.client.hero}</HeroTitle>
       <FeaturedClient featuredClientBlock={page.client.featuredclientblock} />
       <ClientList listOfClientListBlocks={page.client.listofclientlistblocks} />

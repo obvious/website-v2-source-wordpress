@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
 import HeroTitle from "../components/HeroTitle"
@@ -12,6 +13,9 @@ export default ({ data }) => {
   } = data
   return (
     <Layout>
+      <Helmet>
+        <title>Publications | Obvious</title>
+      </Helmet>
       <HeroTitle>{page.publications.hero}</HeroTitle>
       <div className="py-2">
         <h3 className="text-white font-semibold font-sans text-lg border-b border-gray-500 py-2">

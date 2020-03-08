@@ -1,4 +1,6 @@
 import React from "react"
+import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
 import ArticleCard from "../components/ArticleCard"
@@ -11,6 +13,9 @@ export default ({ data }) => {
   } = data
   return (
     <Layout>
+      <Helmet>
+        <title>{publication.publication.name} | Publications | Obvious</title>
+      </Helmet>
       <div className="py-20 flex">
         <div className="flex-col flex inline-flex w-2/5">
           <div className="w-48">

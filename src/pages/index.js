@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
 import ClientCard from "../components/ClientCard"
@@ -12,6 +13,9 @@ export default ({ data }) => {
   } = data
   return (
     <Layout>
+      <Helmet>
+        <title>Home | Obvious</title>
+      </Helmet>
       <HeroTitle>{page.hero.title}</HeroTitle>
       <div className="grid grid-cols-2 gap-2 py-2 pb-10">
         {page.hero.featuredclients.map(
