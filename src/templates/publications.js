@@ -8,7 +8,7 @@ import PublicationCard from "../components/PublicationCard"
 
 export default ({ data }) => {
   const {
-    WP: { page },
+    WP: { page, articles },
   } = data
   return (
     <Layout>
@@ -17,7 +17,7 @@ export default ({ data }) => {
         <h3 className="text-white font-semibold font-sans text-lg border-b border-gray-500 py-2">
           Recent Articles
         </h3>
-        <ArticleCarousel />
+        <ArticleCarousel articles={articles.nodes} />
       </div>
       <div>
         <h2 className="text-white font-semibold font-sans text-lg border-b border-gray-500 py-2">
@@ -39,8 +39,28 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  {
+  query($after: WP_DateInput, $before: WP_DateInput) {
     WP {
+      articles(
+        where: {
+          orderby: { field: DATE, order: DESC }
+          dateQuery: {
+            after: $after
+            before: $before
+            inclusive: true
+            relation: AND
+          }
+        }
+      ) {
+        nodes {
+          articles {
+            metadata {
+              title
+              datepublished
+            }
+          }
+        }
+      }
       page(id: "cGFnZTo2Mg==") {
         title
         publications {

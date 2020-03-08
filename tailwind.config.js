@@ -44,6 +44,7 @@ module.exports = {
         logCabin: "#131411",
         hello: "#262724",
         world: "#A1A39D",
+        "light-gray-50": "#BFC2BA",
       },
       inset: {
         "-16": "-4rem",
