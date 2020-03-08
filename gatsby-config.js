@@ -19,5 +19,17 @@ module.exports = {
         url: "https://content.obvious.in/wp/graphql",
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Obvious`,
+        short_name: `Obvious`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#FF725C`,
+        display: `standalone`,
+        icon: `src/images/Obvious-favicon-v2.png`,
+      },
+    },
   ],
 }
