@@ -1,6 +1,8 @@
 import React from "react"
 import classNames from "classnames"
 
+import RightArrow from "./icons/RightArrow"
+
 export default ({ client, statistic, description, fullWidth, className }) => {
   return (
     <div
@@ -11,7 +13,12 @@ export default ({ client, statistic, description, fullWidth, className }) => {
       )}
     >
       <div className="rounded bg-bittersweet p-4">
-        <h2 className="font-sans text-4xl sm:text-5xl font-medium">{client}</h2>
+        <div className="flex flex-row items-baseline justify-between">
+          <h2 className="font-sans text-4xl sm:text-5xl font-medium">
+            {client}
+          </h2>
+          <RightArrow className="h-8" />
+        </div>
         {statistic && (
           <span className="font-sans text-6xl sm:text-8 font-light tracking-tighter">
             {statistic}
