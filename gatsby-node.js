@@ -1,4 +1,3 @@
-const kebabcase = require(`lodash.kebabcase`)
 const path = require(`path`)
 const moment = require(`moment`)
 
@@ -34,18 +33,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           publications {
             nodes {
               id
-              title
+              slug
             }
           }
           articles {
             nodes {
               id
-              title
-              articles {
-                metadata {
-                  title
-                }
-              }
+              slug
             }
           }
         }
@@ -60,9 +54,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const publicationTemplate = path.resolve(`src/templates/publication.js`)
   result.data.WP.publications.nodes.forEach(node => {
-    const { title, id } = node
+    const { id, slug } = node
     createPage({
-      path: `publications/${kebabcase(title)}`,
+      path: `publications/${slug}`,
       component: publicationTemplate,
       context: {
         id,
@@ -72,9 +66,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const articleTemplate = path.resolve(`src/templates/article.js`)
   result.data.WP.articles.nodes.forEach(node => {
-    const { id, articles } = node
+    const { id, slug } = node
     createPage({
-      path: `articles/${kebabcase(articles.metadata.title)}`,
+      path: `articles/${slug}`,
       component: articleTemplate,
       context: {
         id,

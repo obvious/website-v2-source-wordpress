@@ -2,7 +2,6 @@ import React from "react"
 import classNames from "classnames"
 
 export default ({ client, statistic, description, fullWidth, className }) => {
-  console.log(fullWidth)
   return (
     <div
       className={classNames(

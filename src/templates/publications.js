@@ -28,8 +28,9 @@ export default ({ data }) => {
           All Publications
         </h2>
         <div className="flex flex-wrap justify-between py-4">
-          {page.publications.publicationlist.map(({ publication }) => (
+          {page.publications.publicationlist.map(({ publication, slug }) => (
             <PublicationCard
+              slug={slug}
               title={publication.name}
               description={publication.description}
               tags={[]}
@@ -57,6 +58,7 @@ export const query = graphql`
         }
       ) {
         nodes {
+          slug
           articles {
             metadata {
               title
@@ -71,6 +73,7 @@ export const query = graphql`
           hero
           publicationlist {
             ... on WP_Publication {
+              slug
               publication {
                 description
                 name

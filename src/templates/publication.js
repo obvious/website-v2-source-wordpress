@@ -33,8 +33,9 @@ export default ({ data }) => {
           <Colophon colophon={publication.publication.colophon} />
         </div>
         <div className="w-3/5 pl-16">
-          {publication.publication.article.map(({ articles }) => (
+          {publication.publication.article.map(({ articles, slug }) => (
             <ArticleCard
+              slug={slug}
               title={articles.metadata.title}
               excerpt={articles.metadata.subtitle}
               date={articles.metadata.datepublished}
@@ -68,6 +69,7 @@ export const query = graphql`
             }
             article {
               ... on WP_Article {
+                slug
                 articles {
                   metadata {
                     author
