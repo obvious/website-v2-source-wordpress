@@ -8,7 +8,7 @@ export default ({ children, showFooter = false }) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggleIsOpen = () => setIsOpen(!isOpen)
   return (
-    <div className="flex flex-col justify-start antialiased bg-logCabin min-h-screen">
+    <div className="flex flex-col justify-start antialiased bg-gray-10 min-h-screen">
       <SiteHeader isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
       <main className="container mx-auto">
         {isOpen && (
