@@ -20,7 +20,7 @@ export default ({ details }) => (
         ) : (
           <p className="py-2 text-xs font-serif">{description}</p>
         )}
-        <a className="text-xs text-bittersweet font-sans flex" href={link.href}>
+        <a className="text-xs text-orange-50 font-sans flex" href={link.href}>
           {link.text}
           {link.text && <ExternalLink className="fill-current h-4 px-1" />}
         </a>

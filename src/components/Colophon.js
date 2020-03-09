@@ -12,7 +12,7 @@ export default ({ colophon }) => {
           <span className="font-serif text-gray-300 text-xs italic font-medium">
             {credit.nameoffield}&nbsp;
           </span>
-          <span className="font-sans uppercase text-bittersweet text-xs font-medium">
+          <span className="font-sans uppercase text-orange-50 text-xs font-medium">
             {credit.personresponsible}
           </span>
         </div>

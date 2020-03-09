@@ -13,14 +13,14 @@ export default ({ isOpen, toggleIsOpen }) => {
           <Link className="text-white" to="/">
             <Obvious className="fill-current h-6" />
           </Link>
-          <div onClick={toggleIsOpen} className="text-world sm:hidden">
+          <div onClick={toggleIsOpen} className="text-gray-50 sm:hidden">
             {isOpen ? (
               <Close className="fill-current h-4" />
             ) : (
               <Hamburger className="fill-current h-4" />
             )}
           </div>
-          <ul className="justify-between font-medium text-base text-world hidden sm:flex lg:w-2/3">
+          <ul className="justify-between font-medium text-base text-gray-50 hidden sm:flex lg:w-2/3">
             <Link className="px-2" activeClassName="text-white" to="/clients">
               <li>Clients</li>
             </Link>

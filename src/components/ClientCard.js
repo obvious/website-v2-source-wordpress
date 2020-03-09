@@ -12,7 +12,7 @@ export default ({ client, statistic, description, fullWidth, className }) => {
         className
       )}
     >
-      <div className="rounded bg-bittersweet p-4">
+      <div className="rounded bg-orange-50 p-4">
         <div className="flex flex-row items-baseline justify-between">
           <h2 className="font-sans text-4xl sm:text-5xl font-medium">
             {client}
