@@ -42,6 +42,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               slug
             }
           }
+          caseStudies {
+            nodes {
+              id
+              slug
+            }
+          }
         }
       }
     `
@@ -58,6 +64,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     createPage({
       path: `publications/${slug}`,
       component: publicationTemplate,
+      context: {
+        id,
+      },
+    })
+  })
+
+  const caseStudyTemplate = path.resolve(`src/templates/article.js`)
+  result.data.WP.publications.nodes.forEach(node => {
+    const { id, slug } = node
+    createPage({
+      path: `case-studies/${slug}`,
+      component: caseStudyTemplate,
       context: {
         id,
       },
