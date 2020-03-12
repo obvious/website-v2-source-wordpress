@@ -7,6 +7,45 @@ import ArticleTitle from "../components/ArticleTitle"
 import ArticleSubtitle from "../components/ArticleSubtitle"
 import Quote from "../components/Quote"
 
+function assignComponent(name, content, innerBlock) {
+  switch (name) {
+    case "core/paragraph":
+      return <p dangerouslySetInnerHTML={{__html: content}} />
+
+    case "core/heading":
+      return <h2 dangerouslySetInnerHTML={{__html: content}} />
+
+    case "core/image":
+      console.log(content);
+      return
+
+    case "core/quote":
+      return <Quote>{content}</Quote>
+
+    case "core/columns":
+      innerBlock && assignComponent(
+        innerBlock.name,
+        innerBlock.originalContent,
+        innerBlock.innerBlock
+      )
+      break
+
+    case "core/column":
+      innerBlock && assignComponent(
+        innerBlock.name,
+        innerBlock.originalContent,
+        innerBlock.innerBlock
+      )
+      break
+
+    case "core/separator":
+      console.log(content);
+      return
+
+    default:
+      console.log(name, content)
+  }
+}
 
 export default ({ data }) => {
   const {
@@ -31,9 +70,7 @@ export default ({ data }) => {
           </span>
         </div>
         <div
-          dangerouslySetInnerHTML={{
-            __html: article.content,
-          }}
+
         >
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)
