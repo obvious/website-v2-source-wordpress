@@ -8,7 +8,7 @@ import Close from "./icons/Close"
 export default ({ isOpen, toggleIsOpen }) => {
   return (
     <>
-      <header className="bg-black font-sans z-20">
+      <header className="bg-black-a100 font-sans z-20">
         <div className="text-gray-500 flex items-center justify-between mx-auto container py-6 px-10 sm:px-20">
           <Link className="text-white" to="/">
             <Obvious className="fill-current h-6" />
