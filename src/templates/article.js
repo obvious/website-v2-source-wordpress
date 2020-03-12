@@ -120,6 +120,23 @@ export const query = graphql`
       article(id: $id) {
         id
         title
+        date
+        blocks {
+          name
+          originalContent
+          innerBlocks {
+            name
+            originalContent
+            innerBlocks {
+              name
+              originalContent
+              innerBlocks {
+                name
+                originalContent
+              }
+            }
+          }
+        }
         content
         date
         articles {
