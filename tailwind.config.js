@@ -40,6 +40,7 @@ module.exports = {
         "8xl": "6rem",
       },
       colors: {
+        "black-a100": "#000000",
         "white-a90": "rgba(255, 255, 255, 0.08)",
         "orange-50": "#FF725C",
         "yellow-50": "#FAE246",
