@@ -10,12 +10,12 @@ export default ({ featuredClientBlock }) => (
         <p className="py-2 font-serif">{description}</p>
         {link && (
           <a
-            className="text-xs text-bittersweet font-sans flex justify-center items-center"
+            className="text-xs text-orange-50 font-sans flex justify-center items-center"
             href={link.href}
           >
             {link.text}
             {link.text && (
-              <RightArrow className="text-bittersweet fill-current px-2 h-3" />
+              <RightArrow className="text-orange-50 fill-current px-2 h-3" />
             )}
           </a>
         )}

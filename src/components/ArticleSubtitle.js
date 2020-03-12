@@ -6,7 +6,7 @@ export default ({ children }) => {
       dangerouslySetInnerHTML={{
         __html: children,
       }}
-      className="font-sans font-semibold text-sm text-world leading-tight my-4"
+      className="font-sans font-semibold text-sm text-gray-50 leading-tight my-4"
     ></div>
   )
 }

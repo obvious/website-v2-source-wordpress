@@ -7,7 +7,7 @@ import Linkedin from "./icons/Linkedin"
 
 export default () => {
   return (
-    <footer className="bg-hello text-world mt-auto py-8">
+    <footer className="bg-white-a90 text-gray-50 mt-auto py-8">
       <div className="flex container mx-auto justify-between items-center">
         <ul className="flex w-1/4 justify-between text-xs font-semibold font-sans tracking-widest uppercase">
           <a href="https://obvious.in/team/">team</a>

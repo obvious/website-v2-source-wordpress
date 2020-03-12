@@ -25,9 +25,9 @@ export default ({ title, description }) => {
         rows="10"
         defaultValue="Message"
       ></textarea>
-      <button className="border border-bittersweet text-bittersweet p-4 text-sm text-center w-full rounded font-sans flex justify-center items-center">
+      <button className="border border-orange-50 text-orange-50 p-4 text-sm text-center w-full rounded font-sans flex justify-center items-center">
         Submit
-        <RightArrow className="text-bittersweet fill-current px-2 h-3" />
+        <RightArrow className="text-orange-50 fill-current px-2 h-3" />
       </button>
     </div>
   )

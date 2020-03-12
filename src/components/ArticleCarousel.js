@@ -5,10 +5,10 @@ export function ArticleCarouselCard({ title, date, slug }) {
   return (
     <Link
       to={`articles/${slug}`}
-      className="rounded bg-hello w-2/5 mr-4 p-4 flex flex-col justify-between h-40"
+      className="rounded bg-white-a90 w-2/5 mr-4 p-4 flex flex-col justify-between h-40"
     >
       <h4 className="text-white font-sans font-semibold text-lg">{title}</h4>
-      <span className="text-light-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
+      <span className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
         {date}
       </span>
     </Link>
