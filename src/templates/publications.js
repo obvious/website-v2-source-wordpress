@@ -58,13 +58,9 @@ export const query = graphql`
         }
       ) {
         nodes {
+          title
           slug
-          articles {
-            metadata {
-              title
-              datepublished
-            }
-          }
+          date
         }
       }
       page(id: "cGFnZTo2Mg==") {

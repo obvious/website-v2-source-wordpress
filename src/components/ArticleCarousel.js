@@ -1,7 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 
-export function ArticleCarouselCard({ title, date, slug }) {
+export function ArticleCarouselCard({ slug, title, datePublished }) {
+  let date = new Date(datePublished).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'});
   return (
     <Link
       to={`articles/${slug}`}
@@ -18,11 +19,11 @@ export function ArticleCarouselCard({ title, date, slug }) {
 export default ({ articles }) => {
   return (
     <div className="flex py-4">
-      {articles.map(({ articles, slug }) => (
+      {articles.map(({ slug, title, date }) => (
         <ArticleCarouselCard
           slug={slug}
-          title={articles.metadata.title}
-          date={articles.metadata.datepublished}
+          title={title}
+          datePublished={date}
         />
       ))}
     </div>
