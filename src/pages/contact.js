@@ -14,7 +14,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title>Contact Us | Obvious</title>
+        <title>Contact | Obvious</title>
       </Helmet>
       <HeroTitle>{page.contact.hero}</HeroTitle>
       <div className="flex text-gray-400">
