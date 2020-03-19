@@ -16,10 +16,10 @@ export default ({ data }) => {
   return (
     <ArticleLayout>
       <Helmet>
-        <title>{article.articles.metadata.title} | Articles | Obvious</title>
+        <title>{article.title} | Articles | Obvious</title>
       </Helmet>
       <main className="container px-20 py-20">
-        <ArticleTitle>{article.articles.metadata.title}</ArticleTitle>
+        <ArticleTitle>{article.title}</ArticleTitle>
         <ArticleSubtitle>{article.articles.metadata.subtitle}</ArticleSubtitle>
         <div className="my-4">
           <span className="text-black uppercase font-sans font-semibold text-xs">
@@ -126,7 +126,6 @@ export const query = graphql`
           metadata {
             author
             subtitle
-            title
           }
         }
       }
