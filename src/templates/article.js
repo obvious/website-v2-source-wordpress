@@ -50,8 +50,11 @@ function assignComponent(name, content, innerBlock) {
     case "core/separator":
       return <Separator />
 
+    case "core/list":
+      return 
+
     default:
-      console.log(name, content)
+      console.error(name, content)
   }
 }
 
