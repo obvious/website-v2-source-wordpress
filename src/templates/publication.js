@@ -14,7 +14,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title> TODO: Publication name | Publications | Obvious</title>
+        <title> {publication.title} | Publications | Obvious</title>
       </Helmet>
       <div className="py-20 flex">
         <div className="flex-col flex inline-flex w-2/5">
@@ -25,7 +25,7 @@ export default ({ data }) => {
             />
           </div>
           <h3 className="text-white font-sans font-medium leading-tight text-2xl">
-            {/*{publication.publication.name}*/}
+            {publication.title}
           </h3>
           <p className="font-serif text-gray-300 mt-4 leading-snug">
             {publication.publication.description}
@@ -33,19 +33,19 @@ export default ({ data }) => {
           {publication.publication.colophon && <Colophon colophon={publication.publication.colophon} />}
         </div>
         <div className="w-3/5 pl-16">
-          {publication.publication.iscasestudy ?  publication.publication.casestudy.map(({ articles, slug }) => (
+          {publication.publication.iscasestudy ?  publication.publication.casestudy.map(({ articles, slug, title }) => (
             <ArticleCard
               iscasestudy
               slug={slug}
-              title={articles.metadata.title}
+              title={title}
               excerpt={articles.metadata.subtitle}
             />
-          )) : publication.publication.article.map(({ articles, slug }) => (
+          )) : publication.publication.article.map(({ articles, slug, date, title }) => (
             <ArticleCard
               slug={slug}
-              title={articles.metadata.title}
+              title={title}
               excerpt={articles.metadata.subtitle}
-              date={articles.metadata.datepublished}
+              date={date}
               author={articles.metadata.author}
             />
           ))}
@@ -77,12 +77,12 @@ export const query = graphql`
             article {
               ... on WP_Article {
                 slug
+                date
+                    title
                 articles {
                   metadata {
                     author
-                    datepublished
                     subtitle
-                    title
                   }
                 }
               }
@@ -90,10 +90,10 @@ export const query = graphql`
             casestudy {
               ... on WP_CaseStudy {
                 slug
+                    title
                 articles {
                   metadata {
                     subtitle
-                    title
                   }
                 }
               }
