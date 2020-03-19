@@ -6,41 +6,49 @@ import ArticleLayout from "../layouts/ArticleLayout"
 import ArticleTitle from "../components/ArticleTitle"
 import ArticleSubtitle from "../components/ArticleSubtitle"
 import Quote from "../components/Quote"
+import Image from "../components/Image"
+import Heading from "../components/Heading"
+import Separator from "../components/Separator"
 
 function assignComponent(name, content, innerBlock) {
   switch (name) {
     case "core/paragraph":
-      return <p dangerouslySetInnerHTML={{__html: content}} />
+      return (
+        <p
+          className="font-serif m-10 text-lg"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )
 
     case "core/heading":
-      return <h2 dangerouslySetInnerHTML={{__html: content}} />
+      return <Heading content={content} />
 
     case "core/image":
-      console.log(content);
-      return
+      return <Image content={content} />
 
     case "core/quote":
-      return <Quote>{content}</Quote>
+      return <Quote dangerouslySetInnerHTML={{ __html: content }} />
 
     case "core/columns":
-      innerBlock && assignComponent(
-        innerBlock.name,
-        innerBlock.originalContent,
-        innerBlock.innerBlock
-      )
+      innerBlock &&
+        assignComponent(
+          innerBlock.name,
+          innerBlock.originalContent,
+          innerBlock.innerBlock
+        )
       break
 
     case "core/column":
-      innerBlock && assignComponent(
-        innerBlock.name,
-        innerBlock.originalContent,
-        innerBlock.innerBlock
-      )
+      innerBlock &&
+        assignComponent(
+          innerBlock.name,
+          innerBlock.originalContent,
+          innerBlock.innerBlock
+        )
       break
 
     case "core/separator":
-      console.log(content);
-      return
+      return <Separator />
 
     default:
       console.log(name, content)
@@ -51,7 +59,11 @@ export default ({ data }) => {
   const {
     WP: { article },
   } = data
-  let date = new Date(article.date).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'});
+  let date = new Date(article.date).toLocaleDateString(undefined, {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })
   return (
     <ArticleLayout>
       <Helmet>
@@ -69,9 +81,7 @@ export default ({ data }) => {
             {article.articles.metadata.author}
           </span>
         </div>
-        <div
-
-        >
+        <div>
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)
           )}
