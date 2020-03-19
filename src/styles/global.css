@@ -256,6 +256,10 @@
 
 @tailwind base;
 
+figcaption {
+  @apply font-sans text-base font-medium leading-5 text-gray-30
+}
+
 @tailwind components;
 
 @tailwind utilities;
