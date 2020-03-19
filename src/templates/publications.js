@@ -31,7 +31,7 @@ export default ({ data }) => {
           {page.publications.publicationlist.map(({ publication, slug }) => (
             <PublicationCard
               slug={slug}
-              title={publication.name}
+              title="TODO: Publication Name"
               description={publication.description}
               tags={[]}
               coverImage={publication.coverimage.sourceUrl}
@@ -72,7 +72,6 @@ export const query = graphql`
               slug
               publication {
                 description
-                name
                 coverimage {
                   altText
                   srcSet

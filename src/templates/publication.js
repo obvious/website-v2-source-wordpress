@@ -25,7 +25,7 @@ export default ({ data }) => {
             />
           </div>
           <h3 className="text-white font-sans font-medium leading-tight text-2xl">
-            {publication.publication.name}
+            {/*{publication.publication.name}*/}
           </h3>
           <p className="font-serif text-gray-300 mt-4 leading-snug">
             {publication.publication.description}
@@ -57,7 +57,6 @@ export const query = graphql`
         ... on WP_Publication {
           publication {
             description
-            name
             coverimage {
               altText
               srcSet
