@@ -12,6 +12,7 @@ export default ({ data }) => {
   const {
     WP: { article },
   } = data
+  let date = new Date(article.date).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'});
   return (
     <ArticleLayout>
       <Helmet>
@@ -22,7 +23,7 @@ export default ({ data }) => {
         <ArticleSubtitle>{article.articles.metadata.subtitle}</ArticleSubtitle>
         <div className="my-4">
           <span className="text-black uppercase font-sans font-semibold text-xs">
-            {article.articles.metadata.datepublished}
+            {date}
           </span>
           <span className="text-world font-serif italic text-xs"> by </span>
           <span className="uppercase font-sans font-semibold text-xs text-bittersweet">
@@ -120,10 +121,10 @@ export const query = graphql`
         id
         title
         content
+        date
         articles {
           metadata {
             author
-            datepublished
             subtitle
             title
           }

@@ -40,12 +40,12 @@ export default ({ data }) => {
               title={articles.metadata.title}
               excerpt={articles.metadata.subtitle}
             />
-          )) : publication.publication.article.map(({ articles, slug }) => (
+          )) : publication.publication.article.map(({ articles, slug, date }) => (
             <ArticleCard
               slug={slug}
               title={articles.metadata.title}
               excerpt={articles.metadata.subtitle}
-              date={articles.metadata.datepublished}
+              date={date}
               author={articles.metadata.author}
             />
           ))}
@@ -77,10 +77,10 @@ export const query = graphql`
             article {
               ... on WP_Article {
                 slug
+                date
                 articles {
                   metadata {
                     author
-                    datepublished
                     subtitle
                     title
                   }
