@@ -14,7 +14,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{publication.publication.name} | Publications | Obvious</title>
+        <title> TODO: Publication name | Publications | Obvious</title>
       </Helmet>
       <div className="py-20 flex">
         <div className="flex-col flex inline-flex w-2/5">
@@ -30,10 +30,17 @@ export default ({ data }) => {
           <p className="font-serif text-gray-300 mt-4 leading-snug">
             {publication.publication.description}
           </p>
-          <Colophon colophon={publication.publication.colophon} />
+          {publication.publication.colophon && <Colophon colophon={publication.publication.colophon} />}
         </div>
         <div className="w-3/5 pl-16">
-          {publication.publication.article.map(({ articles, slug }) => (
+          {publication.publication.iscasestudy ?  publication.publication.casestudy.map(({ articles, slug }) => (
+            <ArticleCard
+              iscasestudy
+              slug={slug}
+              title={articles.metadata.title}
+              excerpt={articles.metadata.subtitle}
+            />
+          )) : publication.publication.article.map(({ articles, slug }) => (
             <ArticleCard
               slug={slug}
               title={articles.metadata.title}
@@ -66,6 +73,7 @@ export const query = graphql`
               nameoffield
               personresponsible
             }
+            iscasestudy
             article {
               ... on WP_Article {
                 slug
@@ -73,6 +81,17 @@ export const query = graphql`
                   metadata {
                     author
                     datepublished
+                    subtitle
+                    title
+                  }
+                }
+              }
+            }
+            casestudy {
+              ... on WP_CaseStudy {
+                slug
+                articles {
+                  metadata {
                     subtitle
                     title
                   }
