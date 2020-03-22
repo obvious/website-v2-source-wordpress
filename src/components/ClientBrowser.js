@@ -14,7 +14,7 @@ export default () => {
   ]
 
   return (
-    <aside className="bg-white-a90 flex justify-between items-center px-6 py-4 font-bold font-sans sm:rounded text-gray-50 fixed left-0 right-0 bottom-0 mx-auto container">
+    <aside className="bg-white-a90 flex justify-between items-center px-6 py-4 mt-24 font-bold font-sans sm:rounded text-gray-50 fixed left-0 right-0 bottom-0 container">
       <ul className="flex w-5/6 justify-between tracking-tight">
         {clients.map(({ name, url }) => (
           <li key={url} className="px-2">

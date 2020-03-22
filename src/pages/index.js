@@ -17,7 +17,7 @@ export default ({ data }) => {
         <title>Home | Obvious</title>
       </Helmet>
       <HeroTitle>{page.hero.title}</HeroTitle>
-      <div className="grid grid-cols-2 gap-2 py-2 pb-10">
+      <div className="grid grid-cols-2 gap-2 my-24 pb-10 max-w-5xl">
         {page.hero.featuredclients.map(
           ({ name, statistic, description, fullwidth }) => (
             <ClientCard
