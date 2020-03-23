@@ -39,8 +39,16 @@ export const Heading = ({ children, content, type }) => {
           {children}
         </h6>
       )
+
+    case "body-large":
+      return <p className="font-serif font-medium text-xl leading-snug text-gray-50 tracking-tight">{children}</p>
+
+    case "body-medium":
+      return <p className="font-serif font-medium text-lg leading-snug text-gray-50 tracking-tight">{children}</p>
+
     //TODO: Add styles to target html tags specifically so that they look like this and make sense.
     //TODO: Those tags should not override the styles mentioned above, and should be overridable by other styles.
+    //TODO: Also add hyperlink styles to this one
     /* This case is required to handle those blocks that come from WP Gutenberg.*/
     default:
       return <div dangerouslySetInnerHTML={{ __html: content }} />
