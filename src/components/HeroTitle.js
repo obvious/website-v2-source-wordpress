@@ -1,9 +1,11 @@
 import React from "react"
+import { Heading } from "./Heading"
 
 export default ({ children }) => {
   return (
-    <h1 className="font-sans text-6xl font-bold text-gray-90 leading-none tracking-tight mt-32">
+    //TODO: Why aren't these classes being applied?
+    <Heading className="mt-32 mb-20" type="h1">
       {children}
-    </h1>
+    </Heading>
   )
 }
