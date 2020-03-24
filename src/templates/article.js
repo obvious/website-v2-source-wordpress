@@ -7,7 +7,7 @@ import ArticleTitle from "../components/ArticleTitle"
 import ArticleSubtitle from "../components/ArticleSubtitle"
 import Quote from "../components/Quote"
 import Image from "../components/Image"
-import Heading from "../components/Heading"
+import { Heading } from "../components/Heading"
 import Separator from "../components/Separator"
 
 function assignComponent(name, content, innerBlock) {
