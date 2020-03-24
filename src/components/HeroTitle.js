@@ -1,9 +1,11 @@
 import React from "react"
+import { Heading } from "./Heading"
 
 export default ({ children }) => {
   return (
-    <h1 className="py-10 text-gray-200 leading-none tracking-tight font-bold font-sans text-4xl lg:text-5xl max-w-xl">
+    //TODO: Why aren't these classes being applied?
+    <Heading className="mt-32 mb-20" type="h1">
       {children}
-    </h1>
+    </Heading>
   )
 }

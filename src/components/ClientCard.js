@@ -12,21 +12,23 @@ export default ({ client, statistic, description, fullWidth, className }) => {
         className
       )}
     >
-      <div className="rounded bg-orange-50 p-4">
+      <div className={classNames("rounded bg-orange-50 p-8 flex flex-col justify-between", statistic ? `min-h-xs` : `min-h-xss`)}>
         <div className="flex flex-row items-baseline justify-between">
-          <h2 className="font-sans text-4xl sm:text-5xl font-medium">
+          <h2 className="font-sans font-medium text-gray-10 leading-none tracking-tight text-5xl">
             {client}
           </h2>
           <RightArrow className="h-8" />
         </div>
-        {statistic && (
-          <span className="font-sans text-6xl sm:text-8 font-light tracking-tighter">
-            {statistic}
-          </span>
-        )}
-        <p className="font-serif tracking-tight font-medium text-xl leading-normal">
-          {description}
-        </p>
+        <div className="flex flex-col justify-end">
+          {statistic && (
+            <span className="font-sans text-6xl font-light tracking-tighter">
+              {statistic}
+            </span>
+          )}
+          <p className="font-serif tracking-tight font-medium text-xl leading-normal">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   )
