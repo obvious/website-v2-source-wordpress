@@ -27,8 +27,7 @@ export default ({ data }) => {
           <h3 className="text-white font-sans font-medium leading-tight text-2xl">
             {publication.title}
           </h3>
-          <p className="font-serif text-gray-300 mt-4 leading-snug">
-            {publication.publication.description}
+          <p className="font-serif text-gray-300 mt-4 leading-snug" dangerouslySetInnerHTML={{__html: publication.publication.description}} >
           </p>
           {publication.publication.colophon && <Colophon colophon={publication.publication.colophon} />}
         </div>

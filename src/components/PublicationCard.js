@@ -18,9 +18,7 @@ export default ({ title, description, tags, coverImage, slug }) => {
         <span className="font-sans text-xl text-white font-semibold self-start mt-2">
           {title}
         </span>
-        <p className="font-serif text-white text-base self-start mt-2 leading-relaxed">
-          {description}
-        </p>
+        <p className="font-serif text-white text-base self-start mt-2 leading-relaxed" dangerouslySetInnerHTML={{__html: description}} />
       </div>
     </Link>
   )
