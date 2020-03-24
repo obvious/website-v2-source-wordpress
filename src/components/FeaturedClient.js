@@ -8,7 +8,8 @@ export default ({ featuredClientBlock }) => (
     {featuredClientBlock.map(({ client, description, link }) => (
       <div className="w-1/3 my-4 mr-4 flex flex-col items-start">
         <Heading type="h3" className="font-medium">{client}</Heading>
-        <p className="py-2 font-serif">{description}</p>
+        <Heading type="body-large" className="py-2">{description}</Heading>
+        {/*TODO: Fix link*/}
         {link && (
           <a
             className="text-xs text-orange-50 font-sans flex justify-center items-center"
