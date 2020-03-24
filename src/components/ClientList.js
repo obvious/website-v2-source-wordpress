@@ -11,7 +11,7 @@ export default ({ listOfClientListBlocks }) => (
         <ul className="mt-4">
           {clientlistblock.namelist.map(({ name }) => (
             <li className="font-semibold text-xs py-1">
-              <Heading type="h5" className="text-gray-50 py-4">{name}</Heading>
+              <Heading type="h5" className="text-gray-50 pb-2">{name}</Heading>
                 </li>
           ))}
         </ul>
