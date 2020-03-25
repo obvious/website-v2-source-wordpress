@@ -6,7 +6,7 @@ import Layout from "../layouts/index"
 import HeroTitle from "../components/HeroTitle"
 import ArticleCarousel from "../components/ArticleCarousel"
 import PublicationCard from "../components/PublicationCard"
-import { Heading } from "../components/Heading"
+import { Typography } from "../components/Typography"
 
 export default ({ data }) => {
   const {
@@ -19,15 +19,15 @@ export default ({ data }) => {
       </Helmet>
       <HeroTitle>{page.publications.hero}</HeroTitle>
       <div className="py-2 my-32">
-        <Heading type="h5" className="text-gray-90 border-b border-gray-500 py-3">
+        <Typography type="h5" className="text-gray-90 border-b border-gray-500 py-3">
           Recent Articles
-        </Heading>
+        </Typography>
         <ArticleCarousel articles={articles.nodes} />
       </div>
       <div>
-        <Heading type="h5" className="border-b border-gray-500 py-3">
+        <Typography type="h5" className="border-b border-gray-500 py-3">
           All Publications
-        </Heading>
+        </Typography>
         <div className="grid grid-flow-row grid-cols-2 col-gap-48 row-gap-32 pt-8">
           {page.publications.publicationlist.map(({ publication, slug, title }) => (
             <PublicationCard

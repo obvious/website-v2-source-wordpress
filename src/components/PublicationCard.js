@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 import StackedImage from "./StackedImage"
-import { Heading } from "./Heading"
+import { Typography } from "./Typography"
 
 export default ({ title, description, tags, coverImage, slug }) => {
   return (
@@ -16,10 +16,10 @@ export default ({ title, description, tags, coverImage, slug }) => {
           </span>
         ))}
 
-        <Heading type="h4" className="self-start mt-2">
+        <Typography type="h4" className="self-start mt-2">
           {title}
-        </Heading>
-        <Heading type="body-medium" className="text-base self-start mt-2 " content={description} />
+        </Typography>
+        <Typography type="body-medium" className="text-base self-start mt-2 " content={description} />
       </div>
     </Link>
   )

@@ -1,6 +1,6 @@
 import React from "react"
 
-export const Heading = ({ children, content, type, className }) => {
+export const Typography = ({ children, content, type, className }) => {
   //TODO: Why are padding, etc able to be overridden but things like color are not responsive?
   switch (type) {
     case "h1":

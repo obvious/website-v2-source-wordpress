@@ -1,14 +1,14 @@
 import React from "react"
 
 import RightArrow from "./icons/RightArrow"
-import { Heading } from "./Heading"
+import { Typography } from "./Typography"
 
 export default ({ featuredClientBlock }) => (
   <div className="flex text-gray-400 flex-wrap justify-between">
     {featuredClientBlock.map(({ client, description, link }) => (
       <div className="w-1/3 my-4 mr-4 flex flex-col items-start">
-        <Heading type="h3" className="font-medium">{client}</Heading>
-        <Heading type="body-large" className="py-2">{description}</Heading>
+        <Typography type="h3" className="font-medium">{client}</Typography>
+        <Typography type="body-large" className="py-2">{description}</Typography>
         {/*TODO: Fix link*/}
         {link && (
           <a
