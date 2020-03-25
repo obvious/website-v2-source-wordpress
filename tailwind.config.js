@@ -74,8 +74,13 @@ module.exports = {
         "6xl": "72rem",
         full: "100%",
       },
+      maxHeight: {
+        md: "28rem",
+      },
       minWidth: {
-        xs: "15rem",
+        xxs: "15rem",
+        xs: "20rem",
+        sm: "24rem",
       }
     },
   },

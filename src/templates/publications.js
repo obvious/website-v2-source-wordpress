@@ -28,7 +28,7 @@ export default ({ data }) => {
         <Heading type="h5" className="border-b border-gray-500 py-3">
           All Publications
         </Heading>
-        <div className="flex flex-wrap justify-between py-8">
+        <div className="grid grid-flow-row grid-cols-2 col-gap-48 row-gap-32">
           {page.publications.publicationlist.map(({ publication, slug, title }) => (
             <PublicationCard
               slug={slug}

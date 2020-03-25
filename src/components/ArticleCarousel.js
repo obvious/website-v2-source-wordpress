@@ -7,7 +7,7 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
   return (
     <Link
       to={`articles/${slug}`}
-      className="rounded bg-white-a30 min-w-xs mr-4 p-4 flex flex-col justify-between h-40"
+      className="rounded bg-white-a30 min-w-xxs mr-4 p-4 flex flex-col justify-between h-40"
     >
       <Heading type="h5">{title}</Heading>
       <Heading type="h6" className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
