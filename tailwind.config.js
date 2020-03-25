@@ -42,6 +42,7 @@ module.exports = {
       colors: {
         "black-a100": "#000000",
         "white-a90": "rgba(255, 255, 255, 0.08)",
+        "white-a30": "rgba(255, 255, 255, 0.16)",
         "orange-50": "#FF725C",
         "yellow-50": "#FAE246",
         "blue-50": "#47D8FC",
@@ -73,6 +74,9 @@ module.exports = {
         "6xl": "72rem",
         full: "100%",
       },
+      minWidth: {
+        xs: "15rem",
+      }
     },
   },
   variants: {},
