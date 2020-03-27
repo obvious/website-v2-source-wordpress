@@ -84,6 +84,8 @@ module.exports = {
       }
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['last'],
+  },
   plugins: [],
 }
