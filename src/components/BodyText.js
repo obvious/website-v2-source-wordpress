@@ -30,6 +30,9 @@ export const BodyText = ({ children, className, content, type }) => {
         </p>
       )
 
+    case "credit":
+      return <span className={`${className} font-serif font-bold italic text-sm leading-snug text-light/gray-30`} >{children}</span>
+
     /* This case is required to handle those blocks that come from WP Gutenberg.*/
     default:
       return <div dangerouslySetInnerHTML={{ __html: content }} />

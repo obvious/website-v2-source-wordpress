@@ -1,5 +1,6 @@
 import React from "react"
 import { Heading } from "./Heading"
+import { BodyText } from "./BodyText"
 // import { Link } from "gatsby"
 
 export default ({ colophon }) => {
@@ -10,9 +11,9 @@ export default ({ colophon }) => {
       </Heading>
       {colophon.map(credit => (
         <div>
-          <span className="font-serif text-gray-300 text-xs italic font-medium">
+          <BodyText type="credit">
             {credit.nameoffield}&nbsp;
-          </span>
+          </BodyText>
           <span className="font-sans uppercase text-orange-50 text-xs font-medium">
             {credit.personresponsible}
           </span>
