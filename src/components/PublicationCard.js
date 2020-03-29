@@ -8,7 +8,7 @@ import { BodyText } from "./BodyText"
 export default ({ title, description, tags, coverImage, slug }) => {
   return (
     <Link to={`publications/${slug}`}>
-      <div className="flex-col flex inline-flex">
+      <div className="flex-col flex inline-flex min-w-sm max-w-sm pb-32">
         <StackedImage image={coverImage} />
 
         {tags.map(tag => (
