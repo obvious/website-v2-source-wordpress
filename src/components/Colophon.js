@@ -1,12 +1,13 @@
 import React from "react"
+import { Heading } from "./Heading"
 // import { Link } from "gatsby"
 
 export default ({ colophon }) => {
   return (
     <>
-      <span className="text-white font-sans font-medium text-sm mt-8 border-b border-gray-300 pb-2 mb-2">
+      <Heading type="h5" className="text-light/gray-10 mt-8 border-b border-light/gray-50 pb-2 mb-2">
         Colophon
-      </span>
+      </Heading>
       {colophon.map(credit => (
         <div>
           <span className="font-serif text-gray-300 text-xs italic font-medium">
