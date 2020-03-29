@@ -12,7 +12,7 @@ export default ({ data }) => {
     WP: { publication },
   } = data
   return (
-    <Layout>
+    <Layout className="bg-light/gray-70">
       <Helmet>
         <title> {publication.title} | Publications | Obvious</title>
       </Helmet>

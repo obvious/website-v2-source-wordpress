@@ -4,11 +4,11 @@ import { Link } from "gatsby"
 import SiteHeader from "../components/SiteHeader"
 import SiteFooter from "../components/SiteFooter"
 
-export default ({ children, showFooter = false }) => {
+export default ({ children, showFooter = false, className }) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggleIsOpen = () => setIsOpen(!isOpen)
   return (
-    <div className="flex flex-col justify-start antialiased bg-gray-10 min-h-screen">
+    <div className={`flex flex-col justify-start antialiased bg-gray-10 min-h-screen ${className}`}>
       <SiteHeader isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
       <main className="container mx-auto">
         {isOpen && (
