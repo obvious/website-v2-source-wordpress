@@ -1,5 +1,14 @@
 import React from "react"
 
+/**
+ * A note on text-{color}: The specificity of text-color is determined not by
+ * the order of declaration of the utility class in the className (as one might
+ * expect) but in the order of declaration of 'color' within tailwind.config.js.
+ * Therefore, the default text colors as given here have the lowest specificity,
+ * and all other colors can be overridden at time of usage.
+ */
+
+
 //TODO: decouple `tag` from the html tag being used
 export const Heading = ({ children, tag, type, className }) => {
   switch (type) {
