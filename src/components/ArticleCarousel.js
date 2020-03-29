@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { Typography } from "./Typography"
+import { Heading } from "./Heading"
 
 export function ArticleCarouselCard({ slug, title, datePublished }) {
   let date = new Date(datePublished).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'});
@@ -9,10 +9,10 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
       to={`articles/${slug}`}
       className="rounded bg-white-a30 min-w-xxs mr-4 p-4 flex flex-col justify-between h-40 last:bg-gradient"
     >
-      <Typography type="h5">{title}</Typography>
-      <Typography type="h6" className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
+      <Heading type="h5">{title}</Heading>
+      <Heading type="h6" className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
         {date}
-      </Typography>
+      </Heading>
     </Link>
   )
 }

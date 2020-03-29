@@ -1,7 +1,7 @@
 import React from "react"
 
-export const Typography = ({ children, content, type, className }) => {
-  //TODO: Why are padding, etc able to be overridden but things like color are not responsive?
+//TODO: decouple `tag` from the html tag being used
+export const Heading = ({ children, tag, type, className }) => {
   switch (type) {
     case "h1":
       return (
@@ -53,34 +53,11 @@ export const Typography = ({ children, content, type, className }) => {
         </h6>
       )
 
-    case "body-large":
-      return (
-        <p
-          className={`${className} font-serif font-medium text-xl leading-snug text-gray-50 tracking-tight`}
-        >
-          {children}
-        </p>
-      )
-
-    case "body-medium":
-      return content ? (
-        <p
-          className={`${className} font-serif font-medium text-lg leading-relaxed text-gray-70 tracking-tight`}
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
-      ) : (
-        <p
-          className={`${className} font-serif font-medium text-lg leading-relaxed text-gray-70 tracking-tight`}
-        >
-          {children}
-        </p>
-      )
-
     //TODO: Add styles to target html tags specifically so that they look like this and make sense.
     //TODO: Those tags should not override the styles mentioned above, and should be overridable by other styles.
     //TODO: Also add hyperlink styles to this one
-    /* This case is required to handle those blocks that come from WP Gutenberg.*/
+
     default:
-      return <div dangerouslySetInnerHTML={{ __html: content }} />
+      return <div>{console.log(children, type)}</div>
   }
 }

@@ -7,7 +7,7 @@ import ArticleTitle from "../components/ArticleTitle"
 import ArticleSubtitle from "../components/ArticleSubtitle"
 import Quote from "../components/Quote"
 import Image from "../components/Image"
-import { Typography } from "../components/Typography"
+import { Heading } from "../components/Heading"
 import Separator from "../components/Separator"
 
 function assignComponent(name, content, innerBlock) {
@@ -21,7 +21,8 @@ function assignComponent(name, content, innerBlock) {
       )
 
     case "core/heading":
-      return <Typography content={content} />
+      //TODO: decouple type + tag from gutenberg? do we HAVE to use content here? Explore.
+      return <Heading content={content} />
 
     case "core/image":
       return <Image content={content} />
