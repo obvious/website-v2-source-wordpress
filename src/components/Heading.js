@@ -6,7 +6,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h1":
       return (
         <h1
-          className={`${className} font-sans font-bold text-gray-90 leading-none tracking-tight text-6xl`}
+          className={`${className} heading-default leading-none text-6xl`}
         >
           {children}
         </h1>
@@ -15,7 +15,7 @@ export const Heading = ({ children, tag, type, className }) => {
       return (
         //TODO: It is medium on FeaturedClient and semibold on ClientList. Can we standardise this/put this in the typography?
         <h2
-          className={`${className} font-sans font-bold text-gray-90 leading-none tracking-tight text-5xl`}
+          className={`${className} heading-default leading-none text-5xl`}
         >
           {children}
         </h2>
@@ -23,7 +23,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h3":
       return (
         <h3
-          className={`${className} font-sans font-bold text-gray-90 leading-none tracking-tight text-4xl`}
+          className={`${className} heading-default leading-none text-4xl`}
         >
           {children}
         </h3>
@@ -31,7 +31,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h4":
       return (
         <h4
-          className={`${className} font-sans font-bold text-gray-90 leading-tight tracking-tight text-2xl`}
+          className={`${className} heading-default leading-tight text-2xl`}
         >
           {children}
         </h4>
@@ -39,7 +39,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h5":
       return (
         <h5
-          className={`${className} font-sans font-bold text-gray-90 leading-tight tracking-tight text-lg`}
+          className={`${className} heading-default leading-tight text-lg`}
         >
           {children}
         </h5>
@@ -47,7 +47,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h6":
       return (
         <h6
-          className={`${className} font-sans font-bold text-gray-90 leading-snug tracking-wider text-sm`}
+          className={`${className} heading-default leading-snug tracking-wider text-sm`}
         >
           {children}
         </h6>
