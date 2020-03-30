@@ -19,7 +19,7 @@ export default ({ data }) => {
         <title> {publication.title} | Publications | Obvious</title>
       </Helmet>
       <div className="py-20 flex">
-        <div className="flex-col flex inline-flex w-2/5">
+        <div className="flex-col flex inline-flex  min-w-sm max-w-sm mr-24">
           <div className="w-48">
             <StackedImage
               image={publication.publication.coverimage.sourceUrl}

@@ -19,7 +19,7 @@ export const BodyText = ({ children, className, content, type }) => {
     case "body-medium":
       return content ? (
         <p
-          className={`${className} font-serif font-medium text-lg leading-relaxed text-gray-70 tracking-tight`}
+          className={`${className} font-serif font-medium text-lg sm:text-base leading-loose sm:leading-relaxed text-gray-70 tracking-tight`}
           dangerouslySetInnerHTML={{ __html: content }}
         />
       ) : (

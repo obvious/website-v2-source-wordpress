@@ -87,6 +87,7 @@ module.exports = {
         xxs: "15rem",
         xs: "20rem",
         sm: "24rem",
+        xl: "36rem",
       },
     },
   },
