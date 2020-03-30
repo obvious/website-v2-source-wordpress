@@ -2,11 +2,13 @@ import React from "react"
 import { Link } from "gatsby"
 
 import StackedImage from "./StackedImage"
+import { Heading } from "./Heading"
+import { BodyText } from "./BodyText"
 
 export default ({ title, description, tags, coverImage, slug }) => {
   return (
-    <Link className="w-2/5" to={`publications/${slug}`}>
-      <div className="flex-col flex inline-flex">
+    <Link to={`publications/${slug}`}>
+      <div className="flex-col flex inline-flex min-w-sm max-w-sm pb-32">
         <StackedImage image={coverImage} />
 
         {tags.map(tag => (
@@ -15,10 +17,10 @@ export default ({ title, description, tags, coverImage, slug }) => {
           </span>
         ))}
 
-        <span className="font-sans text-xl text-white font-semibold self-start mt-2">
+        <Heading type="h4" className="self-start mt-2">
           {title}
-        </span>
-        <p className="font-serif text-white text-base self-start mt-2 leading-relaxed" dangerouslySetInnerHTML={{__html: description}} />
+        </Heading>
+        <BodyText type="body-medium" className="text-base self-start mt-2 " content={description} />
       </div>
     </Link>
   )

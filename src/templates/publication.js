@@ -6,29 +6,29 @@ import Layout from "../layouts/index"
 import ArticleCard from "../components/ArticleCard"
 import StackedImage from "../components/StackedImage"
 import Colophon from "../components/Colophon"
+import { Heading } from "../components/Heading"
+import { BodyText } from "../components/BodyText"
 
 export default ({ data }) => {
   const {
     WP: { publication },
   } = data
   return (
-    <Layout>
+    <Layout className="bg-light/gray-70">
       <Helmet>
         <title> {publication.title} | Publications | Obvious</title>
       </Helmet>
       <div className="py-20 flex">
-        <div className="flex-col flex inline-flex w-2/5">
+        <div className="flex-col flex inline-flex  min-w-sm max-w-sm mr-24">
           <div className="w-48">
             <StackedImage
-              className=""
               image={publication.publication.coverimage.sourceUrl}
             />
           </div>
-          <h3 className="text-white font-sans font-medium leading-tight text-2xl">
+          <Heading type="h3" className="text-gray-10">
             {publication.title}
-          </h3>
-          <p className="font-serif text-gray-300 mt-4 leading-snug" dangerouslySetInnerHTML={{__html: publication.publication.description}} >
-          </p>
+          </Heading>
+          <BodyText type="body-medium" className="text-light/gray-30 mt-4" content={publication.publication.description} />
           {publication.publication.colophon && <Colophon colophon={publication.publication.colophon} />}
         </div>
         <div className="w-3/5 pl-16">

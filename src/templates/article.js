@@ -21,6 +21,7 @@ function assignComponent(name, content, innerBlock) {
       )
 
     case "core/heading":
+      //TODO: decouple type + tag from gutenberg? do we HAVE to use content here? Explore.
       return <Heading content={content} />
 
     case "core/image":
