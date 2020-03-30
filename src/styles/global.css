@@ -1,3 +1,5 @@
+@import "spinners.css";
+
 @font-face {
   font-family: "Copernicus";
   src: url("../fonts/ExtraboldItalic.woff2") format("woff2"),
@@ -273,3 +275,4 @@ figcaption {
 @tailwind components;
 
 @tailwind utilities;
+

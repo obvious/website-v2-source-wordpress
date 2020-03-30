@@ -36,7 +36,7 @@ module.exports = {
     },
     /* Changes defaults */
     fontSize: {
-
+      
       //Steps of 2px, or  0.125rem
       xs: "0.75rem", //12
       sm: "0.875rem", //14
@@ -45,7 +45,7 @@ module.exports = {
       xl: "1.25rem", //20
       "2xl": "1.375rem", //22
       "3xl": "1.5rem", //24
-
+      
       //Steps of 4px, or 0.250rem
       "4xl": "1.75rem", //28
       "5xl": "2rem",
@@ -98,6 +98,11 @@ module.exports = {
         "light/gray-50": "#BFC2BA",
         "light/gray-30": "#6C7067",
         "light/gray-10": "#272926",
+        "red-10": "#803040",
+        "red-30": "#BD4055",
+        "red-50": "#FA556B",
+        "red-70": "#FFB8BF",
+        "red-90": "#FFEDEF",
       },
       inset: {
         "-16": "-4rem",
@@ -135,11 +140,23 @@ module.exports = {
       },
       width: {
         '80': "20rem"
+      },
+      boxShadow: {
+        'red': '0px 0px 5px 0.5px rgba(255,184,191, 0.2)'
+      },
+      opacity: {
+        '10': 0.1,
+        '30': 0.3,
+        '50': 0.5,
+        '70': 0.7,
+        '90': 0.9,
       }
     },
   },
   variants: {
     backgroundColor: ["last"],
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-color-alpha")()
+  ]
 }
