@@ -39,7 +39,13 @@ module.exports = {
         "7xl": "5rem",
         "8xl": "6rem",
       },
+      // In increasing order of specificity
       colors: {
+        "gray-90": "#FBFCF7",
+        "gray-70": "#EEF0EB",
+        "gray-50": "#BFC2BA",
+        "gray-30": "#6C7067",
+        "gray-10": "#272926",
         "black-a100": "#000000",
         "white-a90": "rgba(255, 255, 255, 0.08)",
         "white-a30": "rgba(255, 255, 255, 0.16)",
@@ -47,11 +53,11 @@ module.exports = {
         "yellow-50": "#FAE246",
         "blue-50": "#47D8FC",
         "green-50": "#58F582",
-        "gray-10": "#272926",
-        "gray-30": "#6C7067",
-        "gray-50": "#BFC2BA",
-        "gray-70": "#EEF0EB",
-        "gray-90": "#FBFCF7",
+        "light/gray-70": "#E9EBE4",
+        "light/gray-50": "#BFC2BA",
+        "light/gray-30": "#6C7067",
+        "light/gray-10": "#272926",
+
       },
       inset: {
         "-16": "-4rem",
@@ -81,11 +87,12 @@ module.exports = {
         xxs: "15rem",
         xs: "20rem",
         sm: "24rem",
-      }
+        xl: "36rem",
+      },
     },
   },
   variants: {
-    backgroundColor: ['last'],
+    backgroundColor: ["last"],
   },
   plugins: [],
 }
