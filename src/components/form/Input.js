@@ -12,8 +12,14 @@ const Input = ({ label, ...props }) => {
 };
 
 Input.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  placeholder: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['text', 'email'])
+}
+
+Input.defaultProps = {
+  placeholder: '',
+  type: 'text'
 }
 
 export default Input;

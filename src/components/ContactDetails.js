@@ -3,10 +3,10 @@ import React from "react"
 import ExternalLink from "./icons/ExternalLink"
 
 export default ({ details }) => (
-  <div className="w-2/6 ml-auto">
+  <div className="w-full md:w-2/6 mb-8 ml-auto grid gap-3" style={{alignContent: 'start'}}>
     {details.map(({ title, description, link }) => (
       <div>
-        <span className="text-xs text-white block border-b border-gray-500 font-semibold py-2 font-sans">
+        <span className="text-md text-white block border-b border-gray-500 font-semibold py-2 font-sans">
           {title}
         </span>
         {link.typeoflink === "Email" ? (

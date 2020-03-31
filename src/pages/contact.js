@@ -17,7 +17,7 @@ export default ({ data }) => {
         <title>Contact | Obvious</title>
       </Helmet>
       <Hero title={page.contact.hero} />
-      <div className="flex text-gray-400">
+      <div className="block md:flex text-gray-400">
         <ContactForm
           title={page.contact.form.title}
           description={page.contact.form.description}
