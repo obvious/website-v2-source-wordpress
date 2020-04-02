@@ -76,7 +76,6 @@ export default ({ data }) => {
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
       <main className="container px-20 py-20">
-        <ArticleSubtitle>{article.articles.metadata.subtitle}</ArticleSubtitle>
         <div className="my-4">
           <span className="text-black uppercase font-sans font-semibold text-xs">
             {date}
@@ -89,6 +88,7 @@ export default ({ data }) => {
         <Heading type="h1" className="text-gray-10 my-4">
           {article.title}
         </Heading>
+        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>
         <div>
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)
