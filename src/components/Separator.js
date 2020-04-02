@@ -1,3 +1,3 @@
 import React from "react"
 
-export default () => (<div className="my-4"/>)
+export default () => <span className="block border-b border-2 border-light/gray-50 w-full md:w-80 my-4"/>

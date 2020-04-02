@@ -89,6 +89,9 @@ module.exports = {
         sm: "24rem",
         xl: "36rem",
       },
+      width: {
+        '80': "20rem"
+      }
     },
   },
   variants: {

@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
-import ArticleSubtitle from "../components/ArticleSubtitle"
 import Quote from "../components/Quote"
 import Image from "../components/Image"
 import { Heading } from "../components/Heading"
@@ -82,7 +81,6 @@ export default ({ data }) => {
         </Heading>
         <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>
         <Byline date={date} author={article.articles.metadata.author} className="my-4" />
-        
         <div>
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)
