@@ -32,7 +32,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h3":
       return (
         <h3
-          className={`${className} heading-default text-4xl lg:text-5xl leading-squeeze lg:leading-none`}
+          className={`${className} heading-default text-4xl lg:text-5xl leading-8 lg:leading-none`}
         >
           {children}
         </h3>
@@ -40,7 +40,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h4":
       return (
         <h4
-          className={`${className} heading-default text-2xl leading-none font-bold`}
+          className={`${className} heading-default text-2xl leading-6 font-bold`}
         >
           {children}
         </h4>
@@ -48,7 +48,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h5":
       return (
         <h5
-          className={`${className} heading-default text-lg leading-none`}
+          className={`${className} heading-default text-lg leading-5`}
         >
           {children}
         </h5>
@@ -56,7 +56,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h6":
       return (
         <h6
-          className={`${className} heading-default text-sm leading-snug tracking-wider uppercase`}
+          className={`${className} heading-default text-sm leading-5 tracking-wider uppercase`}
         >
           {children}
         </h6>

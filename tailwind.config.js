@@ -64,9 +64,6 @@ module.exports = {
         "10xl": "5rem", //80
         "11xl": "6rem", //96
       },
-      lineHeight: {
-        "leading-squeeze": "1.14"
-      },
       // In increasing order of specificity
       colors: {
         "gray-90": "#FBFCF7",
