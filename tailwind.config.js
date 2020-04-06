@@ -51,11 +51,27 @@ module.exports = {
       "5xl": "2rem",
       "6xl": "2.25rem", //36
     },
-    lineHeight: {
-      "leading-tight": "1.2",
-      "leading-snug": "1.45",
-      "leading-relaxed": "1.75"
-    },
+    // lineHeight: {
+    //   //default
+    //   "leading-none": "1",
+    //   "leading-normal": "1.5",
+    //   "leading-loose": "2",
+    //
+    //   //changed
+    //   "leading-tight": "1.2",
+    //   "leading-snug": "1.45",
+    //   "leading-relaxed": "1.75",
+    //
+    //   //default
+    //   "leading-3": "0.75rem",
+    //   "leading-4": "1rem",
+    //   "leading-5": "1.25rem",
+    //   "leading-6": "1.5rem",
+    //   "leading-7": "1.75rem",
+    //   "leading-8": "2rem",
+    //   "leading-9": "2.25rem",
+    //   "leading-10": "2.5rem",
+    // },
     extend: {
       fontSize: {
         "7xl": "2.5rem", //40

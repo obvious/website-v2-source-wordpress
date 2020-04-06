@@ -24,7 +24,7 @@ export const Heading = ({ children, tag, type, className }) => {
       return (
         //TODO: It is medium on FeaturedClient, semibold on ClientList, and normal on the design system. Can we standardise this/put this in the typography?
         <h2
-          className={`${className} heading-default  text-7xl lg:text-8xl leading-tight lg:leading-none`}
+          className={`${className} heading-default text-7xl lg:text-8xl leading-tight lg:leading-none`}
         >
           {children}
         </h2>
