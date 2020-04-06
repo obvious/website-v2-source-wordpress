@@ -129,6 +129,9 @@ module.exports = {
         sm: "24rem",
         xl: "36rem",
       },
+      margin: {
+      "mt-18": "4.5rem",
+      },
     },
   },
   variants: {
