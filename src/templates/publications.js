@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
-import HeroTitle from "../components/HeroTitle"
+import Hero from "../components/Hero"
 import ArticleCarousel from "../components/ArticleCarousel"
 import PublicationCard from "../components/PublicationCard"
 import { Heading } from "../components/Heading"
@@ -17,7 +17,7 @@ export default ({ data }) => {
       <Helmet>
         <title>Publications | Obvious</title>
       </Helmet>
-      <HeroTitle>{page.publications.hero}</HeroTitle>
+      <Hero title={page.publications.hero} />
       <div className="py-2 my-32">
         <Heading type="h5" className="text-gray-90 border-b border-gray-500 py-3">
           Recent Articles

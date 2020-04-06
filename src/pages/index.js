@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
 import ClientCard from "../components/ClientCard"
-import HeroTitle from "../components/HeroTitle"
+import Hero from "../components/Hero"
 import ClientBrowser from "../components/ClientBrowser"
 
 export default ({ data }) => {
@@ -16,7 +16,7 @@ export default ({ data }) => {
       <Helmet>
         <title>Home | Obvious</title>
       </Helmet>
-      <HeroTitle>{page.hero.title}</HeroTitle>
+      <Hero title={page.hero.title} />
       <div className="grid grid-cols-2 gap-2 my-24 pb-10 max-w-5xl">
         {page.hero.featuredclients.map(
           ({ name, statistic, description, fullwidth }) => (

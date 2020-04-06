@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
-import HeroTitle from "../components/HeroTitle"
+import Hero from "../components/Hero"
 import ClientList from "../components/ClientList"
 import FeaturedClient from "../components/FeaturedClient"
 
@@ -16,7 +16,7 @@ export default ({ data }) => {
       <Helmet>
         <title>Clients | Obvious</title>
       </Helmet>
-      <HeroTitle>{page.client.hero}</HeroTitle>
+      <Hero title={page.client.hero} />
       <FeaturedClient featuredClientBlock={page.client.featuredclientblock} />
       <ClientList listOfClientListBlocks={page.client.listofclientlistblocks} />
     </Layout>
