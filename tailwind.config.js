@@ -34,10 +34,38 @@ module.exports = {
         "monospace",
       ],
     },
+    /* Changes defaults */
+    fontSize: {
+
+      //Steps of 2px, or  0.125rem
+      xs: "0.75rem", //12
+      sm: "0.875rem", //14
+      base: "1rem",
+      lg: "1.125rem", //18
+      xl: "1.25rem", //20
+      "2xl": "1.375rem", //22
+      "3xl": "1.5rem", //24
+
+      //Steps of 4px, or 0.250rem
+      "4xl": "1.75rem", //28
+      "5xl": "2rem",
+      "6xl": "2.25rem", //36
+    },
+    lineHeight: {
+      "leading-tight": "1.2",
+      "leading-snug": "1.45",
+      "leading-relaxed": "1.75"
+    },
     extend: {
       fontSize: {
-        "7xl": "5rem",
-        "8xl": "6rem",
+        "7xl": "2.5rem", //40
+        "8xl": "3rem", //48
+        "9xl": "4rem", //64
+        "10xl": "5rem", //80
+        "11xl": "6rem", //96
+      },
+      lineHeight: {
+        "leading-squeeze": "1.14"
       },
       // In increasing order of specificity
       colors: {
@@ -57,7 +85,6 @@ module.exports = {
         "light/gray-50": "#BFC2BA",
         "light/gray-30": "#6C7067",
         "light/gray-10": "#272926",
-
       },
       inset: {
         "-16": "-4rem",
