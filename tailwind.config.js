@@ -105,6 +105,10 @@ module.exports = {
         "-2": "-0.5rem",
         "-3": "-0.75rem",
       },
+      margin: {
+        "18": "4.5rem",
+        "18": "4.5rem",
+      },
       minHeight: {
         none: "none",
         xxs: "10rem",
@@ -128,9 +132,6 @@ module.exports = {
         xs: "20rem",
         sm: "24rem",
         xl: "36rem",
-      },
-      margin: {
-      "mt-18": "4.5rem",
       },
     },
   },

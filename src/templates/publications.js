@@ -18,7 +18,7 @@ export default ({ data }) => {
         <title>Publications | Obvious</title>
       </Helmet>
       <Hero title={page.publications.hero} />
-      <div className="py-2 my-32">
+      <div className="py-2">
         <Heading type="h5" className="text-gray-90 border-b border-gray-500 py-3">
           Recent Articles
         </Heading>

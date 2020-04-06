@@ -1,16 +1,20 @@
 import React from "react"
 import { Heading } from "./Heading"
+import { BodyText } from "./BodyText"
+import classNames from "classnames"
 
 export default ({ title, subtitle }) => {
+  const className = classNames(subtitle ? "mb-6" : "mb-18")
   return (
-    //TODO: styles of h2, semantically h1
     <>
-    <Heading className="mt-18 lg:mt-24 mb-6" type="h2">
-      {title}
-    </Heading>
-    <Heading className="">
-      {subtitle}
-    </Heading>
-      </>
+      <Heading type="h1" className={`${className} mt-18 lg:mt-24`}>
+        {title}
+      </Heading>
+      {subtitle && (
+        <BodyText type="subtitle-medium" className="mb-12 lg:mb-18">
+          {subtitle}
+        </BodyText>
+      )}
+    </>
   )
 }
