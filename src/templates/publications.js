@@ -18,14 +18,14 @@ export default ({ data }) => {
         <title>Publications | Obvious</title>
       </Helmet>
       <Hero title={page.publications.hero} />
-      <div className="py-2">
-        <Heading type="h5" className="text-gray-90 border-b border-gray-500 py-3">
+      <div className="py-2 mb-24 lg:mb-32">
+        <Heading type="h5" className="text-gray-90 border-b-2 border-light/gray-30 py-3">
           Recent Articles
         </Heading>
         <ArticleCarousel articles={articles.nodes} />
       </div>
       <div>
-        <Heading type="h5" className="border-b border-gray-500 py-3">
+        <Heading type="h5" className="border-b-2 border-light/gray-30 py-3">
           All Publications
         </Heading>
         <div className="flex flex-wrap justify-between pt-8 mr-8">
