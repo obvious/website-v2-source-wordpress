@@ -30,8 +30,28 @@ export const BodyText = ({ children, className, content, type }) => {
         </p>
       )
 
+    case "subtitle-medium":
+      return content ? (
+        <p
+          className={`${className} font-sans font-medium text-2xl leading-snug text-gray-50 tracking-tight`}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      ) : (
+        <p
+          className={`${className} font-sans font-medium text-2xl leading-snug text-gray-50 tracking-tight`}
+        >
+          {children}
+        </p>
+      )
+
     case "credit":
-      return <span className={`${className} font-serif font-bold italic text-sm leading-snug text-light/gray-30`} >{children}</span>
+      return (
+        <span
+          className={`${className} font-serif font-bold italic text-sm leading-snug text-light/gray-30`}
+        >
+          {children}
+        </span>
+      )
 
     /* This case is required to handle those blocks that come from WP Gutenberg that we haven't defined yet..*/
     default:

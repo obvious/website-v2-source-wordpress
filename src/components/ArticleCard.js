@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { Heading } from "./Heading"
 import { BodyText } from "./BodyText"
+import { Byline } from "./Byline"
 
 export default ({ title, excerpt, date, author, slug }) => {
   let datePublished = new Date(date).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'});
@@ -11,13 +12,7 @@ export default ({ title, excerpt, date, author, slug }) => {
         <Heading type="h4" className="text-gray-10 border-gray-300 border-b-2 pb-2">
           {title}
         </Heading>
-        { datePublished && author &&
-        <Heading type="h6" className="text-light/gray-30 border-gray-300 py-3">
-          <span>{datePublished}</span>
-          <span className="font-serif italic lowercase"> by </span>
-          <span>{author}</span>
-        </Heading>
-        }
+        <Byline date={datePublished} author={author} className="py-3" isArticleCard />
         <BodyText type="body-medium" content={excerpt} className="text-light/gray-10 mt-3" />
       </div>
     </Link>

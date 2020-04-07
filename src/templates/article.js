@@ -3,20 +3,22 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
-import ArticleTitle from "../components/ArticleTitle"
-import ArticleSubtitle from "../components/ArticleSubtitle"
 import Quote from "../components/Quote"
 import Image from "../components/Image"
 import { Heading } from "../components/Heading"
 import Separator from "../components/Separator"
+import { BodyText } from "../components/BodyText"
+import { Byline } from "../components/Byline"
 
 function assignComponent(name, content, innerBlock) {
   switch (name) {
     case "core/paragraph":
       return (
-        <p
-          className="font-serif m-10 text-lg"
-          dangerouslySetInnerHTML={{ __html: content }}
+        <
+          BodyText
+          type="body-medium"
+          className="text-light/gray-10 m-10"
+          content={content}
         />
       )
 
@@ -74,17 +76,11 @@ export default ({ data }) => {
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
       <main className="container px-20 py-20">
-        <ArticleTitle>{article.title}</ArticleTitle>
-        <ArticleSubtitle>{article.articles.metadata.subtitle}</ArticleSubtitle>
-        <div className="my-4">
-          <span className="text-black uppercase font-sans font-semibold text-xs">
-            {date}
-          </span>
-          <span className="text-world font-serif italic text-xs"> by </span>
-          <span className="uppercase font-sans font-semibold text-xs text-bittersweet">
-            {article.articles.metadata.author}
-          </span>
-        </div>
+        <Heading type="h1" className="text-gray-10 my-4">
+          {article.title}
+        </Heading>
+        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>
+        <Byline date={date} author={article.articles.metadata.author} className="my-4" />
         <div>
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)

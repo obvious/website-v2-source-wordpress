@@ -1,7 +1,6 @@
 import React from "react"
 import { Heading } from "./Heading"
 import { BodyText } from "./BodyText"
-// import { Link } from "gatsby"
 
 export default ({ colophon }) => {
   return (
