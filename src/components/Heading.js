@@ -11,11 +11,15 @@ import React from "react"
 
 //TODO: decouple `tag` from the html tag being used
 export const Heading = ({ children, tag, type, className }) => {
+
+  /* Default class applied to all components in Heading to avoid repetition */
+  const baseClass = "font-sans font-bold text-gray-90 tracking-tight"
+
   switch (type) {
     case "h1":
       return (
         <h1
-          className={`${className} heading-default text-8xl lg:text-9xl leading-none`}
+          className={`${baseClass} ${className} text-8xl lg:text-9xl leading-none`}
         >
           {children}
         </h1>
@@ -24,7 +28,7 @@ export const Heading = ({ children, tag, type, className }) => {
       return (
         //TODO: It is medium on FeaturedClient, semibold on ClientList, and normal on the design system. Can we standardise this/put this in the typography?
         <h2
-          className={`${className} heading-default text-7xl lg:text-8xl leading-tight lg:leading-none`}
+          className={`${baseClass} ${className} text-7xl lg:text-8xl leading-tight lg:leading-none`}
         >
           {children}
         </h2>
@@ -32,7 +36,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h3":
       return (
         <h3
-          className={`${className} heading-default text-4xl lg:text-5xl leading-8 lg:leading-none`}
+          className={`${baseClass} ${className} text-4xl lg:text-5xl leading-8 lg:leading-none`}
         >
           {children}
         </h3>
@@ -40,7 +44,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h4":
       return (
         <h4
-          className={`${className} heading-default text-2xl leading-6 font-bold`}
+          className={`${baseClass} ${className} text-2xl leading-6 font-bold`}
         >
           {children}
         </h4>
@@ -48,7 +52,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h5":
       return (
         <h5
-          className={`${className} heading-default text-lg leading-5`}
+          className={`${baseClass} ${className} text-lg leading-5`}
         >
           {children}
         </h5>
@@ -56,7 +60,7 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h6":
       return (
         <h6
-          className={`${className} heading-default text-sm leading-5 tracking-wider uppercase`}
+          className={`${baseClass} ${className} text-sm leading-5 tracking-wider uppercase`}
         >
           {children}
         </h6>

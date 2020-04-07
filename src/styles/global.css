@@ -263,11 +263,6 @@ figcaption {
   @apply font-sans text-base font-medium text-gray-30;
 }
 
-/* Default class applied to all components in Heading to avoid repetition */
-.heading-default {
-  @apply font-sans font-bold text-gray-90 tracking-tight;
-}
-
 /* Gradient for the last card in the viewport on ArticleCarousal */
 @variants last {
   .bg-gradient {
