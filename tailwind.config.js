@@ -155,6 +155,7 @@ module.exports = {
   },
   variants: {
     backgroundColor: ["last"],
+    outline: ['responsive', 'hover', 'focus', 'active']
   },
   plugins: [
     require("tailwind-color-alpha")()
