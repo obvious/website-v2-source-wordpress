@@ -1,6 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 import { Heading } from "./Heading"
+import Slider from "react-slick"
+import "../../node_modules/slick-carousel/slick/slick.css";
+import "../../node_modules/slick-carousel/slick/slick-theme.css";
 
 export function ArticleCarouselCard({ slug, title, datePublished }) {
   let date = new Date(datePublished).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'});
@@ -18,8 +21,19 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
 }
 
 export default ({ articles }) => {
+
+  const settings = {
+    infinite: false,
+    draggable: true,
+    swipeToSlide: true,
+    slidesToShow: 4,
+    slidesToScroll: 3,
+  }
+
   return (
-    <div className="flex py-8 overflow-x-scroll">
+    <Slider
+   {...settings}
+      className="flex py-8 overflow-x-scroll">
       {articles.map(({ slug, title, date }) => (
         <ArticleCarouselCard
           slug={slug}
@@ -27,6 +41,6 @@ export default ({ articles }) => {
           datePublished={date}
         />
       ))}
-    </div>
+    </Slider>
   )
 }
