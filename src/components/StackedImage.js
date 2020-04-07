@@ -3,7 +3,7 @@ import React from "react"
 export default ({ image }) => {
   return (
     <div className="pr-4 pb-2 mb-10">
-      <div className="relative inline-block self-start">
+      <div className="relative self-start">
         <div className="bg-white relative p-2 z-40 shadow-md">
           <img className="w-full object-cover min-h-sm lg:min-h-md max-h-sm lg:max-h-md " src={image} alt="" />
         </div>
