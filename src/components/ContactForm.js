@@ -3,6 +3,7 @@ import {Form, Formik} from "formik"
 import Input from "./form/Input"
 import TextArea from "./form/TextArea"
 import * as Yup from 'yup';
+import axios from 'axios';
 
 import Button from "./atoms/Button"
 import Checkboxes from "./form/Checkboxes"
@@ -21,8 +22,8 @@ export default ({ title, description }) => {
           name: '',
           message: '',
           types_of_engagement: '',
-          duration_of_engagement: '',
-          approximate_product_budget_per_year: ''
+          duration_of_engagement: '6-12 months',
+          approximate_product_budget_per_year: '$500K-$1M'
         }}
         validationSchema={Yup.object({
           name: Yup.string()
@@ -41,21 +42,30 @@ export default ({ title, description }) => {
         })}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values)
+          axios.post('/submit-contact-form', values)
+            .then(console.log)
+  
+          axios({
+            url: '/.netlify/functions/submit-contact-form',
+            params: values,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            method: 'POST',
+          }).then(console.log)
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, values }) => (
           <Form>
             <Checkboxes label="Types of Engagement" name="types_of_engagement" options={[
               'Help imagine a new digital product',
               'Design or redesign an existing digital product',
               'Design and build a new digital product'
             ]}/>
-            <Radios label="Duration of Engagement" name="duration_of_engagement" options={[
+            <Radios value={values['duration_of_engagement']} label="Duration of Engagement" name="duration_of_engagement" options={[
               '6-12 months',
               '12-18 months',
               '18-24 months'
             ]}/>
-            <Radios label="Approximate Product Budget (per year)" name="approximate_product_budget_per_year" options={[
+            <Radios value={values['approximate_product_budget_per_year']} label="Approximate Product Budget (per year)" name="approximate_product_budget_per_year" options={[
               '$500K-$1M',
               '$1-$2M',
               '$2M+'

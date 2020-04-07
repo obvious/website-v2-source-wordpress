@@ -1,35 +1,41 @@
 "use strict";
 
-var axios = require('axios')
+var axios = require('axios');
 
 var _dotenv = require("dotenv");
 
 (0, _dotenv.config)();
 
-exports.handler = async function(event) {
+exports.handler = async function (event) {
   try {
     const values = event.queryStringParameters;
     const response = await axios({
       method: 'POST',
       url: 'https://content.obvious.in/wp-json/wp/v2/contact_form_entries',
-      data: { title: values.name, fields:  {...values}, status: 'publish' },
+      data: {
+        title: values.name,
+        fields: { ...values
+        },
+        status: 'publish'
+      },
       headers: {
         'Authorization': process.env.WORDPRESS_AUTH_HEADER,
         'Content-Type': 'application/json',
-        'accept': 'application/json',
+        'accept': 'application/json'
       }
-    })
-    const { data } = response
+    });
+    const {
+      data
+    } = response;
     return {
       statusCode: 200,
-      body:data
-    }
-  }
-  catch (e) {
-    console.log(e)
+      body: data
+    };
+  } catch (e) {
+    console.log(e);
     return {
       statusCode: 500,
       body: 'Error'
-    }
+    };
   }
 };

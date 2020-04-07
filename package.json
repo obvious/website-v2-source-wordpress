@@ -16,12 +16,14 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "formik": "^2.1.4",
     "gatsby": "^2.19.7",
     "gatsby-plugin-layout": "^1.1.22",
     "gatsby-plugin-manifest": "^2.2.44",
+    "gatsby-plugin-netlify-functions": "^0.0.3",
     "gatsby-plugin-postcss": "^2.1.20",
     "gatsby-plugin-react-helmet": "^3.1.23",
     "gatsby-plugin-remove-serviceworker": "^1.0.0",
@@ -43,6 +45,7 @@
     "@storybook/react": "^5.3.13",
     "babel-loader": "^8.0.6",
     "gatsby-source-graphql": "^2.1.33",
+    "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
     "tailwind-color-alpha": "^1.0.4",
     "tailwindcss": "^1.2.0"
