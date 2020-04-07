@@ -28,7 +28,7 @@ export default ({ data }) => {
         <Heading type="h5" className="border-b-2 border-light/gray-30 py-3">
           All Publications
         </Heading>
-        <div className="flex flex-wrap justify-between pt-8 mr-8">
+        <div className="grid md:col-gap-20 md:row-gap-10 md:grid-cols-2 lg:col-gap-40 lg:row-gap-10 lg:grid-cols-2 xl:col-gap-64 xl:row-gap-10 xl:grid-cols-2 justify-between pt-8">
           {page.publications.publicationlist.map(({ publication, slug, title }) => (
             <PublicationCard
               slug={slug}
