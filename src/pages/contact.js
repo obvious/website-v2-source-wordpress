@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
-import HeroTitle from "../components/HeroTitle"
+import Hero from "../components/Hero"
 import ContactForm from "../components/ContactForm"
 import ContactDetails from "../components/ContactDetails"
 
@@ -16,7 +16,7 @@ export default ({ data }) => {
       <Helmet>
         <title>Contact | Obvious</title>
       </Helmet>
-      <HeroTitle>{page.contact.hero}</HeroTitle>
+      <Hero title={page.contact.hero} />
       <div className="flex text-gray-400">
         <ContactForm
           title={page.contact.form.title}

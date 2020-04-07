@@ -256,14 +256,11 @@
 
 @tailwind base;
 
-/* Styles applied to figcaption, primarily coming from Gutenberg */z
+/* Styles applied to figcaption, primarily coming from Gutenberg */
+/*TODO: should have leading-tight, doesn't work because when changing default values as recorded in tailwind.config,
+   the imports seems to happen after the class tree is created*/
 figcaption {
-  @apply font-sans text-base font-medium leading-5 text-gray-30;
-}
-
-/* Default class applied to all components in Heading to avoid repetition */
-.heading-default {
-  @apply font-sans font-bold text-gray-90 tracking-tight;
+  @apply font-sans text-base font-medium text-gray-30;
 }
 
 /* Gradient for the last card in the viewport on ArticleCarousal */

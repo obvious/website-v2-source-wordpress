@@ -1,3 +1,6 @@
+## Notes
+- In this repo, we always try and define the bottom and left values for spacing.
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cc6bd760-dc00-4fb4-a577-f4b99f0ef36d/deploy-status)](https://app.netlify.com/sites/obvious-wp/deploys)
 
 <p align="center">
