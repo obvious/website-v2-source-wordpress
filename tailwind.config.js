@@ -1,3 +1,37 @@
+var Color = require('color')
+
+const colors = {
+  "gray-90": "#FBFCF7",
+  "gray-70": "#EEF0EB",
+  "gray-50": "#BFC2BA",
+  "gray-30": "#6C7067",
+  "gray-10": "#272926",
+  "black-a100": "#000000",
+  "white-a90": "rgba(255, 255, 255, 0.08)",
+  "white-a30": "rgba(255, 255, 255, 0.16)",
+  "orange-50": "#FF725C",
+  "yellow-50": "#FAE246",
+  "blue-50": "#47D8FC",
+  "green-50": "#58F582",
+  "light/gray-70": "#E9EBE4",
+  "light/gray-50": "#BFC2BA",
+  "light/gray-30": "#6C7067",
+  "light/gray-10": "#272926",
+  "red-10": "#803040",
+  "red-30": "#BD4055",
+  "red-50": "#FA556B",
+  "red-70": "#FFB8BF",
+  "red-90": "#FFEDEF",
+}
+
+const alphas = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+Object.keys(colors).forEach(key => {
+  alphas.forEach(alpha => {
+    colors[`${key}-alpha-${alpha}`] = Color(colors[key]).alpha(alpha/100).string()
+  })
+})
+
+console.log(colors)
 module.exports = {
   theme: {
     fontFamily: {
@@ -81,29 +115,7 @@ module.exports = {
         "11xl": "6rem", //96
       },
       // In increasing order of specificity
-      colors: {
-        "gray-90": "#FBFCF7",
-        "gray-70": "#EEF0EB",
-        "gray-50": "#BFC2BA",
-        "gray-30": "#6C7067",
-        "gray-10": "#272926",
-        "black-a100": "#000000",
-        "white-a90": "rgba(255, 255, 255, 0.08)",
-        "white-a30": "rgba(255, 255, 255, 0.16)",
-        "orange-50": "#FF725C",
-        "yellow-50": "#FAE246",
-        "blue-50": "#47D8FC",
-        "green-50": "#58F582",
-        "light/gray-70": "#E9EBE4",
-        "light/gray-50": "#BFC2BA",
-        "light/gray-30": "#6C7067",
-        "light/gray-10": "#272926",
-        "red-10": "#803040",
-        "red-30": "#BD4055",
-        "red-50": "#FA556B",
-        "red-70": "#FFB8BF",
-        "red-90": "#FFEDEF",
-      },
+      colors: colors,
       inset: {
         "-16": "-4rem",
         "-4": "-1rem",
@@ -153,11 +165,11 @@ module.exports = {
       }
     },
   },
+  plugins: [
+    // require("tailwind-color-alpha")()
+  ],
   variants: {
     backgroundColor: ["last"],
     outline: ['responsive', 'hover', 'focus', 'active']
   },
-  plugins: [
-    require("tailwind-color-alpha")()
-  ]
 }

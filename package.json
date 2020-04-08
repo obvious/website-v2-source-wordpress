@@ -46,7 +46,6 @@
     "gatsby-source-graphql": "^2.1.33",
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
-    "tailwind-color-alpha": "^1.0.4",
     "tailwindcss": "^1.2.0"
   },
   "repository": {

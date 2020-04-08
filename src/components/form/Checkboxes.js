@@ -2,7 +2,6 @@ import React from 'react';
 import { useField } from 'formik';
 import PropTypes from 'prop-types';
 import '../../styles/checkbox.css'
-import Radios from "./Radios"
 
 const Checkboxes = ({ label, ...props }) => {
   const [field, meta] = useField(props);
