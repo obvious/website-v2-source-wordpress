@@ -10,7 +10,7 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
   return (
     <Link
       to={`articles/${slug}`}
-      className="rounded bg-white-a30 min-w-3xs mr-4 p-4 flex flex-col justify-between h-40 last:bg-gradient"
+      className="rounded bg-white-a30 w-64 mr-4 p-4 flex flex-col justify-between h-40"
     >
       <Heading type="h5">{title}</Heading>
       <Heading type="h6" className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
@@ -26,14 +26,36 @@ export default ({ articles }) => {
     infinite: false,
     draggable: true,
     swipeToSlide: true,
-    slidesToShow: 4,
+    variableWidth: true,
     slidesToScroll: 3,
+    nextArrow: <Arrow/>,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToScroll: 3,
+        }
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToScroll: 1
+        }
+      }
+    ]
+
   }
 
   return (
     <Slider
    {...settings}
-      className="flex py-8 overflow-x-scroll">
+      className="flex py-8">
       {articles.map(({ slug, title, date }) => (
         <ArticleCarouselCard
           slug={slug}
