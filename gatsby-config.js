@@ -21,13 +21,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-netlify-functions`,
-      options: {
-        functionsSrc: `${__dirname}/src/functions`,
-        functionsOutput: `${__dirname}/functions`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Obvious`,
