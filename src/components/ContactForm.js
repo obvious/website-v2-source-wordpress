@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import {Form, Formik} from "formik"
 import Input from "./form/Input"
 import TextArea from "./form/TextArea"
@@ -11,9 +11,6 @@ import Radios from "./form/Radios"
 import AlertMessage from "./atoms/AlertMessage"
 
 export default ({ title, description }) => {
-  const [successMessage, setSuccessMessage] = useState(false)
-  const [errorMessage, setErrorMessage] = useState(false)
-  
   return (
     <div className="w-full md:w-3/6 mb-16 grid gap-4">
       <div>
@@ -28,6 +25,10 @@ export default ({ title, description }) => {
           types_of_engagement: [],
           duration_of_engagement: '6-12 months',
           approximate_product_budget_per_year: '$500K-$1M'
+        }}
+        initialStatus={{
+          type: 'initial',
+          message: null
         }}
         validationSchema={Yup.object({
           types_of_engagement: Yup.array()
@@ -50,26 +51,30 @@ export default ({ title, description }) => {
             data: values,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
             method: 'POST',
-          }).then(data => {
-              setErrorMessage(false)
-              setSuccessMessage('Your inquiry has been submitted successfully! We will write back to you shortly')
+          }).then(() => {
               formikBag.resetForm()
+              formikBag.setStatus({
+                type: 'success',
+                message: 'Your inquiry has been submitted successfully! We will write back to you shortly'
+              })
             })
             .catch(e => {
               const error = (Object.assign({}, e))
-              const message = error.response && error.response.data || 'Your inquiry was unable to submit, please try again later'
-              setSuccessMessage(false)
-              setErrorMessage(message)
+              formikBag.setStatus({
+                type: 'error',
+                message: error.response && error.response.data || 'Your inquiry was unable to submit, please try again later'
+              })
             })
             .then(() => {
               formikBag.setSubmitting(false)
             })
         }}
       >
-        {({ isSubmitting, values, dirty }) => {
-          if(dirty) {
-            setErrorMessage(false)
-            setSuccessMessage(false)
+        {({ isSubmitting, values, dirty, status, setStatus}) => {
+          if(dirty && status.type === 'success') {
+            setStatus({
+              type: 'initial'
+            })
           }
           return (
             <Form>
@@ -112,12 +117,13 @@ export default ({ title, description }) => {
               <Button loading={isSubmitting}>
                 Submit
               </Button>
+              <div className="py-1"/>
+              {status.type === 'success' && <AlertMessage className="mt-2" type="success">{status.message}</AlertMessage>}
+              {status.type === 'error' && <AlertMessage className="mt-2" type="error">{status.message}</AlertMessage>}
             </Form>
           )
         }}
       </Formik>
-      {successMessage && <AlertMessage type="success">{successMessage}</AlertMessage>}
-      {errorMessage && <AlertMessage type="error">{errorMessage}</AlertMessage>}
     </div>
   )
 }
