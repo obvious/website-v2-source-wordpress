@@ -4,6 +4,34 @@ import { Heading } from "./Heading"
 import Slider from "react-slick"
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
+import RightChevron from "./icons/RightChevron"
+import LeftChevron from "./icons/LeftChevron"
+
+const RightArrow = (props) => {
+  const {className, onClick } = props
+  return (
+    <button
+      type="button"
+      className={`${className}`}
+      onClick={onClick}
+    >
+      <RightChevron className={`${className} slick-arrow slick-next`}/>
+    </button>
+  )
+}
+
+const LeftArrow = (props) => {
+  const {className, onClick } = props
+  return (
+    <button
+      type="button"
+      className={className}
+      onClick={onClick}
+    >
+      <LeftChevron className={`${className} slick-arrow slick-next`}/>
+    </button>
+  )
+}
 
 export function ArticleCarouselCard({ slug, title, datePublished }) {
   let date = new Date(datePublished).toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'});
@@ -27,8 +55,9 @@ export default ({ articles }) => {
     draggable: true,
     swipeToSlide: true,
     variableWidth: true,
-    slidesToScroll: 3,
-    nextArrow: <Arrow/>,
+    slidesToScroll: 2,
+    nextArrow: <RightArrow/>,
+    prevArrow: <LeftArrow/>,
     responsive: [
       {
         breakpoint: 1200,
@@ -53,9 +82,14 @@ export default ({ articles }) => {
   }
 
   return (
+    <div className="relative">
+    <div className="flex flex-row justify-between absolute w-full py-8">
+      <div className="z-10 w-16 h-40 bg-gradient-left"></div>
+      <div className="z-10 w-16 h-40 bg-gradient-right"></div>
+    </div>
     <Slider
    {...settings}
-      className="flex py-8">
+      className="py-8 z-auto">
       {articles.map(({ slug, title, date }) => (
         <ArticleCarouselCard
           slug={slug}
@@ -64,5 +98,6 @@ export default ({ articles }) => {
         />
       ))}
     </Slider>
+    </div>
   )
 }
