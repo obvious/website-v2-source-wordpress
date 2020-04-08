@@ -47,66 +47,74 @@ export default ({ title, description }) => {
         onSubmit={(values, formikBag) => {
           axios({
             url: '/.netlify/functions/submit-contact-form',
-            params: values,
+            data: values,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
             method: 'POST',
           }).then(data => {
               setErrorMessage(false)
-              setSuccessMessage('Your inquiry has been submitted successfully!')
+              setSuccessMessage('Your inquiry has been submitted successfully! We will write back to you shortly')
               formikBag.resetForm()
             })
             .catch(e => {
+              const error = (Object.assign({}, e))
+              const message = error.response && error.response.data || 'Your inquiry was unable to submit, please try again later'
               setSuccessMessage(false)
-              setErrorMessage(e.toString())
+              setErrorMessage(message)
             })
             .then(() => {
               formikBag.setSubmitting(false)
             })
         }}
       >
-        {({ isSubmitting, values }) => (
-          <Form>
-            <Checkboxes value={values['types_of_engagement']} label="Types of Engagement" name="types_of_engagement" options={[
-              'Help imagine a new digital product',
-              'Design or redesign an existing digital product',
-              'Design and build a new digital product'
-            ]}/>
-            <Radios value={values['duration_of_engagement']} label="Duration of Engagement" name="duration_of_engagement" options={[
-              '6-12 months',
-              '12-18 months',
-              '18-24 months'
-            ]}/>
-            <Radios value={values['approximate_product_budget_per_year']} label="Approximate Product Budget (per year)" name="approximate_product_budget_per_year" options={[
-              '$500K-$1M',
-              '$1-$2M',
-              '$2M+'
-            ]}/>
-            <Input
-              label="Name"
-              placeholder="Name"
-              type="text"
-              name="name"
-              disabled={isSubmitting}
-            />
-            <Input
-              label="Email"
-              placeholder="Email"
-              type="email"
-              name="email"
-              disabled={isSubmitting}
-            />
-            <TextArea
-              cols="30"
-              rows="10"
-              placeholder="Message"
-              name="message"
-              disabled={isSubmitting}
-            />
-            <Button loading={isSubmitting}>
-              Submit
-            </Button>
-          </Form>
-        )}
+        {({ isSubmitting, values, dirty }) => {
+          if(dirty) {
+            setErrorMessage(false)
+            setSuccessMessage(false)
+          }
+          return (
+            <Form>
+              <Checkboxes value={values['types_of_engagement']} label="Types of Engagement" name="types_of_engagement" options={[
+                'Help imagine a new digital product',
+                'Design or redesign an existing digital product',
+                'Design and build a new digital product'
+              ]}/>
+              <Radios value={values['duration_of_engagement']} label="Duration of Engagement" name="duration_of_engagement" options={[
+                '6-12 months',
+                '12-18 months',
+                '18-24 months'
+              ]}/>
+              <Radios value={values['approximate_product_budget_per_year']} label="Approximate Product Budget (per year)" name="approximate_product_budget_per_year" options={[
+                '$500K-$1M',
+                '$1-$2M',
+                '$2M+'
+              ]}/>
+              <Input
+                label="Name"
+                placeholder="Name"
+                type="text"
+                name="name"
+                disabled={isSubmitting}
+              />
+              <Input
+                label="Email"
+                placeholder="Email"
+                type="email"
+                name="email"
+                disabled={isSubmitting}
+              />
+              <TextArea
+                cols="30"
+                rows="10"
+                placeholder="Message"
+                name="message"
+                disabled={isSubmitting}
+              />
+              <Button loading={isSubmitting}>
+                Submit
+              </Button>
+            </Form>
+          )
+        }}
       </Formik>
       {successMessage && <AlertMessage type="success">{successMessage}</AlertMessage>}
       {errorMessage && <AlertMessage type="error">{errorMessage}</AlertMessage>}
