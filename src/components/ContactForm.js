@@ -30,6 +30,12 @@ export default ({ title, description }) => {
           approximate_product_budget_per_year: '$500K-$1M'
         }}
         validationSchema={Yup.object({
+          types_of_engagement: Yup.array()
+            .required('This field is required'),
+          duration_of_engagement: Yup.string()
+            .required('This field is required'),
+          approximate_product_budget_per_year: Yup.string()
+            .required('This field is required'),
           name: Yup.string()
             .required('Name is required'),
           email: Yup.string()
@@ -37,12 +43,6 @@ export default ({ title, description }) => {
             .email('Email is invalid'),
           message: Yup.string()
             .required('Message is required'),
-          types_of_engagement: Yup.array()
-            .required('This field is required'),
-          duration_of_engagement: Yup.string()
-            .required('This field is required'),
-          approximate_product_budget_per_year: Yup.string()
-            .required('This field is required'),
         })}
         onSubmit={(values, formikBag) => {
           axios({
