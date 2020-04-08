@@ -29,13 +29,13 @@ exports.handler = async function (event) {
     } = response;
     return {
       statusCode: 200,
-      body: data
+      body: JSON.stringify(data)
+      // body: data
     };
   } catch (e) {
-    console.log(e);
     return {
-      statusCode: 500,
-      body: 'Error'
+      statusCode: e.status,
+      body: e.toString()
     };
   }
 };
