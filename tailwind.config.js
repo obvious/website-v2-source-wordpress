@@ -31,7 +31,6 @@ Object.keys(colors).forEach(key => {
   })
 })
 
-console.log(colors)
 module.exports = {
   theme: {
     fontFamily: {
