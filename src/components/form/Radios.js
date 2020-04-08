@@ -20,7 +20,12 @@ const Radios = ({ label, ...props }) => {
 Radios.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired
+  options: PropTypes.array.isRequired,
+  value: PropTypes.string
+}
+
+Radios.defaultProps = {
+  value: ''
 }
 
 export default Radios;

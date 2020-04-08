@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {Form, Formik} from "formik"
 import Input from "./form/Input"
 import TextArea from "./form/TextArea"
@@ -8,20 +8,24 @@ import axios from 'axios';
 import Button from "./atoms/Button"
 import Checkboxes from "./form/Checkboxes"
 import Radios from "./form/Radios"
+import AlertMessage from "./atoms/AlertMessage"
 
 export default ({ title, description }) => {
+  const [successMessage, setSuccessMessage] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(false)
+  
   return (
     <div className="w-full md:w-3/6 mb-16 grid gap-4">
       <div>
-      <h2 className="text-2xl font-semibold text-white font-sans">{title}</h2>
-      <p className="text-sm py-2 font-serif">{description}</p>
+        <h2 className="text-2xl font-semibold text-white font-sans">{title}</h2>
+        <p className="text-sm py-2 font-serif">{description}</p>
       </div>
       <Formik
         initialValues={{
           email: '',
           name: '',
           message: '',
-          types_of_engagement: '',
+          types_of_engagement: [],
           duration_of_engagement: '6-12 months',
           approximate_product_budget_per_year: '$500K-$1M'
         }}
@@ -40,22 +44,29 @@ export default ({ title, description }) => {
           approximate_product_budget_per_year: Yup.string()
             .required('This field is required'),
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log(values)
-          axios.post('/submit-contact-form', values)
-            .then(console.log)
-  
+        onSubmit={(values, formikBag) => {
           axios({
             url: '/.netlify/functions/submit-contact-form',
             params: values,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
             method: 'POST',
-          }).then(console.log)
+          }).then(data => {
+              setErrorMessage(false)
+              setSuccessMessage('Your inquiry has been submitted successfully!')
+              formikBag.resetForm()
+            })
+            .catch(e => {
+              setSuccessMessage(false)
+              setErrorMessage(e.toString())
+            })
+            .then(() => {
+              formikBag.setSubmitting(false)
+            })
         }}
       >
         {({ isSubmitting, values }) => (
           <Form>
-            <Checkboxes label="Types of Engagement" name="types_of_engagement" options={[
+            <Checkboxes value={values['types_of_engagement']} label="Types of Engagement" name="types_of_engagement" options={[
               'Help imagine a new digital product',
               'Design or redesign an existing digital product',
               'Design and build a new digital product'
@@ -97,6 +108,8 @@ export default ({ title, description }) => {
           </Form>
         )}
       </Formik>
+      {successMessage && <AlertMessage type="success">{successMessage}</AlertMessage>}
+      {errorMessage && <AlertMessage type="error">{errorMessage}</AlertMessage>}
     </div>
   )
 }
