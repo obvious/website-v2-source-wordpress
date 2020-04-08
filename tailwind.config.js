@@ -1,3 +1,36 @@
+var Color = require('color')
+
+const colors = {
+  "gray-90": "#FBFCF7",
+  "gray-70": "#EEF0EB",
+  "gray-50": "#BFC2BA",
+  "gray-30": "#6C7067",
+  "gray-10": "#272926",
+  "black-a100": "#000000",
+  "white-a90": "rgba(255, 255, 255, 0.08)",
+  "white-a30": "rgba(255, 255, 255, 0.16)",
+  "orange-50": "#FF725C",
+  "yellow-50": "#FAE246",
+  "blue-50": "#47D8FC",
+  "green-50": "#58F582",
+  "light/gray-70": "#E9EBE4",
+  "light/gray-50": "#BFC2BA",
+  "light/gray-30": "#6C7067",
+  "light/gray-10": "#272926",
+  "red-10": "#803040",
+  "red-30": "#BD4055",
+  "red-50": "#FA556B",
+  "red-70": "#FFB8BF",
+  "red-90": "#FFEDEF",
+}
+
+const alphas = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+Object.keys(colors).forEach(key => {
+  alphas.forEach(alpha => {
+    colors[`${key}-alpha-${alpha}`] = Color(colors[key]).alpha(alpha/100).string()
+  })
+})
+
 module.exports = {
   theme: {
     fontFamily: {
@@ -36,7 +69,7 @@ module.exports = {
     },
     /* Changes defaults */
     fontSize: {
-
+      
       //Steps of 2px, or  0.125rem
       xs: "0.75rem", //12
       sm: "0.875rem", //14
@@ -45,7 +78,7 @@ module.exports = {
       xl: "1.25rem", //20
       "2xl": "1.375rem", //22
       "3xl": "1.5rem", //24
-
+      
       //Steps of 4px, or 0.250rem
       "4xl": "1.75rem", //28
       "5xl": "2rem",
@@ -81,24 +114,7 @@ module.exports = {
         "11xl": "6rem", //96
       },
       // In increasing order of specificity
-      colors: {
-        "gray-90": "#FBFCF7",
-        "gray-70": "#EEF0EB",
-        "gray-50": "#BFC2BA",
-        "gray-30": "#6C7067",
-        "gray-10": "#272926",
-        "black-a100": "#000000",
-        "white-a90": "rgba(255, 255, 255, 0.08)",
-        "white-a30": "rgba(255, 255, 255, 0.16)",
-        "orange-50": "#FF725C",
-        "yellow-50": "#FAE246",
-        "blue-50": "#47D8FC",
-        "green-50": "#58F582",
-        "light/gray-70": "#E9EBE4",
-        "light/gray-50": "#BFC2BA",
-        "light/gray-30": "#6C7067",
-        "light/gray-10": "#272926",
-      },
+      colors: colors,
       inset: {
         "-16": "-4rem",
         "-4": "-1rem",
@@ -135,11 +151,24 @@ module.exports = {
       },
       width: {
         '80': "20rem"
+      },
+      boxShadow: {
+        'red': '0px 0px 5px 0.5px rgba(255,184,191, 0.2)'
+      },
+      opacity: {
+        '10': 0.1,
+        '30': 0.3,
+        '50': 0.5,
+        '70': 0.7,
+        '90': 0.9,
       }
     },
   },
+  plugins: [
+    // require("tailwind-color-alpha")()
+  ],
   variants: {
     backgroundColor: ["last"],
+    outline: ['responsive', 'hover', 'focus', 'active']
   },
-  plugins: [],
 }
