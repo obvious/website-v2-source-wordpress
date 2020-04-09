@@ -265,7 +265,7 @@ figcaption {
   @apply font-sans text-base font-medium text-gray-30;
 }
 
-/* Gradient on ArticleCarousal */
+/* Set and unset gradients on ArticleCarousal */
 .bg-gradient-left {
   background-image: linear-gradient(90deg, #252922 0%, rgba(37, 41, 34, 0) 100%);
 }
@@ -276,8 +276,9 @@ figcaption {
   opacity: 0;
 }
 
-.slick-arrow-disabled {
-  display: none !important;
+/*Hide the default react-slick arrow*/
+.slick-next::before, .slick-prev::before, .slick-arrow-disabled {
+display: none !important;
 }
 
 html {
