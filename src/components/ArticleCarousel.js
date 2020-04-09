@@ -32,6 +32,7 @@ const RightArrow = ({ className, onClick, currentSlide, setIsRightShown, slideCo
     return null
 
   } else {
+    setIsRightShown(true)
     return (<button
       type="button"
       className={className}
