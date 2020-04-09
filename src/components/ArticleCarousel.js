@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { Heading } from "./Heading"
 import Slider from "react-slick"
@@ -7,22 +7,10 @@ import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import RightChevron from "./icons/RightChevron"
 import LeftChevron from "./icons/LeftChevron"
 
-const RightArrow = (props) => {
-  const {className, onClick } = props
-  return (
-    <button
-      type="button"
-      className={`${className}`}
-      onClick={onClick}
-    >
-      <RightChevron className={`${className} slick-arrow slick-next`}/>
-    </button>
-  )
-}
-
-const LeftArrow = (props) => {
-  const {className, onClick } = props
-  return (
+const LeftArrow = ({className, onClick, currentSlide, setIsLeftShown}) => {
+  if (currentSlide != 0) {
+    setIsLeftShown(true)
+    return (
     <button
       type="button"
       className={className}
@@ -30,7 +18,28 @@ const LeftArrow = (props) => {
     >
       <LeftChevron className={`${className} slick-arrow slick-next`}/>
     </button>
-  )
+  ) }
+  else {
+    setIsLeftShown(false)
+    return null
+  }
+}
+
+const RightArrow = ({ className, onClick, currentSlide, setIsRightShown, slideCount}) => {
+  if (currentSlide === slideCount || currentSlide+1 === slideCount)
+  {
+    setIsRightShown(false)
+    return null
+
+  } else {
+    return (<button
+      type="button"
+      className={className}
+      onClick={onClick}
+    >
+      <RightChevron className={`${className} slick-arrow slick-next`}/>
+    </button>)
+  }
 }
 
 export function ArticleCarouselCard({ slug, title, datePublished }) {
@@ -49,15 +58,23 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
 }
 
 export default ({ articles }) => {
-
+  let [isLeftShown, setIsLeftShown] = useState(false);
+  let [isRightShown, setIsRightShown] = useState(true);
+  let [currentSlide, setCurrentSlide] = useState(0);
   const settings = {
     infinite: false,
     draggable: true,
     swipeToSlide: true,
     variableWidth: true,
     slidesToScroll: 2,
-    nextArrow: <RightArrow/>,
-    prevArrow: <LeftArrow/>,
+    beforeChange: (currentSlide, nextSlide) => {
+      setIsLeftShown(true)
+    },
+    afterChange: (curr) => {
+      setCurrentSlide(curr)
+    },
+    prevArrow: <LeftArrow currentSlide={currentSlide} setIsLeftShown={setIsLeftShown}/>,
+    nextArrow: <RightArrow currentSlide={currentSlide} setIsRightShown={setIsRightShown}/>,
     responsive: [
       {
         breakpoint: 1200,
@@ -84,8 +101,8 @@ export default ({ articles }) => {
   return (
     <div className="relative">
     <div className="flex flex-row justify-between absolute w-full py-8">
-      <div className="z-10 w-16 h-40 bg-gradient-left"></div>
-      <div className="z-10 w-16 h-40 bg-gradient-right"></div>
+      {isLeftShown ? <div className="z-10 w-16 h-40 bg-gradient-left" /> : <div className="z-10 w-16 h-40" />}
+      {isRightShown ? <div className="z-10 w-16 h-40 bg-gradient-right" /> : <div className="z-10 w-16 h-40" />}
     </div>
     <Slider
    {...settings}
