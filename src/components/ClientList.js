@@ -2,9 +2,9 @@ import React from "react"
 import { Heading } from "./Heading"
 
 export default ({ listOfClientListBlocks }) => (
-  <div className="container py-2 text-gray-500 flex flex-wrap items-start justify-between font-sans">
+  <div className="text-gray-500 font-sans grid grid-flow-row col-gap-8 md:col-gap-0 row-gap-24 sm:grid-cols-2">
     {listOfClientListBlocks.map(({ clientlistblock }) => (
-      <div className="w-1/3 my-4 mr-4">
+      <div className="md:w-2/3">
         <Heading type="h5" className="border-b border-gray-500 py-2">
           {clientlistblock.title}
         </Heading>
