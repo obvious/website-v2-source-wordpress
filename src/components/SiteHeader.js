@@ -51,7 +51,7 @@ export default () => {
         return (
           <>
             <header className="bg-black-a100 font-sans z-20 fixed top-0 left-0 right-0 z-50">
-              <div className="text-gray-500 flex items-center h-14 justify-between mx-auto container px-10 sm:px-20">
+              <div className="text-gray-500 flex items-center h-14 justify-between mx-auto container px-10">
                 <Link className="text-white" to="/">
                   <Obvious className="fill-current h-6" />
                 </Link>
