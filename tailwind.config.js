@@ -106,6 +106,9 @@ module.exports = {
     //   "leading-10": "2.5rem",
     // },
     extend: {
+      spacing: {
+        '14': '3.5rem'
+      },
       fontSize: {
         "7xl": "2.5rem", //40
         "8xl": "3rem", //48

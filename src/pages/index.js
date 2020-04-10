@@ -3,9 +3,9 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import Layout from "../layouts/index"
-import ClientCard from "../components/ClientCard"
 import Hero from "../components/Hero"
-import ClientBrowser from "../components/ClientBrowser"
+import ClientList from "../components/ClientList"
+import FeaturedClient from "../components/FeaturedClient"
 
 export default ({ data }) => {
   const {
@@ -16,20 +16,9 @@ export default ({ data }) => {
       <Helmet>
         <title>Home | Obvious</title>
       </Helmet>
-      <Hero title={page.hero.title} />
-      <div className="grid grid-cols-2 gap-2 my-24 pb-10 max-w-5xl">
-        {page.hero.featuredclients.map(
-          ({ name, statistic, description, fullwidth }) => (
-            <ClientCard
-              client={name}
-              statistic={statistic}
-              description={description}
-              fullWidth={fullwidth}
-            />
-          )
-        )}
-      </div>
-      <ClientBrowser />
+      <Hero title={page.client.hero} />
+      <FeaturedClient featuredClientBlock={page.client.featuredclientblock} />
+      <ClientList listOfClientListBlocks={page.client.listofclientlistblocks} />
     </Layout>
   )
 }
@@ -37,14 +26,25 @@ export default ({ data }) => {
 export const query = graphql`
   {
     WP {
-      page(id: "cGFnZToxMA==") {
-        hero {
-          title
-          featuredclients {
-            name
-            statistic
+      page(id: "cGFnZTo0Mg==") {
+        client {
+          hero
+          featuredclientblock {
+            client
             description
-            fullwidth
+            link {
+              text
+              href
+              typeoflink
+            }
+          }
+          listofclientlistblocks {
+            clientlistblock {
+              title
+              namelist {
+                name
+              }
+            }
           }
         }
       }

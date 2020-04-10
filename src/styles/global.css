@@ -258,6 +258,10 @@
 
 @tailwind base;
 
+html {
+  @apply bg-black-a100;
+}
+
 /* Styles applied to figcaption, primarily coming from Gutenberg */
 /*TODO: should have leading-tight, doesn't work because when changing default values as recorded in tailwind.config,
    the imports seems to happen after the class tree is created*/
