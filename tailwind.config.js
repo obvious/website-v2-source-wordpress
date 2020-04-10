@@ -144,13 +144,18 @@ module.exports = {
         full: "100%",
       },
       maxHeight: {
+        sm: "24rem",
         md: "28rem",
       },
       minWidth: {
-        xxs: "15rem",
+        "3xs": "15rem",
+        "2xs": "18rem",
         xs: "20rem",
         sm: "24rem",
         xl: "36rem",
+      },
+      maxWidth: {
+        "2xs": "18rem",
       },
       width: {
         '80': "20rem"
@@ -164,7 +169,7 @@ module.exports = {
         '50': 0.5,
         '70': 0.7,
         '90': 0.9,
-      }
+      },
     },
   },
   plugins: [
