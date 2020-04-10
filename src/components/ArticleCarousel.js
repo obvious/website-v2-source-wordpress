@@ -101,13 +101,13 @@ export default ({ articles }) => {
 
   return (
     <div className="relative">
-    <div className="flex flex-row justify-between absolute w-full py-8">
-      {isLeftShown ? <div className="z-10 w-16 h-40 bg-gradient-left" /> : <div className="z-10 w-16 h-40" />}
-      {isRightShown ? <div className="z-10 w-16 h-40 bg-gradient-right" /> : <div className="z-10 w-16 h-40" />}
+    <div className="flex flex-row justify-between absolute w-full h-full py-8">
+      {isLeftShown ? <div className="z-10 w-8 lg:w-16 bg-gradient-left" /> : <div className="z-10 w-8 lg:w-16" />}
+      {isRightShown ? <div className="z-10 w-8 lg:w-16 bg-gradient-right" /> : <div className="z-10 w-8 lg:w-16" />}
     </div>
     <Slider
    {...settings}
-      className="py-8 z-auto">
+      className="py-8 h-52 z-auto">
       {articles.map(({ slug, title, date }) => (
         <ArticleCarouselCard
           slug={slug}

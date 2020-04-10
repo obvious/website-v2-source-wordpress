@@ -281,6 +281,11 @@ figcaption {
 display: none !important;
 }
 
+/*Allow explicit declaration of carousel height*/
+.slick-track, .slick-list, .slick-slide, .slick-slide > div  {
+  height: 100%;
+}
+
 html {
   scroll-behavior: smooth;
 }
