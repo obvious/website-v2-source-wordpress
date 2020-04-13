@@ -13,6 +13,7 @@ export default ({ data }) => {
   const {
     WP: { publication },
   } = data
+  
   return (
     <Layout className="bg-light/gray-70">
       <Helmet>
@@ -22,7 +23,7 @@ export default ({ data }) => {
         <div className="flex-col flex inline-flex  min-w-sm max-w-sm mr-24">
           <div className="w-48">
             <StackedImage
-              image={publication.publication.coverimage.sourceUrl}
+              image={publication.publication.coverimage}
             />
           </div>
           <Heading type="h3" className="text-gray-10">
@@ -67,6 +68,13 @@ export const query = graphql`
               altText
               srcSet
               sourceUrl
+              imageFile {
+                childImageSharp {
+                  fixed {
+                  ...GatsbyImageSharpFixed
+                  }
+                }
+              }
             }
             colophon {
               nameoffield

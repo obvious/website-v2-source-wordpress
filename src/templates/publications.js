@@ -35,7 +35,7 @@ export default ({ data }) => {
               title={title}
               description={publication.description}
               tags={[]}
-              coverImage={publication.coverimage.sourceUrl}
+              coverImage={publication.coverimage}
             />
           ))}
         </div>
@@ -78,6 +78,13 @@ export const query = graphql`
                   altText
                   srcSet
                   sourceUrl
+                  imageFile {
+                    childImageSharp {
+                      fixed {
+                      ...GatsbyImageSharpFixed
+                      }
+                    }
+                  }
                 }
               }
             }
