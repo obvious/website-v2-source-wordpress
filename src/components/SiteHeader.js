@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
-import Obvious from "./icons/Obvious"
 import Hamburger from "./icons/Hamburger"
 import Close from "./icons/Close"
 import ObviousLink from "./atoms/ObviousLink"
 import { useWindowSize } from "../utils/use-window-size"
+import PreviewCompatibleImage from "./atoms/PreviewCompatibleImage"
 
 
 export default () => {
@@ -41,6 +41,14 @@ export default () => {
               logo {
                 altText
                 sourceUrl(size: LARGE)
+                imageFile {
+                  publicURL
+                  childImageSharp {
+                    fixed {
+                    ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
               }
             }
           }
@@ -53,7 +61,7 @@ export default () => {
             <header className="bg-black-a100 font-sans z-20 fixed top-0 left-0 right-0 z-50">
               <div className="text-gray-500 flex items-center h-14 justify-between mx-auto container px-10">
                 <Link className="text-white" to="/">
-                  <Obvious className="fill-current h-6" />
+                  <PreviewCompatibleImage className="fill-current h-6" image={logo} />
                 </Link>
                 <div onClick={toggleIsOpen} className="cursor-pointer text-gray-50 sm:hidden">
                   {isOpen ? (

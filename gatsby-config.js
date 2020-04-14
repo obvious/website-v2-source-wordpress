@@ -4,6 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const path = require(`path`)
+
 module.exports = {
   /* Your site config here */
   plugins: [
@@ -12,14 +14,6 @@ module.exports = {
     `gatsby-plugin-remove-serviceworker`,
     // `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-graphql`,
-      options: {
-        typeName: "WP",
-        fieldName: "WP",
-        url: "https://content.obvious.in/wp/graphql",
-      },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -32,5 +26,22 @@ module.exports = {
         icon: `src/images/Obvious-favicon-v2.png`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`,  `assets`, `images`),
+      },
+    },
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "WP",
+        fieldName: "WP",
+        url: "https://content.obvious.in/wp/graphql",
+      },
+    },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp"
   ],
 }
