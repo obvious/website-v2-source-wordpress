@@ -1,8 +1,6 @@
 import React from "react"
 
-import RightArrow from "./icons/RightArrow"
 import { Heading } from "./Heading"
-import { BodyText } from "./BodyText"
 import ObviousLink from "./atoms/ObviousLink"
 
 export default ({ featuredClientBlock }) => (

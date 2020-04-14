@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { Link } from "gatsby"
+import React from "react"
 
 import SiteHeader from "../components/SiteHeader"
 import SiteFooter from "../components/SiteFooter"
