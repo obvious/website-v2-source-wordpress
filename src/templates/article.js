@@ -13,6 +13,9 @@ import BackButtonContainerForArticle from "../components/molecules/BackButtonCon
 import ArticleCarousel from "../components/ArticleCarousel"
 
 function assignComponent(name, content, innerBlock) {
+  // List of all core block components available on the default gutenberg editor
+  // TODO: all of these need to be implemented and taken care of in this switch (or disabled on the editor itself)
+  // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
   switch (name) {
     case "core/paragraph":
       return (
