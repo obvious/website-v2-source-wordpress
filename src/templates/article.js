@@ -88,19 +88,15 @@ export default ({ data }) => {
           image={publication.publication.coverimage}
           articles={publication.publication.article}
         />
-      )}
-      <main className="container px-20 py-20">
+      }
+      <main className="container px-20 py-20 flex flex-col">
+        <div className="flex flex-col w-2/3 self-end">
         <Heading type="h1" className="text-gray-10 my-4">
           {article.title}
         </Heading>
-        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">
-          {article.articles.metadata.subtitle}
-        </BodyText>
-        <Byline
-          date={date}
-          author={article.articles.metadata.author}
-          className="my-4"
-        />
+        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>
+        <Byline date={date} author={article.articles.metadata.author} className="my-4" />
+        </div>
         <div>
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)
