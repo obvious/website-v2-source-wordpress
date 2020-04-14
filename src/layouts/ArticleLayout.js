@@ -10,7 +10,7 @@ export default ({ children }) => {
       style={{ backgroundColor: "#FBFCF7" }}
     >
       <SiteHeader />
-      <main className="container px-20 py-20">{children}</main>
+      {children}
       <SiteFooter />
     </div>
   )

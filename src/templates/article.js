@@ -21,7 +21,7 @@ function assignComponent(name, content, innerBlock) {
       return (
         <BodyText
           type="body-medium"
-          className="text-light/gray-10 m-10"
+          className="text-light/gray-10 my-10"
           content={content}
         />
       )
@@ -89,8 +89,8 @@ export default ({ data }) => {
           articles={publication.publication.article}
         />
       }
-      <main className="container px-20 py-20 flex flex-col">
-        <div className="flex flex-col w-2/3 self-end">
+      <main className="container px-7 lg:px-20 py-7 lg:py-20 flex flex-col self-center">
+        <div className="flex flex-col lg:w-2/3 self-end">
         <Heading type="h1" className="text-gray-10 my-4">
           {article.title}
         </Heading>
