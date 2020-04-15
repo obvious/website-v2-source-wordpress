@@ -21,7 +21,7 @@ function assignComponent(name, content, innerBlock) {
       return (
         <BodyText
           type="body-medium"
-          className="text-light/gray-10 my-10"
+          className="text-light/gray-10 my-4 lg:my-10"
           content={content}
         />
       )
