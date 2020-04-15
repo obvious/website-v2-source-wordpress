@@ -31,7 +31,8 @@ function assignComponent(name, content, innerBlock) {
       return <Heading content={content} />
 
     case "core/image":
-      return <Image content={content} />
+      //TODO: w-full applies on lg, w-super otherwise
+      return <Image className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center" content={content} />
 
     case "core/quote":
       return <Quote dangerouslySetInnerHTML={{ __html: content }} />
@@ -97,7 +98,7 @@ export default ({ data }) => {
         <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>
         <Byline date={date} author={article.articles.metadata.author} className="my-4" />
         </div>
-        <div>
+        <div className="flex flex-col">
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)
           )}
