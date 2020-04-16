@@ -7,7 +7,7 @@ import SiteFooter from "../components/SiteFooter"
 export default ({ children, showFooter = true, className }) => {
   
   return (
-    <div className={`flex flex-col justify-start antialiased bg-gray-10 pt-14 min-h-screen ${className}`}>
+    <div className={`flex flex-col justify-start antialiased bg-gray-10 min-h-screen ${className}`}>
       <SiteHeader />
       <main className="container mx-auto">
         {/*{isOpen && (*/}
