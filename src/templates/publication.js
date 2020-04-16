@@ -8,7 +8,7 @@ import StackedImage from "../components/StackedImage"
 import Colophon from "../components/Colophon"
 import { Heading } from "../components/Heading"
 import { BodyText } from "../components/BodyText"
-import BackButtonContainerSimple from "../components/molecules/BackButtonContainerSimple"
+import BackButtonContainerForPublication from "../components/molecules/BackButtonContainerForPublication"
 
 export default ({ data }) => {
   const {
@@ -20,9 +20,7 @@ export default ({ data }) => {
       <Helmet>
         <title> {publication.title} | Publications | Obvious</title>
       </Helmet>
-      <BackButtonContainerSimple to={'/publications'}>
-        All Publications
-      </BackButtonContainerSimple>
+      <BackButtonContainerForPublication backButtonTo={"/publications"} buttonText={"All Publications"}/>
       <div className="py-20 flex">
         <div className="flex-col flex inline-flex  min-w-sm max-w-sm mr-24">
           <div className="w-48">

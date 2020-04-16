@@ -1,7 +1,7 @@
 import React from "react"
 import PreviewCompatibleImage from "./atoms/PreviewCompatibleImage"
 
-export default ({ image }) => {
+export default ({ image, size = 'large' }) => {
   return (
     <div className="pr-4 pb-2 mb-10">
       <div className="relative self-start">
