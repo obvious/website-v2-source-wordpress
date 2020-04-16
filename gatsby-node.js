@@ -1,5 +1,6 @@
 const path = require(`path`)
 const moment = require(`moment`)
+const _ = require('lodash')
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -34,6 +35,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             nodes {
               id
               slug
+              publication {
+                article {
+                  ... on WP_Article {
+                    id
+                  }
+                }
+              }
             }
           }
           articles {
@@ -70,14 +78,23 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
+  const getPublicationForArticle = articleId => {
+    const publications = result.data.WP.publications.nodes
+    return publications.find(publication => {
+      return publication.publication && publication.publication.article && _.map(publication.publication.article, 'id').includes(articleId)
+    })
+  }
+  
   const caseStudyTemplate = path.resolve(`src/templates/article.js`)
-  result.data.WP.publications.nodes.forEach(node => {
+  result.data.WP.articles.nodes.forEach(node => {
     const { id, slug } = node
+    const publicationForCaseStudy = getPublicationForArticle(id)
     createPage({
       path: `case-studies/${slug}`,
       component: caseStudyTemplate,
       context: {
         id,
+        publicationSlug: publicationForCaseStudy && publicationForCaseStudy.slug ? publicationForCaseStudy.slug : ''
       },
     })
   })
@@ -85,11 +102,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const articleTemplate = path.resolve(`src/templates/article.js`)
   result.data.WP.articles.nodes.forEach(node => {
     const { id, slug } = node
+    const publicationForArticle = getPublicationForArticle(id)
     createPage({
       path: `articles/${slug}`,
       component: articleTemplate,
       context: {
         id,
+        publicationSlug: publicationForArticle && publicationForArticle.slug ? publicationForArticle.slug : ''
+  
       },
     })
   })

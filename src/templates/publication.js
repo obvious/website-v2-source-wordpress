@@ -23,11 +23,9 @@ export default ({ data }) => {
       <BackButtonContainerForPublication backButtonTo={"/publications"} buttonText={"All Publications"}/>
       <div className="py-20 flex">
         <div className="flex-col flex inline-flex  min-w-sm max-w-sm mr-24">
-          <div className="w-48">
-            <StackedImage
-              image={publication.publication.coverimage}
-            />
-          </div>
+          <div className="mb-10"><StackedImage
+            image={publication.publication.coverimage}
+          /></div>
           <Heading type="h3" className="text-gray-10">
             {publication.title}
           </Heading>
