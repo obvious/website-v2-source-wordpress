@@ -173,7 +173,6 @@ module.exports = {
     },
   },
   plugins: [
-    // require("tailwind-color-alpha")()
   ],
   variants: {
     backgroundColor: ["last"],
