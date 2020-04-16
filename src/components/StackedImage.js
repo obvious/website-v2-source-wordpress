@@ -5,7 +5,7 @@ export default ({ image }) => {
   return (
     <div className="pr-4 pb-2 mb-10">
       <div className="relative self-start">
-        <div className="bg-white relative p-2 z-40 shadow-md">
+        <div className="bg-white relative p-2 z-30 shadow-md">
           <div className="relative min-h-sm lg:min-h-md max-h-sm lg:max-h-md">
             <PreviewCompatibleImage image={image} />
           </div>
