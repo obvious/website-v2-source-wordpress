@@ -291,11 +291,17 @@ display: none !important;
   height: 100%;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 @tailwind components;
 
 @tailwind utilities;
+
+@import "header-utils.css";
+
+.limit-lines-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
 

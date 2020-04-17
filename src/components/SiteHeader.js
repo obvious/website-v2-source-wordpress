@@ -58,8 +58,10 @@ export default () => {
       render={({WP: {page : {navigation : {logo, menu: {menuitem}}}}}) => {
         return (
           <>
+            {/* Because header is fixed, this will help push down the other content by the same amount as the height of the header */}
+            <div className="site-header"/>
             <header className="bg-black-a100 font-sans z-20 fixed top-0 left-0 right-0 z-50">
-              <div className="text-gray-500 flex items-center h-14 justify-between mx-auto container px-10">
+              <div className="text-gray-500 flex items-center site-header justify-between mx-auto container px-10">
                 <Link className="text-white" to="/">
                   <PreviewCompatibleImage className="fill-current h-6" image={logo} />
                 </Link>

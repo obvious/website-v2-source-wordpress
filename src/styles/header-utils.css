@@ -1,0 +1,11 @@
+.site-header {
+    @apply h-14;
+}
+
+.site-header-pushdown {
+    @apply mt-14;
+}
+
+.site-header-pushdown-fixed {
+    @apply mt-14;
+}

@@ -9,6 +9,7 @@ const PreviewCompatibleImage = ({ image, className }) => {
   const extension = extensionRegex.exec(image.sourceUrl)[1]
   if(!image.imageFile || !image.imageFile.childImageSharp) {
     if(extension === 'svg') {
+      // TODO - change this to use SVGR
       return <SVG className={className || ''} src={image.imageFile.publicURL} />
     }
     else

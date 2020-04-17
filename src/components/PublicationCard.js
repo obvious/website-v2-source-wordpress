@@ -8,15 +8,14 @@ import { BodyText } from "./BodyText"
 export default ({ title, description, tags, coverImage, slug }) => {
   return (
     <Link to={`publications/${slug}`}>
-      <div className="flex-col flex mb-18 lg:mb-32">
-        <StackedImage image={coverImage} />
-
+      <div className="grid grid-flow-row mb-18 lg:mb-32">
+        <div className="mb-10"><StackedImage image={coverImage} /></div>
         {tags.map(tag => (
           <span className="bg-yellow-400 rounded px-2 py-1 font-sans text-sm font-medium self-start">
             {tag}
           </span>
         ))}
-
+        
         <Heading type="h4" className="self-start mt-2">
           {title}
         </Heading>

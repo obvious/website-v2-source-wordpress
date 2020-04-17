@@ -22,7 +22,8 @@ export default ({ data }) => {
         <Heading type="h5" className="text-gray-90 border-b-2 border-light/gray-30 py-3">
           Recent Articles
         </Heading>
-        <ArticleCarousel articles={articles.nodes} />
+        {/* TODO - add the actual check based on dates */}
+        {articles.nodes.length && <ArticleCarousel articles={articles.nodes} />}
       </div>
       <div>
         <Heading type="h5" className="border-b-2 border-light/gray-30 py-3">
@@ -45,18 +46,13 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query($after: WP_DateInput, $before: WP_DateInput) {
+  query publicationsQuery {
     WP {
       articles(
         where: {
           orderby: { field: DATE, order: DESC }
-          dateQuery: {
-            after: $after
-            before: $before
-            inclusive: true
-            relation: AND
-          }
-        }
+        },
+        first: 15
       ) {
         nodes {
           title

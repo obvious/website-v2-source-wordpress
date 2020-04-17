@@ -107,7 +107,9 @@ module.exports = {
     // },
     extend: {
       spacing: {
-        '14': '3.5rem'
+        '1/4': '0.0625rem',
+        '1/2': '0.125rem',
+        '14': '3.5rem',
       },
       fontSize: {
         "7xl": "2.5rem", //40
@@ -123,6 +125,9 @@ module.exports = {
         "-4": "-1rem",
         "-2": "-0.5rem",
         "-3": "-0.75rem",
+        "-1": "-0.25rem",
+        '-1/2': '-0.125rem',
+        '-1/4': '-0.0625rem',
       },
       margin: {
         "18": "4.5rem",
@@ -152,7 +157,9 @@ module.exports = {
         "2xs": "18rem",
         xs: "20rem",
         sm: "24rem",
+        lg: "30rem",
         xl: "36rem",
+        "xxl": "48rem",
       },
       maxWidth: {
         "2xs": "18rem",
@@ -170,12 +177,22 @@ module.exports = {
         '70': 0.7,
         '90': 0.9,
       },
+      aspectRatio: { // defaults to {}
+        'none': 0,
+        'square': [1, 1], // or 1 / 1, or simply 1
+        '16/9': [16, 9],  // or 16 / 9
+        '9/16': [9, 16],  // or 16 / 9
+        '16/21': [16, 21],  // or 16 / 9
+        '4/3': [4, 3],    // or 4 / 3
+        '21/9': [21, 9],  // or 21 / 9
+      },
     },
   },
   plugins: [
-    // require("tailwind-color-alpha")()
+    require('tailwindcss-aspect-ratio'),
   ],
   variants: {
+    aspectRatio: ['responsive'], // defaults to ['responsive']
     backgroundColor: ["last"],
     outline: ['responsive', 'hover', 'focus', 'active']
   },

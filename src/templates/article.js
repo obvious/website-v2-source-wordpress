@@ -9,6 +9,7 @@ import { Heading } from "../components/Heading"
 import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
+import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
 
 function assignComponent(name, content, innerBlock) {
   switch (name) {
@@ -21,41 +22,41 @@ function assignComponent(name, content, innerBlock) {
           content={content}
         />
       )
-
+    
     case "core/heading":
       //TODO: decouple type + tag from gutenberg? do we HAVE to use content here? Explore.
       return <Heading content={content} />
-
+    
     case "core/image":
       return <Image content={content} />
-
+    
     case "core/quote":
       return <Quote dangerouslySetInnerHTML={{ __html: content }} />
-
+    
     case "core/columns":
       innerBlock &&
-        assignComponent(
-          innerBlock.name,
-          innerBlock.originalContent,
-          innerBlock.innerBlock
-        )
+      assignComponent(
+        innerBlock.name,
+        innerBlock.originalContent,
+        innerBlock.innerBlock
+      )
       break
-
+    
     case "core/column":
       innerBlock &&
-        assignComponent(
-          innerBlock.name,
-          innerBlock.originalContent,
-          innerBlock.innerBlock
-        )
+      assignComponent(
+        innerBlock.name,
+        innerBlock.originalContent,
+        innerBlock.innerBlock
+      )
       break
-
+    
     case "core/separator":
       return <Separator />
-
+    
     case "core/list":
-      return 
-
+      return
+    
     default:
       console.error(name, content)
   }
@@ -63,18 +64,22 @@ function assignComponent(name, content, innerBlock) {
 
 export default ({ data }) => {
   const {
-    WP: { article },
+    WP: { article, publicationBy: publication },
   } = data
   let date = new Date(article.date).toLocaleDateString(undefined, {
     month: "long",
     day: "numeric",
     year: "numeric",
   })
+  
   return (
     <ArticleLayout>
       <Helmet>
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
+      {publication && publication.publication &&
+        <BackButtonContainerForArticle backButtonTo={`/publications/${publication.slug}`} titleText={article.title} buttonText={publication.title} image={publication.publication.coverimage}/>
+      }
       <main className="container px-20 py-20">
         <Heading type="h1" className="text-gray-10 my-4">
           {article.title}
@@ -92,7 +97,7 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query($id: ID!) {
+  query($id: ID!, $publicationSlug: String) {
     WP {
       article(id: $id) {
         id
@@ -123,6 +128,58 @@ export const query = graphql`
           }
         }
       }
+      publicationBy(slug: $publicationSlug) {
+        id
+        title
+        slug
+        ... on WP_Publication {
+          publication {
+            description
+            coverimage {
+              altText
+              srcSet
+              sourceUrl
+              imageFile {
+                childImageSharp {
+                  fixed {
+                  ...GatsbyImageSharpFixed
+                  }
+                }
+              }
+            }
+            colophon {
+              nameoffield
+              personresponsible
+            }
+            iscasestudy
+            article {
+              ... on WP_Article {
+                slug
+                date
+                    title
+                articles {
+                  metadata {
+                    author
+                    subtitle
+                  }
+                }
+              }
+            }
+            casestudy {
+              ... on WP_CaseStudy {
+                slug
+                title
+                articles {
+                  metadata {
+                    subtitle
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+    
   }
 `

@@ -1,46 +1,31 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import { Heading } from "./Heading"
-import Slider from "react-slick"
-import "../../node_modules/slick-carousel/slick/slick.css";
-import "../../node_modules/slick-carousel/slick/slick-theme.css";
-import RightChevron from "./icons/RightChevron"
-import LeftChevron from "./icons/LeftChevron"
+import Swiper from 'react-id-swiper';
+import 'swiper/css/swiper.css';
+import "../styles/swiper-custom.css";
+import { ChevronLeft, ChevronRight } from './atoms/Icon'
+import IconButton from "./atoms/IconButton"
 
-const LeftArrow = ({className, onClick, currentSlide, setIsLeftShown}) => {
-  if (currentSlide != 0) {
-    setIsLeftShown(true)
-    return (
-    <button
-      type="button"
-      className={className}
+
+const PrevArrow = ({ onClick }) => {
+  return (
+    <IconButton
+      className="absolute flex items-center justify-center z-10 bg-gray-10 left-0 top-0 w-8 h-full custom-prev-arrow"
       onClick={onClick}
-    >
-      <LeftChevron className={`${className} slick-arrow slick-next`}/>
-    </button>
-  ) }
-  else {
-    setIsLeftShown(false)
-    return null
-  }
+      icon={<ChevronLeft className="text-white"/>}
+    />
+  )
 }
 
-const RightArrow = ({ className, onClick, currentSlide, setIsRightShown, slideCount}) => {
-  if (currentSlide === slideCount || currentSlide+1 === slideCount)
-  {
-    setIsRightShown(false)
-    return null
-
-  } else {
-    setIsRightShown(true)
-    return (<button
-      type="button"
-      className={className}
+const NextArrow = ({ onClick }) => {
+  return (
+    <IconButton
+      className="absolute flex items-center justify-center z-10 bg-gray-10 right-0 w-8 top-0 h-full custom-next-arrow"
       onClick={onClick}
-    >
-      <RightChevron className={`${className} slick-arrow slick-next`}/>
-    </button>)
-  }
+      icon={<ChevronRight className="text-white"/>}
+    />
+  )
 }
 
 export function ArticleCarouselCard({ slug, title, datePublished }) {
@@ -48,7 +33,7 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
   return (
     <Link
       to={`articles/${slug}`}
-      className="rounded bg-white-a30 w-64 mr-4 p-4 flex flex-col justify-between h-40"
+      className="rounded bg-white-a30 w-64 p-4 flex flex-col justify-between h-full"
     >
       <Heading type="h5">{title}</Heading>
       <Heading type="h6" className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
@@ -59,63 +44,51 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
 }
 
 export default ({ articles }) => {
-  let [isLeftShown, setIsLeftShown] = useState(false);
-  let [isRightShown, setIsRightShown] = useState(true);
-  let [currentSlide, setCurrentSlide] = useState(0);
-  const settings = {
-    infinite: false,
-    draggable: true,
-    swipeToSlide: true,
-    variableWidth: true,
-    slidesToScroll: 2,
-    beforeChange: (currentSlide, nextSlide) => {
-      setIsLeftShown(true)
+  
+  const swiperSettings = {
+    mousewheel: {
+      forceToAxis: true,
+      invert: true
     },
-    afterChange: (curr) => {
-      setCurrentSlide(curr)
+    shouldSwiperUpdate: true,
+    navigation: {
+      nextEl: '.custom-next-arrow',
+      prevEl: '.custom-prev-arrow'
     },
-    prevArrow: <LeftArrow currentSlide={currentSlide} setIsLeftShown={setIsLeftShown}/>,
-    nextArrow: <RightArrow currentSlide={currentSlide} setIsRightShown={setIsRightShown}/>,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToScroll: 3,
-        }
+    centeredSlides: true,
+    centeredSlidesBounds: true,
+    centerInsufficientSlides: true,
+    slidesPerView: 'auto',
+    slidesPerGroup: 1,
+    freeMode: true,
+    breakpoints: {
+      640: {
+        slidesPerGroup: 1
       },
-      {
-        breakpoint: 800,
-        settings: {
-          slidesToScroll: 2
-        }
+      768: {
+        slidesPerGroup: 2,
       },
-      {
-        breakpoint: 400,
-        settings: {
-          slidesToScroll: 1
-        }
+      1024: {
+        slidesPerGroup: 2,
       }
-    ]
-
+    }
   }
-
+  
   return (
-    <div className="relative">
-    <div className="flex flex-row justify-between absolute w-full h-full py-8">
-      {isLeftShown ? <div className="z-10 w-8 lg:w-16 bg-gradient-left" /> : <div className="z-10 w-8 lg:w-16" />}
-      {isRightShown ? <div className="z-10 w-8 lg:w-16 bg-gradient-right" /> : <div className="z-10 w-8 lg:w-16" />}
-    </div>
-    <Slider
-   {...settings}
-      className="py-8 h-52 z-auto">
+    <Swiper
+      {...swiperSettings}
+      renderNextButton={() => <NextArrow/>}
+      renderPrevButton={() => <PrevArrow/>}
+    >
       {articles.map(({ slug, title, date }) => (
-        <ArticleCarouselCard
-          slug={slug}
-          title={title}
-          datePublished={date}
-        />
+        <div className="swiper-slide">
+          <ArticleCarouselCard
+            slug={slug}
+            title={title}
+            datePublished={date}
+          />
+        </div>
       ))}
-    </Slider>
-    </div>
+    </Swiper>
   )
 }
