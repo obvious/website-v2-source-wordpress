@@ -6,7 +6,7 @@ import SiteFooter from "../components/SiteFooter"
 export default ({ children }) => {
   return (
     <div
-      className="flex flex-col justify-start antialiased min-h-screen"
+      className="flex flex-col justify-start antialiased min-h-screen pt-14"
       style={{ backgroundColor: "#FBFCF7" }}
     >
       <SiteHeader />
