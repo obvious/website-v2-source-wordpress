@@ -2,7 +2,7 @@
     @apply flex flex-row h-40;
 }
 .swiper-container {
-    @apply mt-8 -mx-8 px-8 z-auto relative;
+    @apply -mx-8 px-8 z-auto relative;
 }
 
 .swiper-slide {

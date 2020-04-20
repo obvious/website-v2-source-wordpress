@@ -34,6 +34,7 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
     <Link
       to={`articles/${slug}`}
       className="rounded bg-white-a30 w-64 p-4 flex flex-col justify-between h-full"
+      activeClassName="border-rounded border-orange-50 border-2"
     >
       <Heading type="h5">{title}</Heading>
       <Heading type="h6" className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
@@ -66,10 +67,10 @@ export default ({ articles }) => {
         slidesPerGroup: 1
       },
       768: {
-        slidesPerGroup: 2,
+        slidesPerGroup: 1,
       },
       1024: {
-        slidesPerGroup: 2,
+        slidesPerGroup: 1,
       }
     }
   }

@@ -23,7 +23,7 @@ export default ({ data }) => {
           Recent Articles
         </Heading>
         {/* TODO - add the actual check based on dates */}
-        {articles.nodes.length && <ArticleCarousel articles={articles.nodes} />}
+        {articles.nodes.length && <><div className="h-8" /><ArticleCarousel articles={articles.nodes} /></>}
       </div>
       <div>
         <Heading type="h5" className="border-b-2 border-light/gray-30 py-3">
