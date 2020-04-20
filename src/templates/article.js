@@ -92,11 +92,11 @@ export default ({ data }) => {
       }
       <main className="container px-7 lg:px-20 py-7 lg:py-20 flex flex-col self-center">
         <div className="flex flex-col lg:w-2/3 self-end">
-        <Heading type="h1" className="text-gray-10 my-4">
+        <Heading type="h1" className="text-gray-10 my-3 lg:my-4">
           {article.title}
         </Heading>
-        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>
-        <Byline date={date} author={article.articles.metadata.author} className="my-4" />
+        {article.articles.metadata.subtitle && <BodyText type="subtitle-medium" className="my-3 lg:my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>}
+        <Byline date={date} author={article.articles.metadata.author} className="my-3 lg:my-4" />
         </div>
         <div className="flex flex-col">
           {article.blocks.map(({ name, originalContent }) =>
