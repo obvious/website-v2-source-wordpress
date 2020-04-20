@@ -35,7 +35,7 @@ function assignComponent(name, content, innerBlock) {
       return <Image className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center" content={content} />
 
     case "core/quote":
-      return <Quote dangerouslySetInnerHTML={{ __html: content }} />
+      return <Quote>{content}</Quote>
 
     case "core/columns":
       innerBlock &&
