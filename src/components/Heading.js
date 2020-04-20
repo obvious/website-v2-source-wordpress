@@ -10,8 +10,8 @@ import React from "react"
 
 
 //TODO: decouple `tag` from the html tag being used
-export const Heading = ({ children, tag, type, className }) => {
-  
+export const Heading = ({ content, children, tag, type, className }) => {
+
   /* Default class applied to all components in Heading to avoid repetition */
   const baseClass = "font-sans text-gray-90 tracking-tight"
 
@@ -71,6 +71,6 @@ export const Heading = ({ children, tag, type, className }) => {
     //TODO: Also add hyperlink styles to this one
 
     default:
-      return <div>{children}</div>
+      return <div dangerouslySetInnerHTML={{ __html:content }}/>
   }
 }
