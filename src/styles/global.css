@@ -304,6 +304,17 @@ This is most commonly used for images in article pages.*/
   }
 }
 
+/*Paragraphs in articles that follow each other should not double their margin*/
+p + p {
+  margin-top: -2.5rem !important;
+}
+@media (max-width: 768px) {
+  p + p {
+    margin-top: -1rem !important;
+  }
+
+}
+
 html {
   scroll-behavior: smooth;
 }
