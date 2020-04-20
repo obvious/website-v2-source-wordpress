@@ -304,6 +304,23 @@ This is most commonly used for images in article pages.*/
   }
 }
 
+/*All lists are offset from the body */
+main ul, main ol {
+  list-style: revert;
+}
+
+/*All list items are further offset from their markers*/
+li {
+  padding-left: 1rem;
+  list-style-position: outside;
+}
+
+/*Decimal list item markers are gray in color*/
+/*TODO: This does not have Chrome, mobile support. Implement alternatives as well*/
+ol > li::marker {
+  color: gray;
+}
+
 /*Paragraphs in articles that follow each other should not double their margin*/
 p + p {
   margin-top: -2.5rem !important;
@@ -312,7 +329,16 @@ p + p {
   p + p {
     margin-top: -1rem !important;
   }
+}
 
+/*The exception is for paragraphs that contain lists*/
+p + p > ol, p + p > ul {
+  margin-top: revert !important;
+}
+@media (max-width: 768px) {
+  p + p > ol, p + p > ul {
+    margin-top: revert !important;
+  }
 }
 
 html {

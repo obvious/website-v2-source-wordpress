@@ -59,7 +59,15 @@ function assignComponent(name, content, innerBlock) {
       return <Separator />
 
     case "core/list":
-      return
+      console.log(content);
+      return (
+        <
+          BodyText
+          type="body-medium"
+          className="text-light/gray-10 my-8 lg:mb-20 ml-16"
+          content={content}
+        />
+      )
 
     default:
       console.error(name, content)
