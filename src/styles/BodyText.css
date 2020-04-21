@@ -1,0 +1,4 @@
+/*Hyperlinks within the body text should be styled*/
+p > a {
+    @apply text-blue-30 underline
+}
