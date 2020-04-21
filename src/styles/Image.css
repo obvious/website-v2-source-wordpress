@@ -1,0 +1,19 @@
+/* Styles applied to figcaption, primarily coming from Gutenberg */
+/*TODO: should have leading-tight, doesn't work because when changing default values as recorded in tailwind.config,
+   the imports seems to happen after the class tree is created*/
+figcaption {
+    @apply font-sans text-base font-medium text-gray-30 ;
+}
+
+/*Images coming from Gutenberg with a w-full attached should indeed be w-full*/
+div.w-full > figure > img {
+    width: 100%;
+}
+
+/*On smaller screens, this element will break out of the padding imposed by the body container.
+This is most commonly used for images in article pages.*/
+@media(max-width: 768px) {
+    .w-super {
+        width: calc(100% + 2.5rem);
+    }
+}
