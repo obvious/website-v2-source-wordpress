@@ -1,0 +1,39 @@
+h1 {
+    @apply text-8xl font-bold leading-none
+}
+
+h2 {
+   @apply text-7xl font-medium leading-tight
+}
+
+h3 {
+    @apply text-4xl font-bold leading-8
+}
+
+h4 {
+    @apply text-2xl font-bold leading-6 font-bold
+}
+
+h5 {
+    @apply text-lg font-bold leading-5
+}
+
+h6 {
+    @apply text-sm font-bold leading-5 tracking-wider uppercase
+}
+
+@screen lg {
+
+    h1 {
+        @apply text-9xl
+    }
+
+    h2 {
+        @apply text-8xl leading-none
+    }
+
+    h3 {
+        @apply text-5xl leading-none
+    }
+
+}
