@@ -21,15 +21,15 @@ function assignComponent(name, content, innerBlock) {
       return (
         <BodyText
           type="body-medium"
-          className="text-light/gray-10 my-4 lg:my-10"
+          className="text-light/gray-10 my-2 lg:my-5"
           content={content}
         />
       )
 
     case "core/heading":
       //TODO: decouple type + tag from gutenberg? do we HAVE to use content here? Explore.
-      return <Heading content={content} />
-
+      return <Heading className="my-2 lg:my-5" content={content} />
+    
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return <Image className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center" content={content} />
@@ -98,7 +98,7 @@ export default ({ data }) => {
           articles={publication.publication.article}
         />
       }
-      <main className="container px-7 lg:px-20 py-7 lg:py-20 flex flex-col self-center">
+      <main className="container px-7 lg:px-20 pb-7 lg:pb-20 flex flex-col self-center">
         <div className="flex flex-col lg:w-2/3 self-end">
         <Heading type="h1" className="text-gray-10 my-3 lg:my-4">
           {article.title}

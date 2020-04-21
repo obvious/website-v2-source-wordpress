@@ -71,6 +71,6 @@ export const Heading = ({ content, children, tag, type, className }) => {
     //TODO: Also add hyperlink styles to this one
 
     default:
-      return <div dangerouslySetInnerHTML={{ __html:content }}/>
+      return <div className={className} dangerouslySetInnerHTML={{ __html:content }}/>
   }
 }

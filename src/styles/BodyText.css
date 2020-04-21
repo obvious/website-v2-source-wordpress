@@ -17,14 +17,14 @@ ol > li::marker {
 
 
 /*Paragraphs in articles that follow each other should not double their margin*/
-p + p {
-    margin-top: -2.5rem !important;
-}
-@media (max-width: 768px) {
-    p + p {
-        margin-top: -1rem !important;
-    }
-}
+/*p + p {*/
+/*    margin-top: -2.5rem !important;*/
+/*}*/
+/*@media (max-width: 768px) {*/
+/*    p + p {*/
+/*        margin-top: -1rem !important;*/
+/*    }*/
+/*}*/
 
 /*The exception is for paragraphs that contain lists*/
 p + p > ol, p + p > ul {
@@ -35,6 +35,7 @@ p + p > ol, p + p > ul {
         margin-top: revert !important;
     }
 }
+
 
 /*Hyperlinks within the body text should be styled*/
 p > a {
