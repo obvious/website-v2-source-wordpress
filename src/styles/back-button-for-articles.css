@@ -1,0 +1,41 @@
+
+.ob-back-button-for-articles-container {
+    grid-template-areas: 'backButton openIcon'
+    'carouselAndTitle carouselAndTitle';
+    grid-template-columns: 3fr 1fr;
+}
+.ob-back-button-for-articles-container .ob-carousel {
+    @apply mx-8 p-0;
+    @apply pt-4;
+}
+.ob-back-button-for-articles-container .ob-carousel-and-title .ob-title {
+    @apply hidden;
+    position: absolute; left: 9999vw;
+}
+
+@media screen and (min-width: 48rem) {
+    .ob-back-button-for-articles-container {
+        grid-template-areas: 'backButton carouselAndTitle openIcon';
+        grid-template-columns: auto auto auto;
+    }
+    .ob-back-button-for-articles-container .ob-carousel {
+        @apply pt-0;
+    }
+    .ob-back-button-for-articles-container .ob-carousel-and-title .ob-title {
+        display: block;
+        left: auto;
+        position: relative;
+    }
+}
+
+.ob-back-button-for-articles-container .ob-back-button {
+    grid-area: backButton;
+}
+
+.ob-back-button-for-articles-container .ob-carousel-and-title {
+    grid-area: carouselAndTitle;
+}
+
+.ob-back-button-for-articles-container .ob-icon {
+    grid-area: openIcon;
+}

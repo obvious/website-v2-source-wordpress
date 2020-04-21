@@ -1,12 +1,12 @@
 import React, { useState } from "react"
-import StackedImage from "../StackedImage"
 import BackButtonContainer from "./BackButtonContainer"
 import BackButton from "../atoms/BackButton"
 import IconButton from "../atoms/IconButton"
 import { ChevronDown } from "../atoms/Icon"
 import { Heading } from "../Heading"
 import ArticleCarousel from "../ArticleCarousel"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import '../../styles/back-button-for-articles.css'
 
 const rightIconVariants = {
   open: {
@@ -46,25 +46,23 @@ const containerVariants = {
 
 const carouselVariants = {
   open: {
-    y: 0,
-    x: 0,
+    display: 'block',
     opacity: 1,
     transition: {
       type: "spring",
       duration: 0.4,
-      stiffness: 200,
-      damping: 50
+      // stiffness: 200,
+      // damping: 500
     }
   },
   closed: {
-    y: '-100px',
-    x: '40px',
+    display: 'none',
     opacity: 0,
     transition: {
       type: "spring",
       duration: 0.4,
-      stiffness: 200,
-      damping: 50
+      // stiffness: 200,
+      // damping: 500
     }
   },
 }
@@ -72,12 +70,12 @@ const carouselVariants = {
 const titleVariants = {
   closed: {
     opacity: 1,
-    display: 'block',
+    display: 'inherit',
     transition: {
       type: "spring",
       duration: 0.4,
-      stiffness: 200,
-      damping: 500
+      // stiffness: 200,
+      // damping: 500
     }
   },
   open: {
@@ -86,8 +84,8 @@ const titleVariants = {
     transition: {
       type: "spring",
       duration: 0.4,
-      stiffness: 200,
-      damping: 50
+      // stiffness: 200,
+      // damping: 50
     }
   },
 }
@@ -105,46 +103,45 @@ const BackButtonContainerForArticle = (
   const [articlesCarouselVisible, setArticlesCarouselVisible] = useState(false)
   return (
     <motion.div
-      initial="closed"
       animate={articlesCarouselVisible ? "open" : "closed"}
       onHoverStart={() => setArticlesCarouselVisible(true)}
-      onHoverEnd={() => setArticlesCarouselVisible(false)}
+      onHoverEnd={() => setTimeout( () => setArticlesCarouselVisible(false), 100 )}
     >
       
       <BackButtonContainer
         className={className}
       >
         
-          <div className="grid w-full items-start grid-flow-col gap-4 md:gap-6 lg:gap-10">
-            <motion.div>
-              <BackButton to={backButtonTo} customIcon={<div className="w-8 py-1">
-                <StackedImage image={image} size="small"/>
-              </div>}>
-                <div className>{buttonText}</div>
-              
-              </BackButton>
-            </motion.div>
-            <motion.div
-              className="md:w-lg xl:w-xxl"
-              style={{justifySelf: 'stretch', alignSelf: 'center'}}
+        <motion.div className="ob-back-button-for-articles-container grid w-full items-start grid-flow-auto col-gap-4 md:gap-10 lg:gap-10">
+          <div className="ob-back-button">
+            <BackButton to={backButtonTo}
+                        stackedImage={image}
             >
-              <motion.div className={`${articlesCarouselVisible ? 'block': 'hidden'}`} variants={carouselVariants}>
-                {articles.length && <ArticleCarousel articles={articles} />}
-              </motion.div>
-              <motion.div variants={titleVariants} style={{alignSelf: 'center'}} className="hidden limit-lines-2 md:block text-white">
-                <Heading type="h4">{titleText}</Heading>
-              </motion.div>
-            
-            
-            </motion.div>
-            
-            <div
-              style={{ justifySelf: "end" }}
-            >
-              <div className="h-2"></div>
-              <IconButton className="text-right" icon={<motion.div variants={rightIconVariants}><ChevronDown className="text-gray-50"/>            </motion.div>}/>
-            </div>
+              <div>{buttonText}</div>
+            </BackButton>
           </div>
+          <div
+            style={{justifySelf: 'center', alignSelf: 'center'}}
+            className="w-full md:w-lg xl:w-xxl ob-carousel-and-title"
+          >
+            <motion.div className="ob-carousel" variants={carouselVariants}>
+              {articles.length && <ArticleCarousel articles={articles} />}
+            </motion.div>
+            <motion.div variants={titleVariants} style={{alignSelf: 'center'}} className="ob-title md:block text-white">
+              <Heading className="limit-lines-2" type="h4">{titleText}</Heading>
+            </motion.div>
+          
+          
+          </div>
+          
+          <div
+            className="ob-icon"
+            style={{ justifySelf: "end" }}
+          >
+            <div className="h-2"/>
+            <IconButton className="text-right" icon={<motion.div variants={rightIconVariants}><ChevronDown className="text-gray-50"/>            </motion.div>}/>
+          </div>
+        </motion.div>
         {/*</motion.div>*/}
       
       </BackButtonContainer>
