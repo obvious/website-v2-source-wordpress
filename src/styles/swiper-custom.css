@@ -18,12 +18,12 @@
     @apply mr-0;
 }
 
-.custom-next-arrow, .custom-prev-arrow {
+.custom-next-arrow svg, .custom-prev-arrow svg {
     opacity: 0;
     transition: all 0.15s;
 }
 
-.custom-next-arrow[aria-disabled="false"], .custom-prev-arrow[aria-disabled="false"] {
+.custom-next-arrow[aria-disabled="false"] svg, .custom-prev-arrow[aria-disabled="false"] svg {
     opacity: 1;
     transition: all 0.15s;
 }
