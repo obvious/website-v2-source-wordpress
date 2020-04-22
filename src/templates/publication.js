@@ -14,41 +14,56 @@ export default ({ data }) => {
   const {
     WP: { publication },
   } = data
-  
+
   return (
     <Layout className="bg-light/gray-70">
       <Helmet>
         <title> {publication.title} | Publications | Obvious</title>
       </Helmet>
-      <BackButtonContainerForPublication backButtonTo={"/publications"} buttonText={"All Publications"}/>
+      <BackButtonContainerForPublication
+        backButtonTo={"/publications"}
+        buttonText={"All Publications"}
+      />
       <div className="py-20 flex">
         <div className="flex-col flex inline-flex  min-w-sm max-w-sm mr-24">
-          <div className="mb-10"><StackedImage
-            image={publication.publication.coverimage}
-          /></div>
+          <div className="mb-10">
+            <StackedImage image={publication.publication.coverimage} />
+          </div>
           <Heading type="h3" className="text-gray-10">
             {publication.title}
           </Heading>
-          <BodyText type="body-medium" className="text-light/gray-30 mt-4" content={publication.publication.description} />
-          {publication.publication.colophon && <Colophon colophon={publication.publication.colophon} />}
+          <BodyText
+            type="body-medium"
+            className="text-light/gray-30 mt-4"
+            content={publication.publication.description}
+          />
+          {publication.publication.colophon && (
+            <Colophon colophon={publication.publication.colophon} />
+          )}
         </div>
         <div className="w-3/5 pl-16">
-          {publication.publication.iscasestudy ?  publication.publication.casestudy.map(({ articles, slug, title }) => (
-            <ArticleCard
-              iscasestudy
-              slug={slug}
-              title={title}
-              excerpt={articles.metadata.subtitle}
-            />
-          )) : publication.publication.article.map(({ articles, slug, date, title }) => (
-            <ArticleCard
-              slug={slug}
-              title={title}
-              excerpt={articles.metadata.subtitle}
-              date={date}
-              author={articles.metadata.author}
-            />
-          ))}
+          {publication.publication.iscasestudy
+            ? publication.publication.casestudy.map(
+                ({ articles, slug, title }) => (
+                  <ArticleCard
+                    iscasestudy
+                    slug={slug}
+                    title={title}
+                    excerpt={articles.metadata.subtitle}
+                  />
+                )
+              )
+            : publication.publication.article.map(
+                ({ articles, slug, date, title }) => (
+                  <ArticleCard
+                    slug={slug}
+                    title={title}
+                    excerpt={articles.metadata.subtitle}
+                    date={date}
+                    author={articles.metadata.author}
+                  />
+                )
+              )}
         </div>
       </div>
     </Layout>
@@ -71,7 +86,7 @@ export const query = graphql`
               imageFile {
                 childImageSharp {
                   fixed {
-                  ...GatsbyImageSharpFixed
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
@@ -85,7 +100,7 @@ export const query = graphql`
               ... on WP_Article {
                 slug
                 date
-                    title
+                title
                 articles {
                   metadata {
                     author
@@ -97,7 +112,7 @@ export const query = graphql`
             casestudy {
               ... on WP_CaseStudy {
                 slug
-                    title
+                title
                 articles {
                   metadata {
                     subtitle

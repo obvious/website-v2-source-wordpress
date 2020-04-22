@@ -16,48 +16,47 @@ function assignComponent(name, content, innerBlock) {
   switch (name) {
     case "core/paragraph":
       return (
-        <
-          BodyText
+        <BodyText
           type="body-medium"
           className="text-light/gray-10 m-10"
           content={content}
         />
       )
-    
+
     case "core/heading":
       //TODO: decouple type + tag from gutenberg? do we HAVE to use content here? Explore.
       return <Heading content={content} />
-    
+
     case "core/image":
       return <Image content={content} />
-    
+
     case "core/quote":
       return <Quote dangerouslySetInnerHTML={{ __html: content }} />
-    
+
     case "core/columns":
       innerBlock &&
-      assignComponent(
-        innerBlock.name,
-        innerBlock.originalContent,
-        innerBlock.innerBlock
-      )
+        assignComponent(
+          innerBlock.name,
+          innerBlock.originalContent,
+          innerBlock.innerBlock
+        )
       break
-    
+
     case "core/column":
       innerBlock &&
-      assignComponent(
-        innerBlock.name,
-        innerBlock.originalContent,
-        innerBlock.innerBlock
-      )
+        assignComponent(
+          innerBlock.name,
+          innerBlock.originalContent,
+          innerBlock.innerBlock
+        )
       break
-    
+
     case "core/separator":
       return <Separator />
-    
+
     case "core/list":
       return
-    
+
     default:
       console.error(name, content)
   }
@@ -72,26 +71,33 @@ export default ({ data }) => {
     day: "numeric",
     year: "numeric",
   })
-  
+
   return (
     <ArticleLayout>
       <Helmet>
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
-      {publication && publication.publication &&
+      {publication && publication.publication && (
         <BackButtonContainerForArticle
           backButtonTo={`/publications/${publication.slug}`}
-          titleText={article.title} buttonText={publication.title}
+          titleText={article.title}
+          buttonText={publication.title}
           image={publication.publication.coverimage}
           articles={publication.publication.article}
         />
-      }
+      )}
       <main className="container px-20 py-20">
         <Heading type="h1" className="text-gray-10 my-4">
           {article.title}
         </Heading>
-        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">{article.articles.metadata.subtitle}</BodyText>
-        <Byline date={date} author={article.articles.metadata.author} className="my-4" />
+        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">
+          {article.articles.metadata.subtitle}
+        </BodyText>
+        <Byline
+          date={date}
+          author={article.articles.metadata.author}
+          className="my-4"
+        />
         <div>
           {article.blocks.map(({ name, originalContent }) =>
             assignComponent(name, originalContent)
@@ -148,7 +154,7 @@ export const query = graphql`
               imageFile {
                 childImageSharp {
                   fixed {
-                  ...GatsbyImageSharpFixed
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
@@ -186,6 +192,5 @@ export const query = graphql`
         }
       }
     }
-    
   }
 `
