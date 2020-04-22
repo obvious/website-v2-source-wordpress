@@ -17,3 +17,10 @@ This is most commonly used for images in article pages.*/
         width: calc(100% + 2.5rem);
     }
 }
+
+/*Images adjust their margin to align with paragraphs in a column layout*/
+@screen lg {
+    .grid img {
+        margin-top: -1.25rem;
+    }
+}
