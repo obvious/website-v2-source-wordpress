@@ -20,7 +20,7 @@ This is most commonly used for images in article pages.*/
 
 /*Images adjust their margin to align with paragraphs in a column layout*/
 @screen lg {
-    .grid img {
+    .article-columns img {
         margin-top: -1.25rem;
     }
 }

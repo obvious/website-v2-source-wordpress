@@ -10,7 +10,7 @@ import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
-import ArticleCarousel from "../components/ArticleCarousel"
+import "../styles/Article.css"
 
 function assignComponent(name, content, innerBlocks) {
   // List of all core block components available on the default gutenberg editor
@@ -43,7 +43,7 @@ function assignComponent(name, content, innerBlocks) {
 
     case "core/columns":
       return (
-        <div className="grid gap-0 lg:gap-8 grid-cols-1 lg:grid-cols-2">
+        <div className="article-columns lg:grid lg:gap-8 lg:grid-cols-2">
           {innerBlocks &&
             innerBlocks.map(({ name, originalContent, innerBlocks }) => {
               return assignComponent(name, originalContent, innerBlocks)
@@ -53,19 +53,11 @@ function assignComponent(name, content, innerBlocks) {
 
     case "core/column":
       return (
-        <div className="">
+        <div className="article-column">
           {innerBlocks &&
             innerBlocks.map(({ name, originalContent, innerBlocks }) => {
               return assignComponent(name, originalContent, innerBlocks)
             })}
-          {/*{" "}*/}
-          {/*{innerBlocks &&*/}
-          {/*  console.log(innerBlocks) &&*/}
-          {/*  assignComponent(*/}
-          {/*    innerBlocks.name,*/}
-          {/*    innerBlocks.originalContent,*/}
-          {/*    innerBlocks.innerBlock*/}
-          {/*  )}{" "}*/}
         </div>
       )
 
