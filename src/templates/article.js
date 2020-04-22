@@ -111,31 +111,29 @@ export default ({ data }) => {
           articles={publication.publication.article}
         />
       )}
-      <main className="container px-7 lg:px-20 pb-7 lg:pb-20 flex flex-col self-center">
-        <div className="flex flex-col lg:w-2/3 self-end">
-          <Heading type="h1" className="text-gray-10 my-3 lg:my-4">
-            {article.title}
-          </Heading>
-          {article.articles.metadata.subtitle && (
-            <BodyText
-              type="subtitle-medium"
-              className="my-3 lg:my-4 text-light/gray-30"
-            >
-              {article.articles.metadata.subtitle}
-            </BodyText>
-          )}
-          <Byline
-            date={date}
-            author={article.articles.metadata.author}
-            className="my-3 lg:my-4"
-          />
-        </div>
-        <div className="flex flex-col">
-          {article.blocks.map(({ name, originalContent, innerBlocks }) =>
-            assignComponent(name, originalContent, innerBlocks)
-          )}
-        </div>
-      </main>
+      <div className="flex flex-col lg:w-2/3 self-end">
+        <Heading type="h1" className="text-gray-10 my-3 lg:my-4">
+          {article.title}
+        </Heading>
+        {article.articles.metadata.subtitle && (
+          <BodyText
+            type="subtitle-medium"
+            className="my-3 lg:my-4 text-light/gray-30"
+          >
+            {article.articles.metadata.subtitle}
+          </BodyText>
+        )}
+        <Byline
+          date={date}
+          author={article.articles.metadata.author}
+          className="my-3 lg:my-4"
+        />
+      </div>
+      <div className="flex flex-col">
+        {article.blocks.map(({ name, originalContent, innerBlocks }) =>
+          assignComponent(name, originalContent, innerBlocks)
+        )}
+      </div>
     </ArticleLayout>
   )
 }
