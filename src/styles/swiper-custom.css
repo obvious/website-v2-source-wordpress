@@ -2,7 +2,7 @@
     @apply flex flex-row h-40;
 }
 .swiper-container {
-    @apply mt-8 -mx-8 px-8 z-auto relative;
+    @apply -mx-8 px-8 z-auto relative;
 }
 
 .swiper-slide {
@@ -16,6 +16,16 @@
 
 .swiper-slide:last-child {
     @apply mr-0;
+}
+
+.custom-next-arrow svg, .custom-prev-arrow svg {
+    opacity: 0;
+    transition: all 0.15s;
+}
+
+.custom-next-arrow[aria-disabled="false"] svg, .custom-prev-arrow[aria-disabled="false"] svg {
+    opacity: 1;
+    transition: all 0.15s;
 }
 
 .custom-next-arrow:after, .custom-prev-arrow:after {

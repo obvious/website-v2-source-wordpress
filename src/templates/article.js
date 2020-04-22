@@ -10,6 +10,7 @@ import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
+import ArticleCarousel from "../components/ArticleCarousel"
 
 function assignComponent(name, content, innerBlock) {
   switch (name) {
@@ -78,7 +79,12 @@ export default ({ data }) => {
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
       {publication && publication.publication &&
-        <BackButtonContainerForArticle backButtonTo={`/publications/${publication.slug}`} titleText={article.title} buttonText={publication.title} image={publication.publication.coverimage}/>
+        <BackButtonContainerForArticle
+          backButtonTo={`/publications/${publication.slug}`}
+          titleText={article.title} buttonText={publication.title}
+          image={publication.publication.coverimage}
+          articles={publication.publication.article}
+        />
       }
       <main className="container px-20 py-20">
         <Heading type="h1" className="text-gray-10 my-4">
@@ -156,7 +162,7 @@ export const query = graphql`
               ... on WP_Article {
                 slug
                 date
-                    title
+                title
                 articles {
                   metadata {
                     author

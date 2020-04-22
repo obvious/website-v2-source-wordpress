@@ -133,7 +133,8 @@ module.exports = {
         "18": "4.5rem",
         "18": "4.5rem",
       },
-      minHeight: {
+      minHeight: (theme, { negative }) => ({
+        auto: 'auto',
         none: "none",
         xxs: "10rem",
         xs: "20rem",
@@ -147,11 +148,16 @@ module.exports = {
         "5xl": "64rem",
         "6xl": "72rem",
         full: "100%",
-      },
-      maxHeight: {
+        ...theme('spacing'),
+        ...negative(theme('spacing')),
+      }),
+      maxHeight: (theme, { negative }) => ({
+        auto: 'auto',
         sm: "24rem",
         md: "28rem",
-      },
+        ...theme('spacing'),
+        ...negative(theme('spacing')),
+      }),
       minWidth: {
         "3xs": "15rem",
         "2xs": "18rem",
@@ -165,7 +171,14 @@ module.exports = {
         "2xs": "18rem",
       },
       width: {
-        '80': "20rem"
+        '80': "20rem",
+        "3xs": "15rem",
+        "2xs": "18rem",
+        xs: "20rem",
+        sm: "24rem",
+        lg: "30rem",
+        xl: "36rem",
+        "xxl": "48rem",
       },
       boxShadow: {
         'red': '0px 0px 5px 0.5px rgba(255,184,191, 0.2)'

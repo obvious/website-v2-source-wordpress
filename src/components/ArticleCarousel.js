@@ -33,9 +33,10 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
   return (
     <Link
       to={`articles/${slug}`}
-      className="rounded bg-white-a30 w-64 p-4 flex flex-col justify-between h-full"
+      className="rounded bg-white-a30 w-40 sm:w-64 p-4 flex flex-col justify-between h-full"
+      activeClassName="border-rounded border-orange-50 border-2"
     >
-      <Heading type="h5">{title}</Heading>
+      <Heading className="limit-lines-3" type="h5">{title}</Heading>
       <Heading type="h6" className="text-gray-50 font-sans uppercase tracking-wide font-semibold text-sm">
         {date}
       </Heading>
@@ -43,14 +44,13 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
   )
 }
 
-export default ({ articles }) => {
+export default ({ articles, swiperProps }) => {
   
   const swiperSettings = {
     mousewheel: {
       forceToAxis: true,
       invert: true
     },
-    shouldSwiperUpdate: true,
     navigation: {
       nextEl: '.custom-next-arrow',
       prevEl: '.custom-prev-arrow'
@@ -59,19 +59,8 @@ export default ({ articles }) => {
     centeredSlidesBounds: true,
     centerInsufficientSlides: true,
     slidesPerView: 'auto',
-    slidesPerGroup: 1,
     freeMode: true,
-    breakpoints: {
-      640: {
-        slidesPerGroup: 1
-      },
-      768: {
-        slidesPerGroup: 2,
-      },
-      1024: {
-        slidesPerGroup: 2,
-      }
-    }
+    ...swiperProps
   }
   
   return (
