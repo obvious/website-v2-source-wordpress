@@ -1,4 +1,4 @@
-var Color = require('color')
+var Color = require("color")
 
 const colors = {
   "gray-90": "#FBFCF7",
@@ -27,7 +27,9 @@ const colors = {
 const alphas = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 Object.keys(colors).forEach(key => {
   alphas.forEach(alpha => {
-    colors[`${key}-alpha-${alpha}`] = Color(colors[key]).alpha(alpha/100).string()
+    colors[`${key}-alpha-${alpha}`] = Color(colors[key])
+      .alpha(alpha / 100)
+      .string()
   })
 })
 
@@ -69,7 +71,6 @@ module.exports = {
     },
     /* Changes defaults */
     fontSize: {
-      
       //Steps of 2px, or  0.125rem
       xs: "0.75rem", //12
       sm: "0.875rem", //14
@@ -78,7 +79,7 @@ module.exports = {
       xl: "1.25rem", //20
       "2xl": "1.375rem", //22
       "3xl": "1.5rem", //24
-      
+
       //Steps of 4px, or 0.250rem
       "4xl": "1.75rem", //28
       "5xl": "2rem",
@@ -107,9 +108,9 @@ module.exports = {
     // },
     extend: {
       spacing: {
-        '1/4': '0.0625rem',
-        '1/2': '0.125rem',
-        '14': '3.5rem',
+        "1/4": "0.0625rem",
+        "1/2": "0.125rem",
+        "14": "3.5rem",
       },
       fontSize: {
         "7xl": "2.5rem", //40
@@ -126,15 +127,15 @@ module.exports = {
         "-2": "-0.5rem",
         "-3": "-0.75rem",
         "-1": "-0.25rem",
-        '-1/2': '-0.125rem',
-        '-1/4': '-0.0625rem',
+        "-1/2": "-0.125rem",
+        "-1/4": "-0.0625rem",
       },
       margin: {
         "18": "4.5rem",
         "18": "4.5rem",
       },
       minHeight: (theme, { negative }) => ({
-        auto: 'auto',
+        auto: "auto",
         none: "none",
         xxs: "10rem",
         xs: "20rem",
@@ -148,15 +149,15 @@ module.exports = {
         "5xl": "64rem",
         "6xl": "72rem",
         full: "100%",
-        ...theme('spacing'),
-        ...negative(theme('spacing')),
+        ...theme("spacing"),
+        ...negative(theme("spacing")),
       }),
       maxHeight: (theme, { negative }) => ({
-        auto: 'auto',
+        auto: "auto",
         sm: "24rem",
         md: "28rem",
-        ...theme('spacing'),
-        ...negative(theme('spacing')),
+        ...theme("spacing"),
+        ...negative(theme("spacing")),
       }),
       minWidth: {
         "3xs": "15rem",
@@ -165,48 +166,47 @@ module.exports = {
         sm: "24rem",
         lg: "30rem",
         xl: "36rem",
-        "xxl": "48rem",
+        xxl: "48rem",
       },
       maxWidth: {
         "2xs": "18rem",
       },
       width: {
-        '80': "20rem",
+        "80": "20rem",
         "3xs": "15rem",
         "2xs": "18rem",
         xs: "20rem",
         sm: "24rem",
         lg: "30rem",
         xl: "36rem",
-        "xxl": "48rem",
+        xxl: "48rem",
       },
       boxShadow: {
-        'red': '0px 0px 5px 0.5px rgba(255,184,191, 0.2)'
+        red: "0px 0px 5px 0.5px rgba(255,184,191, 0.2)",
       },
       opacity: {
-        '10': 0.1,
-        '30': 0.3,
-        '50': 0.5,
-        '70': 0.7,
-        '90': 0.9,
+        "10": 0.1,
+        "30": 0.3,
+        "50": 0.5,
+        "70": 0.7,
+        "90": 0.9,
       },
-      aspectRatio: { // defaults to {}
-        'none': 0,
-        'square': [1, 1], // or 1 / 1, or simply 1
-        '16/9': [16, 9],  // or 16 / 9
-        '9/16': [9, 16],  // or 16 / 9
-        '16/21': [16, 21],  // or 16 / 9
-        '4/3': [4, 3],    // or 4 / 3
-        '21/9': [21, 9],  // or 21 / 9
+      aspectRatio: {
+        // defaults to {}
+        none: 0,
+        square: [1, 1], // or 1 / 1, or simply 1
+        "16/9": [16, 9], // or 16 / 9
+        "9/16": [9, 16], // or 16 / 9
+        "16/21": [16, 21], // or 16 / 9
+        "4/3": [4, 3], // or 4 / 3
+        "21/9": [21, 9], // or 21 / 9
       },
     },
   },
-  plugins: [
-    require('tailwindcss-aspect-ratio'),
-  ],
+  plugins: [require("tailwindcss-aspect-ratio")],
   variants: {
-    aspectRatio: ['responsive'], // defaults to ['responsive']
+    aspectRatio: ["responsive"], // defaults to ['responsive']
     backgroundColor: ["last"],
-    outline: ['responsive', 'hover', 'focus', 'active']
+    outline: ["responsive", "hover", "focus", "active"],
   },
 }
