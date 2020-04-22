@@ -18,6 +18,16 @@
     @apply mr-0;
 }
 
+.custom-next-arrow, .custom-prev-arrow {
+    opacity: 0;
+    transition: all 0.15s;
+}
+
+.custom-next-arrow[aria-disabled="false"], .custom-prev-arrow[aria-disabled="false"] {
+    opacity: 1;
+    transition: all 0.15s;
+}
+
 .custom-next-arrow:after, .custom-prev-arrow:after {
     content: '';
     @apply absolute top-0 bottom-0;
