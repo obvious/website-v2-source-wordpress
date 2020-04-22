@@ -87,7 +87,6 @@ const BackButtonContainerForArticle = (
   return (
     <motion.div
       animate={articlesCarouselVisible ? "open" : "closed"}
-      whileTap={() => setArticlesCarouselVisible(!articlesCarouselVisible)}
       onHoverStart={() => setArticlesCarouselVisible(true)}
       onHoverEnd={() => setArticlesCarouselVisible(false)}
     >
@@ -118,13 +117,14 @@ const BackButtonContainerForArticle = (
           
           </div>
           
-          <div
+          <motion.div
             className="ob-icon"
             style={{ justifySelf: "end" }}
+            whileTap={() => setArticlesCarouselVisible(!articlesCarouselVisible)}
           >
             <div className="h-2"/>
             <IconButton className="text-right" icon={<motion.div variants={rightIconVariants}><ChevronDown className="text-gray-50"/>            </motion.div>}/>
-          </div>
+          </motion.div>
         </div>
       
       </BackButtonContainer>
