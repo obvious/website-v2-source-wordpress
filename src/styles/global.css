@@ -261,7 +261,6 @@
 
 html {
   @apply bg-black-a100;
-  scroll-behavior: smooth;
 }
 
 /* Set and unset gradients on ArticleCarousal */
