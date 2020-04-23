@@ -2,7 +2,7 @@
 /*TODO: should have leading-tight, doesn't work because when changing default values as recorded in tailwind.config,
    the imports seems to happen after the class tree is created*/
 figcaption {
-    @apply font-sans text-base font-medium text-gray-30 ;
+    @apply font-sans text-base font-medium text-gray-30 mt-8 text-center w-full;
 }
 
 /*Images coming from Gutenberg with a w-full attached should indeed be w-full*/
