@@ -263,13 +263,6 @@ html {
   @apply bg-black-a100;
 }
 
-/* Styles applied to figcaption, primarily coming from Gutenberg */
-/*TODO: should have leading-tight, doesn't work because when changing default values as recorded in tailwind.config,
-   the imports seems to happen after the class tree is created*/
-figcaption {
-  @apply font-sans text-base font-medium text-gray-30;
-}
-
 /* Set and unset gradients on ArticleCarousal */
 .bg-gradient-left {
   background-image: linear-gradient(90deg, #252922 0%, rgba(37, 41, 34, 0) 100%);

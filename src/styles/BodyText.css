@@ -1,0 +1,22 @@
+/*All lists are offset from the body */
+.article-container ul, .article-container ol {
+    list-style: revert;
+}
+
+/*All list items are further offset from their markers*/
+.article-container li {
+    padding-left: 1rem;
+    list-style-position: outside;
+}
+
+/*Decimal list item markers are gray in color*/
+/*TODO: This does not have Chrome, mobile support. Implement alternatives as well*/
+.article-container ol > li::marker {
+    color: gray;
+}
+
+
+/*Hyperlinks within the body text should be styled*/
+.article-container p > a {
+    @apply text-blue-30 underline
+}

@@ -22,6 +22,8 @@ const colors = {
   "red-50": "#FA556B",
   "red-70": "#FFB8BF",
   "red-90": "#FFEDEF",
+  "blue-30": "#179AC2",
+
 }
 
 const alphas = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
@@ -108,9 +110,11 @@ module.exports = {
     // },
     extend: {
       spacing: {
-        "1/4": "0.0625rem",
-        "1/2": "0.125rem",
-        "14": "3.5rem",
+        '1/4': '0.0625rem',
+        '1/2': '0.125rem',
+        '7': '1.75rem',
+        '9': '2.25rem',
+        '14': '3.5rem',
       },
       fontSize: {
         "7xl": "2.5rem", //40

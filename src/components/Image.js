@@ -1,8 +1,8 @@
 import React from "react"
+import "../styles/Image.css"
 
-export default ({content}) => {
+export default ({content, className}) => {
   return (
-    <div dangerouslySetInnerHTML={{__html: content}} />
+    <div className={className} dangerouslySetInnerHTML={{__html: content}} />
   )
 }
-

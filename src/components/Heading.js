@@ -1,4 +1,5 @@
 import React from "react"
+import "../styles/Heading.css"
 
 /**
  * A note on text-{color}: The specificity of text-color is determined not by
@@ -10,8 +11,8 @@ import React from "react"
 
 
 //TODO: decouple `tag` from the html tag being used
-export const Heading = ({ children, tag, type, className }) => {
-  
+export const Heading = ({ content, children, tag, type, className }) => {
+
   /* Default class applied to all components in Heading to avoid repetition */
   const baseClass = "font-sans text-gray-90 tracking-tight"
 
@@ -19,14 +20,15 @@ export const Heading = ({ children, tag, type, className }) => {
     case "h1":
       return (
         <h1
-          className={`${baseClass} ${className} text-8xl font-bold lg:text-9xl leading-none`}
+          className={`${baseClass} ${className} text-8xl lg:text-9xl font-bold leading-none`}
         >
           {children}
         </h1>
       )
     case "h2":
       return (
-        //TODO: It is medium on FeaturedClient, semibold on ClientList, and normal on the design system. Can we standardise this/put this in the typography?
+        //TODO: It is medium on FeaturedClient, semibold on ClientList, and normal on the design system.
+        // Can we standardise this/put this in the typography?
         <h2
           className={`${baseClass} ${className} text-7xl font-medium lg:text-8xl leading-tight lg:leading-none`}
         >
@@ -66,11 +68,9 @@ export const Heading = ({ children, tag, type, className }) => {
         </h6>
       )
 
-    //TODO: Add styles to target html tags specifically so that they look like this and make sense.
-    //TODO: Those tags should not override the styles mentioned above, and should be overridable by other styles.
     //TODO: Also add hyperlink styles to this one
 
     default:
-      return <div>{children}</div>
+      return <div className={className} dangerouslySetInnerHTML={{ __html:content }}/>
   }
 }

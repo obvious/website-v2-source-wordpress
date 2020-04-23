@@ -10,52 +10,69 @@ import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
-import ArticleCarousel from "../components/ArticleCarousel"
+import "../styles/Article.css"
 
-function assignComponent(name, content, innerBlock) {
+function assignComponent(name, content, innerBlocks) {
+  // List of all core block components available on the default gutenberg editor
+  // TODO: all of these need to be implemented and taken care of in this switch (or disabled on the editor itself)
+  // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
   switch (name) {
     case "core/paragraph":
       return (
         <BodyText
           type="body-medium"
-          className="text-light/gray-10 m-10"
+          className="text-light/gray-10 my-2 lg:my-5"
           content={content}
         />
       )
 
     case "core/heading":
-      //TODO: decouple type + tag from gutenberg? do we HAVE to use content here? Explore.
-      return <Heading content={content} />
+      return <Heading className="my-2 lg:my-5" content={content} />
 
     case "core/image":
-      return <Image content={content} />
+      //TODO: w-full applies on lg, w-super otherwise
+      return (
+        <Image
+          className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
+          content={content}
+        />
+      )
 
     case "core/quote":
-      return <Quote dangerouslySetInnerHTML={{ __html: content }} />
+      return <Quote>{content}</Quote>
 
     case "core/columns":
-      innerBlock &&
-        assignComponent(
-          innerBlock.name,
-          innerBlock.originalContent,
-          innerBlock.innerBlock
-        )
-      break
+      return (
+        <div className="article-columns lg:grid lg:gap-8 lg:grid-cols-2">
+          {innerBlocks &&
+            innerBlocks.map(({ name, originalContent, innerBlocks }) => {
+              return assignComponent(name, originalContent, innerBlocks)
+            })}
+        </div>
+      )
 
     case "core/column":
-      innerBlock &&
-        assignComponent(
-          innerBlock.name,
-          innerBlock.originalContent,
-          innerBlock.innerBlock
-        )
-      break
+      return (
+        <div className="article-column">
+          {innerBlocks &&
+            innerBlocks.map(({ name, originalContent, innerBlocks }) => {
+              return assignComponent(name, originalContent, innerBlocks)
+            })}
+        </div>
+      )
 
     case "core/separator":
       return <Separator />
 
     case "core/list":
-      return
+      console.log(content)
+      return (
+        <BodyText
+          type="body-medium"
+          className="text-light/gray-10 my-8 lg:mb-20 ml-16"
+          content={content}
+        />
+      )
 
     default:
       console.error(name, content)
@@ -86,24 +103,29 @@ export default ({ data }) => {
           articles={publication.publication.article}
         />
       )}
-      <main className="container px-20 py-20">
-        <Heading type="h1" className="text-gray-10 my-4">
+      <div className="flex flex-col lg:w-2/3 self-end">
+        <Heading type="h1" className="text-gray-10 my-3 lg:my-4">
           {article.title}
         </Heading>
-        <BodyText type="subtitle-medium" className="my-4 text-light/gray-30">
-          {article.articles.metadata.subtitle}
-        </BodyText>
+        {article.articles.metadata.subtitle && (
+          <BodyText
+            type="subtitle-medium"
+            className="my-3 lg:my-4 text-light/gray-30"
+          >
+            {article.articles.metadata.subtitle}
+          </BodyText>
+        )}
         <Byline
           date={date}
           author={article.articles.metadata.author}
-          className="my-4"
+          className="my-3 lg:my-4"
         />
-        <div>
-          {article.blocks.map(({ name, originalContent }) =>
-            assignComponent(name, originalContent)
-          )}
-        </div>
-      </main>
+      </div>
+      <div className="flex flex-col">
+        {article.blocks.map(({ name, originalContent, innerBlocks }) =>
+          assignComponent(name, originalContent, innerBlocks)
+        )}
+      </div>
     </ArticleLayout>
   )
 }
