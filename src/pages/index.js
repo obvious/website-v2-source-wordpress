@@ -18,8 +18,10 @@ export default ({ data }) => {
         <title>Home | Obvious</title>
       </Helmet>
       <Hero title={page.pageHero.title} subtitle={page.pageHero.subtitle} />
-      <FeaturedClient featuredClientBlock={page.client.featuredclientblock} />
-      <div className="h-40"></div>
+      <div className="grid grid-flow-row sm:grid-cols-2 col-gap-8 md:col-gap-0 row-gap-12">
+        <FeaturedClient className="" featuredClientBlock={page.client.featuredclientblock} />
+      </div>
+      <div className="h-40"/>
       {/*TODO - the section title needs to come from wordpress*/}
       <SectionTitle className="mb-12">All Our Clients</SectionTitle>
       <ClientList listOfClientListBlocks={page.client.listofclientlistblocks} />
@@ -40,6 +42,7 @@ export const query = graphql`
           featuredclientblock {
             client
             description
+            subtitle
             link {
               text
               href

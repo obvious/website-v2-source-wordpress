@@ -263,6 +263,10 @@ html {
   @apply bg-black-a100;
 }
 
+*:focus {
+  outline: none;
+}
+
 /* Set and unset gradients on ArticleCarousal */
 .bg-gradient-left {
   background-image: linear-gradient(90deg, #252922 0%, rgba(37, 41, 34, 0) 100%);

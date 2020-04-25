@@ -2,13 +2,20 @@ import React from "react"
 
 import { Heading } from "./Heading"
 import ObviousLink from "./atoms/ObviousLink"
+import { ArrowRight } from "./atoms/Icon"
 
 export default ({ featuredClientBlock }) => (
-  <div className="grid text-gray-400 grid-flow-row sm:grid-cols-2 col-gap-8 md:col-gap-0 row-gap-12">
-    {featuredClientBlock.map(({ client, description, link }) => (
-      <div className="md:w-2/3 flex items-start">
-        <ObviousLink url={link.href}>
-          <Heading type="h3" className="font-medium">{client}</Heading>
+  <>
+    {featuredClientBlock.map(({ client, subtitle, link }) => (
+      <div className="text-gray-400 w-full flex items-start">
+        <ObviousLink className="w-full" url={link.href}>
+          <span className="w-full cursor-pointer grid gap-1 items-start">
+            <span className="grid gap-2 grid-flow-col items-center justify-between sm:justify-start">
+              <Heading type="h3" className="font-medium">{client}</Heading>
+              <span className="mt-1"><ArrowRight /></span>
+            </span>
+            {subtitle && <Heading type="h5">{subtitle}</Heading>}
+          </span>
         </ObviousLink>
         {/*<BodyText type="body-large" className="py-2">{description}</BodyText>*/}
         {/*TODO: Fix link*/}
@@ -25,5 +32,5 @@ export default ({ featuredClientBlock }) => (
         {/*)}*/}
       </div>
     ))}
-  </div>
+  </>
 )
