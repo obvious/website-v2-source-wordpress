@@ -49,7 +49,7 @@ export default ({ data }) => {
           </ObviousGridRow>
           <ObviousGridRow className="w-full pt-8">
             {page.publications.publicationlist.map(
-              ({ publication, slug, title, date }, index) => {
+              ({ publication, slug, title, date }) => {
                 let tags = []
                 if (isInLast30Days(date)) {
                   tags = [...tags, { type: "yellow", text: "New" }]
@@ -67,7 +67,7 @@ export default ({ data }) => {
                 
                 // Grid placement based on index
                 return (
-                  <div className={`col-span-12 md:col-span-4 sm:col-span-5 ${index % 2 === 0 ? 'sm:col-start-1 md:col-start-1' : 'sm:col-start-7 md:col-start-7'}`}>
+                  <div className={`col-span-12 md:col-span-4 sm:col-span-5 sm:odd:col-start-1 md:odd:col-start-1 sm:even:col-start-8 md:even:col-start-7`}>
                     <PublicationCard
                       slug={slug}
                       title={title}
