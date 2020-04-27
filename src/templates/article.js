@@ -104,9 +104,10 @@ export default ({ data }) => {
         />
       )}
       <div className="flex flex-col lg:w-2/3 self-end">
-        <Heading type="h1" className="text-gray-10 my-3 lg:my-4">
-          {article.title}
-        </Heading>
+        <Heading
+          className="text-gray-10 my-3 lg:my-4"
+          content={`<h1>${article.title}</h1>`}
+        />
         {article.articles.metadata.subtitle && (
           <BodyText
             type="subtitle-medium"
