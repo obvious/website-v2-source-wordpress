@@ -2,9 +2,9 @@ import React from "react"
 import { Heading } from "./Heading"
 
 export default ({ listOfClientListBlocks }) => (
-  <div className="text-gray-500 font-sans grid grid-flow-row col-gap-8 md:col-gap-0 row-gap-24 sm:grid-cols-2">
-    {listOfClientListBlocks.map(({ clientlistblock }) => (
-      <div className="md:w-2/3">
+  <>
+    {listOfClientListBlocks.map(({ clientlistblock }, index) => (
+      <div className={`text-gray-500 font-sans col-span-12 md:col-span-4 sm:col-span-5 ${index % 2 === 0 ? 'sm:col-start-1 md:col-start-1' : 'sm:col-start-7 md:col-start-7'}`}>
         <Heading type="h5" className="border-b border-gray-500 py-2">
           {clientlistblock.title}
         </Heading>
@@ -12,10 +12,10 @@ export default ({ listOfClientListBlocks }) => (
           {clientlistblock.namelist.map(({ name }) => (
             <li className="font-semibold text-xs py-1">
               <Heading type="h5" className="text-gray-50 pb-2">{name}</Heading>
-                </li>
+            </li>
           ))}
         </ul>
       </div>
     ))}
-  </div>
+  </>
 )
