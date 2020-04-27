@@ -12,7 +12,7 @@ import AlertMessage from "./atoms/AlertMessage"
 
 export default ({ title, description }) => {
   return (
-    <div className="w-full md:w-3/6 mb-16 grid gap-4">
+    <div className="w-full grid gap-4">
       <div>
         <h2 className="text-2xl font-semibold text-white font-sans">{title}</h2>
         <p className="text-sm py-2 font-serif">{description}</p>

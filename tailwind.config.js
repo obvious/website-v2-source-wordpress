@@ -212,5 +212,9 @@ module.exports = {
     aspectRatio: ["responsive"], // defaults to ['responsive']
     backgroundColor: ["last"],
     outline: ["responsive", "hover", "focus", "active"],
+    gridColumn: ['responsive', 'even', 'odd'],
+    gridColumnStartEnd: ['responsive', 'even', 'odd'],
+    gridColumnStart: ['responsive', 'even', 'odd'],
+    gridColumnEnd: ['responsive', 'even', 'odd'],
   },
 }

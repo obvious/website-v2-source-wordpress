@@ -8,67 +8,78 @@ import ArticleCarousel from "../components/ArticleCarousel"
 import PublicationCard from "../components/PublicationCard"
 import { Heading } from "../components/Heading"
 import { isInLast30Days } from "../utils/date"
+import { ObviousGridRow } from "../components/atoms/ObviousGrid"
 
 export default ({ data }) => {
   const {
     WP: { page, articles },
   } = data
-
+  
   return (
     <Layout>
       <Helmet>
         <title>Publications | Obvious</title>
       </Helmet>
       <Hero title={page.publications.hero} />
-      <div className="lg:pr-48">
+      <div>
         <div className="py-2 mb-24 lg:mb-32">
+          <ObviousGridRow>
           <Heading
             type="h5"
-            className="text-gray-90 border-b-2 border-light/gray-30 py-3"
+            className="col-span-12 md:col-span-10 text-gray-90 border-b-2 border-light/gray-30 py-3"
           >
             Recent Articles
           </Heading>
+          </ObviousGridRow>
           {/* TODO - add the actual check based on dates */}
           {articles.nodes.length && (
-            <>
-              <div className="h-8" />
-              <ArticleCarousel articles={articles.nodes} />
-            </>
+            <ObviousGridRow>
+              <div className="col-span-12 md:col-span-10">
+                <div className="h-8" />
+                <ArticleCarousel articles={articles.nodes} />
+              </div>
+            </ObviousGridRow>
           )}
         </div>
         <div>
-          <Heading type="h5" className="border-b-2 border-light/gray-30 py-3">
-            All Publications
-          </Heading>
-          <div className="grid md:col-gap-20 md:row-gap-10 md:grid-cols-2 lg:col-gap-40 lg:row-gap-10 lg:grid-cols-2 xl:col-gap-64 xl:row-gap-10 xl:grid-cols-2 justify-between pt-8">
+          <ObviousGridRow className="w-full pt-8">
+            <Heading type="h5" className="col-span-12 md:col-span-10 border-b-2 border-light/gray-30 py-3">
+              All Publications
+            </Heading>
+          </ObviousGridRow>
+          <ObviousGridRow className="w-full pt-8">
             {page.publications.publicationlist.map(
               ({ publication, slug, title, date }) => {
                 let tags = []
                 if (isInLast30Days(date)) {
                   tags = [...tags, { type: "yellow", text: "New" }]
                 }
-
+                
                 const isPublicationRecentlyUpdated = (
                   publication.article || []
                 ).reduce((acc, item) => {
                   return isInLast30Days(item.date) || acc
                 }, false)
-
+                
                 if (isPublicationRecentlyUpdated) {
                   tags = [...tags, { type: "blue", text: "Recently Updated" }]
                 }
+                
+                // Grid placement based on index
                 return (
-                  <PublicationCard
-                    slug={slug}
-                    title={title}
-                    description={publication.description}
-                    tags={tags}
-                    coverImage={publication.coverimage}
-                  />
+                  <div className={`col-span-12 md:col-span-4 sm:col-span-5 sm:odd:col-start-1 md:odd:col-start-1 sm:even:col-start-8 md:even:col-start-7`}>
+                    <PublicationCard
+                      slug={slug}
+                      title={title}
+                      description={publication.description}
+                      tags={tags}
+                      coverImage={publication.coverimage}
+                    />
+                  </div>
                 )
               }
             )}
-          </div>
+          </ObviousGridRow>
         </div>
       </div>
     </Layout>
