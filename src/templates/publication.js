@@ -9,12 +9,13 @@ import Colophon from "../components/Colophon"
 import { Heading } from "../components/Heading"
 import { BodyText } from "../components/BodyText"
 import BackButtonContainerForPublication from "../components/molecules/BackButtonContainerForPublication"
+import { ObviousGridRow } from "../components/atoms/ObviousGrid"
 
 export default ({ data }) => {
   const {
     WP: { publication },
   } = data
-
+  
   return (
     <Layout className="bg-light/gray-70">
       <Helmet>
@@ -24,8 +25,8 @@ export default ({ data }) => {
         backButtonTo={"/publications"}
         buttonText={"All Publications"}
       />
-      <div className="py-20 flex">
-        <div className="flex-col flex inline-flex  min-w-sm max-w-sm mr-24">
+      <ObviousGridRow className="py-20 w-full">
+        <div className="flex-col w-full flex col-start-1 col-end-13 sm:col-end-5">
           <div className="mb-10">
             <StackedImage image={publication.publication.coverimage} />
           </div>
@@ -41,31 +42,32 @@ export default ({ data }) => {
             <Colophon colophon={publication.publication.colophon} />
           )}
         </div>
-        <div className="w-3/5 pl-16">
+        <div className="w-full col-start-1 col-end-13 sm:col-start-6 md:col-start-6 sm:col-end-13">
           {publication.publication.iscasestudy
             ? publication.publication.casestudy.map(
-                ({ articles, slug, title }) => (
-                  <ArticleCard
-                    iscasestudy
-                    slug={slug}
-                    title={title}
-                    excerpt={articles.metadata.subtitle}
-                  />
-                )
+              ({ articles, slug, title }) => (
+                <ArticleCard
+                  iscasestudy
+                  slug={slug}
+                  title={title}
+                  excerpt={articles.metadata.subtitle}
+                />
               )
+            )
             : publication.publication.article.map(
-                ({ articles, slug, date, title }) => (
-                  <ArticleCard
-                    slug={slug}
-                    title={title}
-                    excerpt={articles.metadata.subtitle}
-                    date={date}
-                    author={articles.metadata.author}
-                  />
-                )
-              )}
+              ({ articles, slug, date, title }) => (
+                <ArticleCard
+                  slug={slug}
+                  title={title}
+                  excerpt={articles.metadata.subtitle}
+                  date={date}
+                  author={articles.metadata.author}
+                />
+              )
+            )}
         </div>
-      </div>
+      </ObviousGridRow>
+    
     </Layout>
   )
 }

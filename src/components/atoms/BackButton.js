@@ -70,12 +70,11 @@ const BackButton = ({ children, to, className, stackedImage }) => {
       )}
       <motion.div
         variants={defaultVariants}
-        className="opacity-0 aspect-ratio-16/21 w-8 py-2 relative"
+        className="aspect-ratio-16/21 w-8 py-2 relative"
       >
-        <IconButton
-          className="absolute top-0 left-0 bottom-0 right-0 w-full flex items-center justify-center"
-          icon={<ArrowLeft className="text-orange-50" />}
-        ></IconButton>
+        <IconButton className="absolute top-0 left-0 bottom-0 right-0 w-full flex items-center justify-center"
+                    icon={<ArrowLeft className="text-orange-50"/>}
+        />
       </motion.div>
       <span
         className="text-gray-50 limit-lines-2"
