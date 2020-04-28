@@ -120,7 +120,7 @@ export default ({ data }) => {
         )}
         <Byline
           date={date}
-          author={article.articles.metadata.author}
+          author={article.articles.metadata.author[0] ? article.articles.metadata.author[0].title : ''}
           className="my-3 lg:my-4"
         />
       </div>
@@ -160,7 +160,11 @@ export const query = graphql`
         date
         articles {
           metadata {
-            author
+            author {
+              ... on WP_People {
+                title
+              }
+            }
             subtitle
           }
         }
@@ -196,7 +200,11 @@ export const query = graphql`
                 title
                 articles {
                   metadata {
-                    author
+                    author {
+                      ... on WP_People {
+                        title
+                      }
+                    }
                     subtitle
                   }
                 }
