@@ -4,6 +4,11 @@
 figcaption {
     @apply font-sans text-base font-medium text-gray-30 mt-8 text-center w-full;
 }
+@media (max-width: 1024px) {
+    figcaption {
+        @apply mt-4;
+    }
+}
 
 /*Images coming from Gutenberg with a w-full attached should indeed be w-full*/
 div.w-full > figure > img {
