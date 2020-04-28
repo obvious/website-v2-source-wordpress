@@ -9,6 +9,7 @@ export default ({ title, excerpt, date, author, slug }) => {
   return (
     <Link to={`articles/${slug}`}>
       <div className="bg-white w-full p-6 mb-6 rounded-sm">
+        {/*TODO: refactor once heading has been refactored to include tag-picking*/}
         <Heading className="text-gray-10 border-gray-300 border-b-2 pb-2" content={`<h4>${title}</h4>`} />
         <Byline date={datePublished} author={author} className="pt-3" isArticleCard />
         {excerpt && <BodyText

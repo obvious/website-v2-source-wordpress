@@ -92,6 +92,7 @@ export default ({ data }) => {
   return (
     <ArticleLayout>
       <Helmet>
+        {/*TODO: Fix html characters showing up here*/}
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
       {publication && publication.publication && (
@@ -104,6 +105,7 @@ export default ({ data }) => {
         />
       )}
       <div className="flex flex-col lg:w-2/3 self-end">
+        {/*TODO: refactor once heading has been refactored to include tag-picking*/}
         <Heading
           className="text-gray-10 my-3 lg:my-4"
           content={`<h1>${article.title}</h1>`}
