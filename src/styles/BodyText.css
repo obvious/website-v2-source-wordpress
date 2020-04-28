@@ -6,6 +6,7 @@
 /*All list items are further offset from their markers*/
 .article-container li {
     padding-left: 1rem;
+    padding-bottom: 0.5rem;
     list-style-position: outside;
 }
 @media (max-width: 768px) {
