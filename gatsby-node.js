@@ -44,13 +44,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
             }
           }
-          articles {
+          articles (first: 300){
             nodes {
               id
               slug
             }
           }
-          caseStudies {
+          caseStudies (first: 300) {
             nodes {
               id
               slug
