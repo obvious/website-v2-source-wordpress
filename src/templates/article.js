@@ -133,6 +133,8 @@ export default ({ data }) => {
   )
 }
 
+//This query only supports three levels of recursion - because we do not plan to use blocks such as 'groups' yet.
+//TODO: Figure out an easier way to do this (possibly with NUWEB-133)
 export const query = graphql`
   query($id: ID!, $publicationSlug: String) {
     WP {
