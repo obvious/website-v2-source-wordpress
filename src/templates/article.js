@@ -69,7 +69,7 @@ function assignComponent(name, content, innerBlocks) {
       return (
         <BodyText
           type="body-medium"
-          className="text-light/gray-10 my-8 lg:mb-20 ml-16"
+          className="text-light/gray-10 my-8 lg:mb-20 ml-8 lg:ml-16"
           content={content}
         />
       )
@@ -92,6 +92,7 @@ export default ({ data }) => {
   return (
     <ArticleLayout>
       <Helmet>
+        {/*TODO: Fix html characters showing up here*/}
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
       {publication && publication.publication && (
@@ -104,9 +105,11 @@ export default ({ data }) => {
         />
       )}
       <div className="flex flex-col lg:w-2/3 self-end">
-        <Heading type="h1" className="text-gray-10 my-3 lg:my-4">
-          {article.title}
-        </Heading>
+        {/*TODO: refactor once heading has been refactored to include tag-picking*/}
+        <Heading
+          className="text-gray-10 my-3 lg:my-4"
+          content={`<h1>${article.title}</h1>`}
+        />
         {article.articles.metadata.subtitle && (
           <BodyText
             type="subtitle-medium"
