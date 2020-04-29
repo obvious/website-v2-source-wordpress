@@ -10,7 +10,7 @@ import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
-import "../styles/Article.css"
+import "../styles/article.css"
 
 function assignComponent(name, content, innerBlocks) {
   // List of all core block components available on the default gutenberg editor

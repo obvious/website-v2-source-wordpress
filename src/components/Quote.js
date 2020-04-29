@@ -1,5 +1,5 @@
 import React from "react"
-import "../styles/Quote.css"
+import "../styles/quote.css"
 
 //TODO: Display separators above and below quote on mobile screens
 export default ({ children, author, bio }) => {

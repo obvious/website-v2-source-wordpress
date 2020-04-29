@@ -1,5 +1,5 @@
 import React from "react"
-import "../styles/Heading.css"
+import "../styles/heading.css"
 
 /**
  * A note on text-{color}: The specificity of text-color is determined not by

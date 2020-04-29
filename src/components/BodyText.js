@@ -1,5 +1,5 @@
 import React from "react"
-import "../styles/BodyText.css"
+import "../styles/bodytext.css"
 
 export const BodyText = ({ children, className, content, type }) => {
   switch (type) {
