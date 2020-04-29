@@ -5,6 +5,7 @@ import ObviousLink from "./atoms/ObviousLink"
 import PreviewCompatibleImage from "./atoms/PreviewCompatibleImage"
 import {motion} from "framer-motion"
 import { MenuToggle } from "./molecules/MenuToggle"
+import ObviousContainer from "./atoms/ObviousContainer"
 
 const menuItemVariants = {
   open: {
@@ -85,9 +86,12 @@ export default () => {
             {/* Because header is fixed, this will help push down the other content by the same amount as the height of the header */}
             <div className="site-header"/>
             <header className="bg-black-a100 font-sans z-20 fixed top-0 left-0 right-0 z-50">
+              <ObviousContainer
+                className="text-gray-500"
+              >
               <motion.div
                 initial="closed"
-                className="text-gray-500 flex items-center site-header justify-between mx-auto container px-10 overflow-hidden"
+                className="flex items-center site-header justify-between overflow-hidden"
                 animate={isOpen ? "open" : "closed"}
                 onClick={() => setIsOpen(!isOpen)}
               >
@@ -100,7 +104,7 @@ export default () => {
                     <motion.li
                       variants={menuItemVariants}
                     >
-                      <MenuItem className="border-r-2 border-t-0 w-full px-10 py-4 justify-end" item={item}/>
+                      <MenuItem className="border-r-2 border-t-0 w-full px-7 sm:px-10 py-4 justify-end" item={item}/>
                     </motion.li>
                   ))}
                 </motion.ul>
@@ -114,6 +118,7 @@ export default () => {
                   ))}
                 </ul>
               </motion.div>
+              </ObviousContainer>
             </header>
           </>
         )}}
