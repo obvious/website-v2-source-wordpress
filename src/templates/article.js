@@ -10,7 +10,7 @@ import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
-import "../styles/Article.css"
+import "../styles/article.css"
 
 function assignComponent(name, content, innerBlocks) {
   // List of all core block components available on the default gutenberg editor
@@ -120,7 +120,7 @@ export default ({ data }) => {
         )}
         <Byline
           date={date}
-          author={article.articles.metadata.author}
+          author={article.articles.metadata.author[0] ? article.articles.metadata.author[0].title : ''}
           className="my-3 lg:my-4"
         />
       </div>
@@ -133,6 +133,8 @@ export default ({ data }) => {
   )
 }
 
+//This query only supports three levels of recursion - because we do not plan to use blocks such as 'groups' yet.
+//TODO: Figure out an easier way to do this (possibly with NUWEB-133)
 export const query = graphql`
   query($id: ID!, $publicationSlug: String) {
     WP {
@@ -160,7 +162,11 @@ export const query = graphql`
         date
         articles {
           metadata {
-            author
+            author {
+              ... on WP_People {
+                title
+              }
+            }
             subtitle
           }
         }
@@ -196,7 +202,11 @@ export const query = graphql`
                 title
                 articles {
                   metadata {
-                    author
+                    author {
+                      ... on WP_People {
+                        title
+                      }
+                    }
                     subtitle
                   }
                 }

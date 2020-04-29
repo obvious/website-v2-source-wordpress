@@ -15,7 +15,7 @@ export default ({ data }) => {
   const {
     WP: { publication },
   } = data
-  
+
   return (
     <Layout className="bg-light/gray-70">
       <Helmet>
@@ -45,29 +45,28 @@ export default ({ data }) => {
         <div className="w-full col-start-1 col-end-13 sm:col-start-6 md:col-start-6 sm:col-end-13">
           {publication.publication.iscasestudy
             ? publication.publication.casestudy.map(
-              ({ articles, slug, title }) => (
-                <ArticleCard
-                  iscasestudy
-                  slug={slug}
-                  title={title}
-                  excerpt={articles.metadata.subtitle}
-                />
+                ({ articles, slug, title }) => (
+                  <ArticleCard
+                    iscasestudy
+                    slug={slug}
+                    title={title}
+                    excerpt={articles.metadata.subtitle}
+                  />
+                )
               )
-            )
             : publication.publication.article.map(
-              ({ articles, slug, date, title }) => (
-                <ArticleCard
-                  slug={slug}
-                  title={title}
-                  excerpt={articles.metadata.subtitle}
-                  date={date}
-                  author={articles.metadata.author}
-                />
-              )
-            )}
+                ({ articles, slug, date, title }) => (
+                  <ArticleCard
+                    slug={slug}
+                    title={title}
+                    excerpt={articles.metadata.subtitle}
+                    date={date}
+                    author={articles.metadata.author[0] ? articles.metadata.author[0].title : ''}
+                  />
+                )
+              )}
         </div>
       </ObviousGridRow>
-    
     </Layout>
   )
 }
@@ -105,7 +104,11 @@ export const query = graphql`
                 title
                 articles {
                   metadata {
-                    author
+                    author {
+                      ... on WP_People {
+                        title
+                      }
+                    }
                     subtitle
                   }
                 }
