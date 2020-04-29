@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { useWindowSize } from "../../utils/use-window-size"
 
 import { useScrollPosition } from "@n8tb1t/use-scroll-position"
+import ObviousContainer from "../atoms/ObviousContainer"
 
 const BackButtonContainer = ({ className, children, ...props }) => {
   const [showing, setShowing] = useState(true)
@@ -52,7 +53,9 @@ const BackButtonContainer = ({ className, children, ...props }) => {
           transition={{ ease: "easeOut" }}
           className="bg-gray-10 absolute top-0 left-0 right-0 bottom-0 py-4 flex justify-center"
         >
-          <div className="container px-10 flex">{children}</div>
+          <ObviousContainer className="flex">
+            {children}
+          </ObviousContainer>
         </motion.div>
       </motion.div>
     </motion.div>
