@@ -104,7 +104,7 @@ export default () => {
                     <motion.li
                       variants={menuItemVariants}
                     >
-                      <MenuItem className="border-r-2 border-t-0 w-full px-10 py-4 justify-end" item={item}/>
+                      <MenuItem className="border-r-2 border-t-0 w-full px-7 sm:px-10 py-4 justify-end" item={item}/>
                     </motion.li>
                   ))}
                 </motion.ul>
