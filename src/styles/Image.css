@@ -4,6 +4,11 @@
 figcaption {
     @apply font-sans text-base font-medium text-gray-30 mt-8 text-center w-full;
 }
+
+figcaption a {
+    @apply text-blue-30 underline
+}
+
 @media (max-width: 1024px) {
     figcaption {
         @apply mt-4;
