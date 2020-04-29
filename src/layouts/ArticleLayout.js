@@ -2,6 +2,7 @@ import React from "react"
 
 import SiteHeader from "../components/SiteHeader"
 import SiteFooter from "../components/SiteFooter"
+import ObviousContainer from "../components/atoms/ObviousContainer"
 
 export default ({ children }) => {
   return (
@@ -10,9 +11,9 @@ export default ({ children }) => {
       style={{ backgroundColor: "#FBFCF7" }}
     >
       <SiteHeader />
-      <main className="container article-container px-7 lg:px-10 pb-7 lg:pb-20 flex flex-col self-center">
+      <ObviousContainer tag="main" className="article-container pb-7 sm:pb-20 flex flex-col self-center">
         {children}
-      </main>
+      </ObviousContainer>
       <SiteFooter />
     </div>
   )
