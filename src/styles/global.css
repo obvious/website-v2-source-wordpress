@@ -288,6 +288,10 @@ display: none !important;
   height: 100%;
 }
 
+code {
+  @apply text-xl leading-normal tracking-tight
+}
+
 @tailwind components;
 
 @tailwind utilities;

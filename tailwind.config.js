@@ -63,11 +63,7 @@ module.exports = {
         "serif",
       ],
       mono: [
-        "Menlo",
-        "Monaco",
-        "Consolas",
-        '"Liberation Mono"',
-        '"Courier New"',
+        "Courier",
         "monospace",
       ],
     },
