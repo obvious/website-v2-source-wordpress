@@ -4,12 +4,12 @@ const _ = require("lodash")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-  
+
   const publicationsTemplate = path.resolve(`src/templates/publications.js`)
-  
+
   const today = moment()
   const aMonthAgo = moment(today).subtract(30, "days")
-  
+
   createPage({
     path: `publications`,
     component: publicationsTemplate,
@@ -26,7 +26,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     },
   })
-  
+
   const result = await graphql(
     `
       {
@@ -44,13 +44,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
             }
           }
-          articles (first: 300){
+          articles(first: 300) {
             nodes {
               id
               slug
             }
           }
-          caseStudies (first: 300) {
+          caseStudies(first: 300) {
             nodes {
               id
               slug
@@ -60,12 +60,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     `
   )
-  
+
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query`)
     return
   }
-  
+
   const publicationTemplate = path.resolve(`src/templates/publication.js`)
   result.data.WP.publications.nodes.forEach(node => {
     const { id, slug } = node
@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
   })
-  
+
   const getPublicationForArticle = articleId => {
     const publications = result.data.WP.publications.nodes
     return publications.find(publication => {
@@ -88,24 +88,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       )
     })
   }
-  
-  const caseStudyTemplate = path.resolve(`src/templates/article.js`)
-  result.data.WP.articles.nodes.forEach(node => {
-    const { id, slug } = node
-    const publicationForCaseStudy = getPublicationForArticle(id)
-    createPage({
-      path: `case-studies/${slug}`,
-      component: caseStudyTemplate,
-      context: {
-        id,
-        publicationSlug:
-          publicationForCaseStudy && publicationForCaseStudy.slug
-            ? publicationForCaseStudy.slug
-            : "",
-      },
-    })
-  })
-  
+
   const articleTemplate = path.resolve(`src/templates/article.js`)
   result.data.WP.articles.nodes.forEach(node => {
     const { id, slug } = node
@@ -122,31 +105,59 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
   })
+
+  const getPublicationForCaseStudy = casestudyId => {
+    const publications = result.data.WP.publications.nodes
+    return publications.find(publication => {
+      return (
+        publication.publication &&
+        publication.publication.casestudies &&
+        _.map(publication.publication.casestudies, "id").includes(casestudyId)
+      )
+    })
+  }
+
+  const caseStudyTemplate = path.resolve(`src/templates/article.js`)
+  result.data.WP.caseStudies.nodes.forEach(node => {
+    const { id, slug } = node
+    const publicationForCaseStudy = getPublicationForCaseStudy(id)
+    createPage({
+      path: `case-studies/${slug}`,
+      component: caseStudyTemplate,
+      context: {
+        id,
+        publicationSlug:
+          publicationForCaseStudy && publicationForCaseStudy.slug
+            ? publicationForCaseStudy.slug
+            : "",
+      },
+    })
+  })
 }
 
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
 exports.createResolvers = async ({
-                                   actions,
-                                   cache,
-                                   createNodeId,
-                                   createResolvers,
-                                   store,
-                                   reporter,
-                                 }) => {
+  actions,
+  cache,
+  createNodeId,
+  createResolvers,
+  store,
+  reporter,
+}) => {
   const { createNode } = actions
-  
+
   await createResolvers({
     WP_MediaItem: {
       imageFile: {
         type: "File",
         async resolve(source) {
           let sourceUrl = source.sourceUrl
-          
+
           if (source.mediaItemUrl !== undefined) {
             sourceUrl = source.mediaItemUrl
           }
-          
+
           return await createRemoteFileNode({
             url: encodeURI(sourceUrl),
             store,
@@ -163,7 +174,7 @@ exports.createResolvers = async ({
         type: "File",
         async resolve(source) {
           let sourceUrl = source.attributes.url
-          
+
           return await createRemoteFileNode({
             url: encodeURI(sourceUrl),
             store,
