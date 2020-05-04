@@ -103,7 +103,7 @@ const BackButtonContainerForArticle = ({
               className="ob-carousel opacity-0"
               variants={carouselVariants}
             >
-              {articles.length && <ArticleCarousel articles={articles} />}
+              {articles.length && <ArticleCarousel articles={articles.sort((a, b) => new Date(b.date) - new Date(a.date))} />}
             </motion.div>
             <motion.div
               variants={titleVariants}
