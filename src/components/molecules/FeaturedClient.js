@@ -73,19 +73,6 @@ export default ({ client, subtitle, link }) => {
           {subtitle && <Heading type="h5">{subtitle}</Heading>}
         </div>
       </ObviousLink>
-      {/*<BodyText type="body-large" className="py-2">{description}</BodyText>*/}
-      {/*TODO: Fix link*/}
-      {/*{link && (*/}
-      {/*  <a*/}
-      {/*    className="text-xs text-orange-50 font-sans flex justify-center items-center"*/}
-      {/*    href={link.href}*/}
-      {/*  >*/}
-      {/*    {link.text}*/}
-      {/*    {link.text && (*/}
-      {/*      <RightArrow className="text-orange-50 fill-current px-2 h-3" />*/}
-      {/*    )}*/}
-      {/*  </a>*/}
-      {/*)}*/}
     </motion.div>
   )
 }

@@ -65,7 +65,6 @@ function assignComponent(name, content, innerBlocks) {
       return <Separator />
 
     case "core/list":
-      console.log(content)
       return (
         <BodyText
           type="body-medium"
@@ -118,11 +117,11 @@ export default ({ data }) => {
             {article.articles.metadata.subtitle}
           </BodyText>
         )}
-        <Byline
+        {article.articles.metadata.author && <Byline
           date={date}
-          author={article.articles.metadata.author[0] ? article.articles.metadata.author[0].title : ''}
+          author={article.articles.metadata.author[0].title}
           className="my-3 lg:my-4"
-        />
+        />}
       </div>
       <div className="flex flex-col">
         {article.blocks.map(({ name, originalContent, innerBlocks }) =>
