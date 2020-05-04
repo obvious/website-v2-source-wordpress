@@ -65,7 +65,6 @@ function assignComponent(name, content, innerBlocks) {
       return <Separator />
 
     case "core/list":
-      console.log(content)
       return (
         <BodyText
           type="body-medium"
