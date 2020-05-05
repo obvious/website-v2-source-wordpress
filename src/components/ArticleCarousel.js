@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { Heading } from "./Heading"
 import Swiper from "react-id-swiper"
@@ -28,7 +28,7 @@ const NextArrow = ({ onClick }) => {
   )
 }
 
-export function ArticleCarouselCard({ slug, title, datePublished }) {
+export function ArticleCarouselCard({ slug, title, datePublished, swiper, slideKey }) {
   let date = new Date(datePublished).toLocaleDateString(undefined, {
     month: "long",
     day: "numeric",
@@ -38,8 +38,16 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
   return (
     <Link
       to={`articles/${slug}`}
-      className="rounded bg-white-a30 w-40 sm:w-64 p-4 flex flex-col justify-between h-full"
-      activeClassName="border-rounded border-orange-50 border-2 active-card"
+      getProps={({isPartiallyCurrent}) => {
+        isPartiallyCurrent && (swiper && swiper.slideTo(parseInt(slideKey.replace('slide-', ''))))
+        
+        const defaultClassName = 'rounded bg-white-a30 w-40 sm:w-64 p-4 flex flex-col justify-between h-full'
+        return isPartiallyCurrent ? {
+          className: `${defaultClassName} border-rounded border-orange-50 border-2 active-card`
+        } : {
+          className: defaultClassName
+        }
+      }}
     >
       <Heading className="limit-lines-3" type="h5">
         {getDecodedHtml(title)}
@@ -55,6 +63,8 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
 }
 
 export default ({ articles, swiperProps }) => {
+  const [swiper, updateSwiper] = useState(null)
+  
   const swiperSettings = {
     mousewheel: {
       forceToAxis: true,
@@ -70,19 +80,23 @@ export default ({ articles, swiperProps }) => {
     slidesPerView: "auto",
     freeMode: true,
     ...swiperProps,
+    getSwiper: updateSwiper
   }
-
+  
   return (
     <Swiper
       {...swiperSettings}
       renderNextButton={() => <NextArrow />}
       renderPrevButton={() => <PrevArrow />}
     >
-      {articles.map(({ slug, title, date }) => (
-        <div className="swiper-slide">
-          <ArticleCarouselCard slug={slug} title={title} datePublished={date} />
-        </div>
-      ))}
+      {articles.map(({ slug, title, date }, index) => {
+        const key = `slide-${index}`
+        return (
+          <div className="swiper-slide" key={key}>
+            <ArticleCarouselCard swiper={swiper} slideKey={key} slug={slug} title={title} datePublished={date} />
+          </div>
+        )}
+      )}
     </Swiper>
   )
 }
