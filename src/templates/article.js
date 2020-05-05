@@ -191,7 +191,11 @@ export const query = graphql`
             }
             colophon {
               nameoffield
-              personresponsible
+              personresponsible  {
+                ... on WP_People {
+                  title
+                }
+              }
             }
             iscasestudy
             article {

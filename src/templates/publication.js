@@ -61,7 +61,11 @@ export default ({ data }) => {
                     title={title}
                     excerpt={articles.metadata.subtitle}
                     date={date}
-                    author={articles.metadata.author[0] ? articles.metadata.author[0].title : ''}
+                    author={
+                      articles.metadata.author[0]
+                        ? articles.metadata.author[0].title
+                        : ""
+                    }
                   />
                 )
               )}
@@ -94,7 +98,11 @@ export const query = graphql`
             }
             colophon {
               nameoffield
-              personresponsible
+              personresponsible {
+                ... on WP_People {
+                  title
+                }
+              }
             }
             iscasestudy
             article {
