@@ -100,8 +100,9 @@ export default () => {
                 </Link>
                 <MenuToggle className="cursor-pointer text-gray-50 mt-1 sm:hidden" toggle={() => toggleIsOpen()}/>
                 <motion.ul variants={menuListVariants} className={`border-t-2 overflow-hidden border-gray-10 absolute top-0 mt-14 h-auto left-0 right-0 grid-flow-row bg-black-a100 shadow-lg font-medium text-base text-gray-50 grid sm:hidden flex items-center`}>
-                  {menuitem.map(item => (
+                  {menuitem.map((item, index) => (
                     <motion.li
+                      key={index}
                       variants={menuItemVariants}
                     >
                       <MenuItem className="border-r-2 border-t-0 w-full px-7 sm:px-10 py-4 justify-end" item={item}/>
@@ -109,8 +110,9 @@ export default () => {
                   ))}
                 </motion.ul>
                 <ul className={'font-medium text-base text-gray-50 grid gap-10 grid-flow-col hidden sm:grid h-full flex items-center'}>
-                  {menuitem.map(item => (
+                  {menuitem.map((item, index) => (
                     <li
+                      key={index}
                       className="h-full"
                     >
                       <MenuItem className="border-r-0 border-t-2 w-auto py-0 px-0 pb-1 items-center justify-center" item={item}/>

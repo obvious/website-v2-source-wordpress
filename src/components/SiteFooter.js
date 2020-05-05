@@ -50,7 +50,7 @@ export default () => {
               {/*  © 2020 Obvious*/}
               {/*</span>*/}
               <ul className="text-center grid justify-center gap-12 sm:gap-12 grid-flow-col items-center sm:justify-end">
-                {footerSocialLinks.socialLink.map(link => <ObviousLink url={link.socialUrl}>
+                {footerSocialLinks.socialLink.map((link, index) => <ObviousLink key={index} url={link.socialUrl}>
                   <PreviewCompatibleImage className="fill-current h-4" image={link.socialIcon} />
                 </ObviousLink>)}
               </ul>

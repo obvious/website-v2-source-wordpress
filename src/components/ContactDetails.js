@@ -4,8 +4,8 @@ import ExternalLink from "./icons/ExternalLink"
 
 export default ({ details }) => (
   <div className="w-full mb-8 ml-auto grid gap-3" style={{alignContent: 'start'}}>
-    {details.map(({ title, description, link }) => (
-      <div>
+    {details.map(({ title, description, link }, index) => (
+      <div key={index}>
         <span className="text-md text-white block border-b border-gray-500 font-semibold py-2 font-sans">
           {title}
         </span>

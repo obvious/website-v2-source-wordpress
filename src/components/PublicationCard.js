@@ -16,8 +16,8 @@ export default ({ title, description, tags, coverImage, slug }) => {
         </div>
         {tags.length ? (
           <div className="grid gap-4 grid-flow-col justify-start mb-4">
-            {tags.map(tag => (
-              <Tag tagType={tag.type}>{tag.text}</Tag>
+            {tags.map((tag, index) => (
+              <Tag key={index} tagType={tag.type}>{tag.text}</Tag>
             ))}
           </div>
         ) : null}
