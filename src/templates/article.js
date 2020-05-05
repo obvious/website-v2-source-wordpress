@@ -109,7 +109,7 @@ export default ({ data }) => {
       <div className="flex flex-col lg:w-2/3 self-end">
         {/*TODO: refactor once heading has been refactored to include tag-picking*/}
         <Heading
-          className="text-gray-10 my-3 lg:my-4"
+          className="text-gray-10 my-3 lg:my-4 break-words-hyphenated"
           content={`<h1>${article.title}</h1>`}
         />
         {article.articles.metadata.subtitle && (
