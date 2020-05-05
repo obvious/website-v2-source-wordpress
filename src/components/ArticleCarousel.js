@@ -6,6 +6,7 @@ import "swiper/css/swiper.css"
 import "../styles/swiper-custom.css"
 import { ChevronLeft, ChevronRight } from "./atoms/Icon"
 import IconButton from "./atoms/IconButton"
+import { getDecodedHtml } from "../utils/text"
 
 const PrevArrow = ({ onClick }) => {
   return (
@@ -33,14 +34,15 @@ export function ArticleCarouselCard({ slug, title, datePublished }) {
     day: "numeric",
     year: "numeric",
   })
+  
   return (
     <Link
       to={`articles/${slug}`}
       className="rounded bg-white-a30 w-40 sm:w-64 p-4 flex flex-col justify-between h-full"
-      activeClassName="border-rounded border-orange-50 border-2"
+      activeClassName="border-rounded border-orange-50 border-2 active-card"
     >
       <Heading className="limit-lines-3" type="h5">
-        {title}
+        {getDecodedHtml(title)}
       </Heading>
       <Heading
         type="h6"
