@@ -94,6 +94,7 @@ export default ({ data }) => {
   return (
     <ArticleLayout>
       <Helmet>
+        <html lang="en" />
         {/*TODO: Fix html characters showing up here*/}
         <title>{article.title} | Articles | Obvious</title>
       </Helmet>
