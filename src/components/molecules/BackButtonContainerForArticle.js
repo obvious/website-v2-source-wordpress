@@ -7,7 +7,6 @@ import { Heading } from "../Heading"
 import ArticleCarousel from "../ArticleCarousel"
 import { motion } from "framer-motion"
 import "../../styles/back-button-for-articles.css"
-import { getDecodedHtml } from "../../utils/text"
 
 const rightIconVariants = {
   open: {
@@ -111,7 +110,7 @@ const BackButtonContainerForArticle = ({
               className="ob-title md:block text-white mx-6 h-12 items-center flex"
             >
               <Heading className="limit-lines-2" type="h4">
-                {getDecodedHtml(titleText)}
+                <span dangerouslySetInnerHTML={{ __html: titleText}} />
               </Heading>
             </motion.div>
           </div>

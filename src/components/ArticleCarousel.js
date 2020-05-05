@@ -6,7 +6,6 @@ import "swiper/css/swiper.css"
 import "../styles/swiper-custom.css"
 import { ChevronLeft, ChevronRight } from "./atoms/Icon"
 import IconButton from "./atoms/IconButton"
-import { getDecodedHtml } from "../utils/text"
 
 const PrevArrow = ({ onClick }) => {
   return (
@@ -50,7 +49,7 @@ export function ArticleCarouselCard({ slug, title, datePublished, swiper, slideK
       }}
     >
       <Heading className="limit-lines-3" type="h5">
-        {getDecodedHtml(title)}
+        <span dangerouslySetInnerHTML={{ __html: title}} />
       </Heading>
       <Heading
         type="h6"
