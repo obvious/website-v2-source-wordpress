@@ -14,7 +14,7 @@ export default ({ colophon }) => {
             {credit.nameoffield}&nbsp;
           </BodyText>
           <span className="font-sans uppercase text-orange-50 text-xs font-medium">
-            {credit.personresponsible}
+            {credit.personresponsible[0].title}
           </span>
         </div>
       ))}
