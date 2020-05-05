@@ -45,9 +45,10 @@ export default ({ data }) => {
         <div className="w-full col-start-1 col-end-13 sm:col-start-6 md:col-start-6 sm:col-end-13">
           {publication.publication.iscasestudy
             ? publication.publication.casestudy.map(
-                ({ articles, slug, title }) => (
+                ({ articles, slug, title, id }) => (
                   <ArticleCard
                     iscasestudy
+                    key={id}
                     slug={slug}
                     title={title}
                     excerpt={articles.metadata.subtitle}
@@ -55,8 +56,9 @@ export default ({ data }) => {
                 )
               )
             : publication.publication.article.map(
-                ({ articles, slug, date, title }) => (
+                ({ articles, slug, date, title, id }) => (
                   <ArticleCard
+                    key={id}
                     slug={slug}
                     title={title}
                     excerpt={articles.metadata.subtitle}
@@ -107,6 +109,7 @@ export const query = graphql`
             iscasestudy
             article {
               ... on WP_Article {
+                id
                 slug
                 date
                 title
@@ -124,6 +127,7 @@ export const query = graphql`
             }
             casestudy {
               ... on WP_CaseStudy {
+                id
                 slug
                 title
                 articles {
