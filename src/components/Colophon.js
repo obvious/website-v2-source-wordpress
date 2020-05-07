@@ -8,8 +8,8 @@ export default ({ colophon }) => {
       <Heading type="h5" className="text-light/gray-10 mt-8 border-b border-light/gray-50 pb-2 mb-2">
         Colophon
       </Heading>
-      {colophon.map(credit => (
-        <div>
+      {colophon.map((credit, index) => (
+        <div key={index}>
           <BodyText type="credit">
             {credit.nameoffield}&nbsp;
           </BodyText>

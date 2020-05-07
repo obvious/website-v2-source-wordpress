@@ -12,7 +12,7 @@ import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
 import "../styles/article.css"
 
-function assignComponent(name, content, innerBlocks) {
+function assignComponent(name, content, innerBlocks, index) {
   // List of all core block components available on the default gutenberg editor
   // TODO: all of these need to be implemented and taken care of in this switch (or disabled on the editor itself)
   // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
@@ -20,6 +20,7 @@ function assignComponent(name, content, innerBlocks) {
     case "core/paragraph":
       return (
         <BodyText
+          key={index}
           type="body-medium"
           className="text-light/gray-10 my-2 lg:my-5"
           content={content}
@@ -27,46 +28,48 @@ function assignComponent(name, content, innerBlocks) {
       )
 
     case "core/heading":
-      return <Heading className="my-2 lg:my-5" content={content} />
+      return <Heading key={index} className="my-2 lg:my-5" content={content} />
 
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return (
         <Image
+          key={index}
           className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
           content={content}
         />
       )
 
     case "core/quote":
-      return <Quote>{content}</Quote>
+      return <Quote key={index}>{content}</Quote>
 
     case "core/columns":
       return (
-        <div className="article-columns lg:grid lg:gap-8 lg:grid-cols-2">
+        <div key={index} className="article-columns lg:grid lg:gap-8 lg:grid-cols-2">
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }) => {
-              return assignComponent(name, originalContent, innerBlocks)
+            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
+              return assignComponent(name, originalContent, innerBlocks, index)
             })}
         </div>
       )
 
     case "core/column":
       return (
-        <div className="article-column">
+        <div key={index} className="article-column">
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }) => {
-              return assignComponent(name, originalContent, innerBlocks)
+            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
+              return assignComponent(name, originalContent, innerBlocks, index)
             })}
         </div>
       )
 
     case "core/separator":
-      return <Separator />
+      return <Separator key={index} />
 
     case "core/list":
       return (
         <BodyText
+          key={index}
           type="body-medium"
           className="text-light/gray-10 my-8 lg:mb-20 ml-8 lg:ml-16"
           content={content}
@@ -124,8 +127,8 @@ export default ({ data }) => {
         />}
       </div>
       <div className="flex flex-col">
-        {article.blocks.map(({ name, originalContent, innerBlocks }) =>
-          assignComponent(name, originalContent, innerBlocks)
+        {article.blocks.map(({ name, originalContent, innerBlocks }, index) =>
+          assignComponent(name, originalContent, innerBlocks, index)
         )}
       </div>
     </ArticleLayout>
