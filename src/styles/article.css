@@ -4,3 +4,11 @@
     }
 
 }
+
+.break-words-hyphenated {
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    @apply break-words
+
+}

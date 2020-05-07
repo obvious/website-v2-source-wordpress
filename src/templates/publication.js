@@ -19,6 +19,7 @@ export default ({ data }) => {
   return (
     <Layout className="bg-light/gray-70">
       <Helmet>
+        <html lang="en" />
         <title> {publication.title} | Publications | Obvious</title>
       </Helmet>
       <BackButtonContainerForPublication

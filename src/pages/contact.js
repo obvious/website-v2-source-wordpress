@@ -15,6 +15,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <Helmet>
+        <html lang="en" />
         <title>Contact | Obvious</title>
       </Helmet>
       <Hero title={page.contact.hero} />

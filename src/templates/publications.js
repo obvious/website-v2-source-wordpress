@@ -18,6 +18,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <Helmet>
+        <html lang="en" />
         <title>Publications | Obvious</title>
       </Helmet>
       <Hero title={page.publications.hero} />
