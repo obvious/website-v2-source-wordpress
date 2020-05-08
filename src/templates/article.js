@@ -14,20 +14,21 @@ import "../styles/article.css"
 import { Code } from "../components/Code"
 
 function assignComponent(block, index) {
-  const name = block.name
   const content = block.originalContent
   const innerBlocks = block.innerBlocks
   // List of all core block components available on the default gutenberg editor
   // TODO: all of these need to be implemented and taken care of in this switch (or disabled on the editor itself)
   // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
-  switch (name) {
+  switch (block.name) {
     case "core/paragraph":
+      //We still use dangerouslySetInnerHTML here because the content field still
+      //gives us html within the response - ex em, strong, a, and code tags
       return (
         <BodyText
           key={index}
           type="body-medium"
           className="text-light/gray-10 my-2 lg:my-5"
-          content={content}
+          content={block.paraattr.content}
         />
       )
 
@@ -86,14 +87,15 @@ function assignComponent(block, index) {
     case "core/code":
       return (
         <Code
-          content={block.attributes.content}
-          language={block.attributes.language}
-          showLines={block.attributes.lineNumbers}
+          key={index}
+          content={block.codeattr.content}
+          language={block.codeattr.language}
+          showLines={block.codeattr.lineNumbers}
         />
       )
 
     default:
-      console.error(name, content)
+      console.error(block.name, content)
   }
 }
 
@@ -176,9 +178,18 @@ export const query = graphql`
               }
             }
           }
+          parentId
+          ... on WP_CoreParagraphBlock {
+            name
+            paraattr: attributes {
+              ... on WP_CoreParagraphBlockAttributesV3 {
+                content
+              }
+            }
+          }
           ... on WP_CoreCodeBlock {
             name
-            attributes {
+            codeattr: attributes {
               content
               language
               lineNumbers
