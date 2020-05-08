@@ -54,7 +54,11 @@ function assignComponent(block, index) {
       )
 
     case "core/quote":
-      return <Quote key={index}>{content}</Quote>
+      return (
+        <Quote key={index} author={block.quoteattributes.citation}>
+          {block.quoteattributes.value}
+        </Quote>
+      )
 
     case "core/columns":
       return (
@@ -214,6 +218,13 @@ export const query = graphql`
             name
             listattributes: attributes {
               values
+            }
+          }
+          ... on WP_CoreQuoteBlock {
+            name
+            quoteattributes: attributes {
+              value
+              citation
             }
           }
         }
