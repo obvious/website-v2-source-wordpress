@@ -88,7 +88,7 @@ function assignComponent(block, index) {
           key={index}
           type="body-medium"
           className="text-light/gray-10 my-8 lg:mb-20 ml-8 lg:ml-16"
-          content={content}
+          content={block.listattributes.values}
         />
       )
 
@@ -208,6 +208,12 @@ export const query = graphql`
             headingattributes: attributes {
               content
               level
+            }
+          }
+          ... on WP_CoreListBlock {
+            name
+            listattributes: attributes {
+              values
             }
           }
         }
