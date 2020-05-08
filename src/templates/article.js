@@ -11,6 +11,7 @@ import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
 import "../styles/article.css"
+import { Code } from "../components/Code"
 
 function assignComponent(name, content, innerBlocks, index) {
   // List of all core block components available on the default gutenberg editor
@@ -77,7 +78,7 @@ function assignComponent(name, content, innerBlocks, index) {
       )
 
     case "core/code":
-      return <BodyText type="code" className="" content={content} />
+      return <Code>{content}</Code>
 
     default:
       console.error(name, content)
