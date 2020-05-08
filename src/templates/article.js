@@ -13,7 +13,10 @@ import BackButtonContainerForArticle from "../components/molecules/BackButtonCon
 import "../styles/article.css"
 import { Code } from "../components/Code"
 
-function assignComponent(name, content, innerBlocks, index) {
+function assignComponent(block,  index) {
+  const name = block.name
+  const content = block.originalContent
+  const innerBlocks = block.innerBlocks
   // List of all core block components available on the default gutenberg editor
   // TODO: all of these need to be implemented and taken care of in this switch (or disabled on the editor itself)
   // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
@@ -46,7 +49,10 @@ function assignComponent(name, content, innerBlocks, index) {
 
     case "core/columns":
       return (
-        <div key={index} className="article-columns lg:grid lg:gap-8 lg:grid-cols-2">
+        <div
+          key={index}
+          className="article-columns lg:grid lg:gap-8 lg:grid-cols-2"
+        >
           {innerBlocks &&
             innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
               return assignComponent(name, originalContent, innerBlocks, index)
@@ -78,7 +84,7 @@ function assignComponent(name, content, innerBlocks, index) {
       )
 
     case "core/code":
-      return <Code>{content}</Code>
+      return <Code>{block.attributes.content}</Code>
 
     default:
       console.error(name, content)
@@ -134,8 +140,8 @@ export default ({ data }) => {
         )}
       </div>
       <div className="flex flex-col">
-        {article.blocks.map(({ name, originalContent, innerBlocks }, index) =>
-          assignComponent(name, originalContent, innerBlocks, index)
+        {article.blocks.map((block, index) =>
+          assignComponent(block, index)
         )}
       </div>
     </ArticleLayout>
@@ -164,6 +170,14 @@ export const query = graphql`
                 name
                 originalContent
               }
+            }
+          }
+          ... on WP_CoreCodeBlock {
+            name
+            attributes {
+              content
+              language
+              showLines
             }
           }
         }
