@@ -28,7 +28,7 @@ function assignComponent(block, index) {
           key={index}
           type="body-medium"
           className="text-light/gray-10 my-2 lg:my-5"
-          content={block.paraattr.content}
+          content={block.paragraphattributes.content}
         />
       )
 
@@ -88,9 +88,9 @@ function assignComponent(block, index) {
       return (
         <Code
           key={index}
-          content={block.codeattr.content}
-          language={block.codeattr.language}
-          showLines={block.codeattr.lineNumbers}
+          content={block.codeattributes.content}
+          language={block.codeattributes.language}
+          showLines={block.codeattributes.lineNumbers}
         />
       )
 
@@ -181,7 +181,7 @@ export const query = graphql`
           parentId
           ... on WP_CoreParagraphBlock {
             name
-            paraattr: attributes {
+            paragraphattributes: attributes {
               ... on WP_CoreParagraphBlockAttributesV3 {
                 content
               }
@@ -189,7 +189,7 @@ export const query = graphql`
           }
           ... on WP_CoreCodeBlock {
             name
-            codeattr: attributes {
+            codeattributes: attributes {
               content
               language
               lineNumbers
