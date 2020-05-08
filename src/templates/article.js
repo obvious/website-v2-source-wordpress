@@ -76,6 +76,9 @@ function assignComponent(name, content, innerBlocks, index) {
         />
       )
 
+    case "core/code":
+      return <BodyText type="code" className="" content={content} />
+
     default:
       console.error(name, content)
   }
@@ -121,11 +124,13 @@ export default ({ data }) => {
             {article.articles.metadata.subtitle}
           </BodyText>
         )}
-        {article.articles.metadata.author && <Byline
-          date={date}
-          author={article.articles.metadata.author[0].title}
-          className="my-3 lg:my-4"
-        />}
+        {article.articles.metadata.author && (
+          <Byline
+            date={date}
+            author={article.articles.metadata.author[0].title}
+            className="my-3 lg:my-4"
+          />
+        )}
       </div>
       <div className="flex flex-col">
         {article.blocks.map(({ name, originalContent, innerBlocks }, index) =>
@@ -195,7 +200,7 @@ export const query = graphql`
             }
             colophon {
               nameoffield
-              personresponsible  {
+              personresponsible {
                 ... on WP_People {
                   title
                 }

@@ -54,6 +54,13 @@ export const BodyText = ({ children, className, content, type }) => {
         </span>
       )
 
+    case "code":
+      return (
+        <span className={`${className} font-mono text-xl leading-normal tracking-tight`}
+              dangerouslySetInnerHTML={{ __html: content}}
+        />
+      )
+
     /* This case is required to handle those blocks that come from WP Gutenberg that we haven't defined yet..*/
     default:
       return <div dangerouslySetInnerHTML={{ __html: content }} />
