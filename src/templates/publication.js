@@ -39,9 +39,10 @@ export default ({ data }) => {
             className="text-light/gray-30 mt-4"
             content={publication.publication.description}
           />
-          {publication.publication.colophon && (
-            <Colophon colophon={publication.publication.colophon} />
-          )}
+          {publication.publication.colophon &&
+            publication.publication.colophon[0].personresponsible[0] && (
+              <Colophon colophon={publication.publication.colophon} />
+            )}
         </div>
         <div className="w-full col-start-1 col-end-13 sm:col-start-6 md:col-start-6 sm:col-end-13">
           {publication.publication.iscasestudy
