@@ -33,7 +33,15 @@ function assignComponent(block, index) {
       )
 
     case "core/heading":
-      return <Heading key={index} className="my-2 lg:my-5" content={content} />
+      return (
+        <Heading
+          key={index}
+          className="text-gray-10 my-2 lg:my-5"
+          type={`h${block.headingattributes.level}`}
+        >
+          {block.headingattributes.content}
+        </Heading>
+      )
 
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
@@ -193,6 +201,13 @@ export const query = graphql`
               content
               language
               lineNumbers
+            }
+          }
+          ... on WP_CoreHeadingBlock {
+            name
+            headingattributes: attributes {
+              content
+              level
             }
           }
         }
