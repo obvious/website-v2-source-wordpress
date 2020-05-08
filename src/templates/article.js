@@ -88,7 +88,7 @@ function assignComponent(block, index) {
         <Code
           content={block.attributes.content}
           language={block.attributes.language}
-          showLines={block.attributes.showLines}
+          showLines={block.attributes.lineNumbers}
         />
       )
 
@@ -181,7 +181,7 @@ export const query = graphql`
             attributes {
               content
               language
-              showLines
+              lineNumbers
             }
           }
         }
