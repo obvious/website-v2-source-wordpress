@@ -227,6 +227,9 @@ export const query = graphql`
               citation
             }
           }
+          ... on WP_CoreSeparatorBlock {
+            name
+          }
         }
         content
         date
