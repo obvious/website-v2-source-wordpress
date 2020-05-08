@@ -13,7 +13,7 @@ import BackButtonContainerForArticle from "../components/molecules/BackButtonCon
 import "../styles/article.css"
 import { Code } from "../components/Code"
 
-function assignComponent(block,  index) {
+function assignComponent(block, index) {
   const name = block.name
   const content = block.originalContent
   const innerBlocks = block.innerBlocks
@@ -84,7 +84,13 @@ function assignComponent(block,  index) {
       )
 
     case "core/code":
-      return <Code>{block.attributes.content}</Code>
+      return (
+        <Code
+          content={block.attributes.content}
+          language={block.attributes.language}
+          showLines={block.attributes.showLines}
+        />
+      )
 
     default:
       console.error(name, content)
@@ -140,9 +146,7 @@ export default ({ data }) => {
         )}
       </div>
       <div className="flex flex-col">
-        {article.blocks.map((block, index) =>
-          assignComponent(block, index)
-        )}
+        {article.blocks.map((block, index) => assignComponent(block, index))}
       </div>
     </ArticleLayout>
   )
