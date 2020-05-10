@@ -12,6 +12,7 @@ import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
 import "../styles/article.css"
 import { Code } from "../components/Code"
+import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
 
 function assignComponent(block, index) {
   const content = block.originalContent
@@ -46,11 +47,12 @@ function assignComponent(block, index) {
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return (
-        <Image
-          key={index}
-          className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
-          src={block.imageattributes.url}
-        />
+        <>
+          <PreviewCompatibleImage
+            image={block}
+            className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
+          />
+        </>
       )
 
     case "core/quote":
@@ -168,6 +170,8 @@ export default ({ data }) => {
 
 //This query only supports three levels of recursion - because we do not plan to use blocks such as 'groups' yet.
 //TODO: Figure out an easier way to do this (possibly with NUWEB-133)
+
+//The Image block does not work when aliased, unclear why
 export const query = graphql`
   query($id: ID!, $publicationSlug: String) {
     WP {
@@ -201,18 +205,19 @@ export const query = graphql`
           }
           ... on WP_CoreImageBlock {
             name
-            imageattributes: attributes {
-              alt
-              caption
-              url
-            }
-            imageFile {
-              childImageSharp {
-                fixed {
-                  ...GatsbyImageSharpFixed
-                }
+          attributes {
+            alt
+            caption
+            url
+          }
+          imageFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluidLimitPresentationSize
               }
             }
+          }
           }
           ... on WP_CoreCodeBlock {
             name
