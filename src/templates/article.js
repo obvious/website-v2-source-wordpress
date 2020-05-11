@@ -12,6 +12,7 @@ import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
 import "../styles/article.css"
 import { Code } from "../components/Code"
+import { Video } from "../components/Video"
 
 function assignComponent(block, index) {
   const content = block.originalContent
@@ -103,6 +104,9 @@ function assignComponent(block, index) {
           showLines={block.codeattributes.lineNumbers}
         />
       )
+
+    case "core/video":
+      return <Video video={block} className="mb-18 lg:mb-20"/>
 
     default:
       console.error(block.name, content)
@@ -239,6 +243,18 @@ export const query = graphql`
           }
           ... on WP_CoreSeparatorBlock {
             name
+          }
+          ... on WP_CoreVideoBlock {
+            name
+            videoattributes: attributes {
+              caption
+              src
+              preload
+              controls
+              loop
+              muted
+              playsInline
+            }
           }
         }
         content
