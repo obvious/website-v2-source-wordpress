@@ -44,6 +44,7 @@
     "react-helmet": "^5.2.1",
     "react-id-swiper": "^3.0.0",
     "react-inlinesvg": "^1.2.0",
+    "react-syntax-highlighter": "^12.2.1",
     "swiper": "^5.3.7",
     "tailwindcss-aspect-ratio": "^3.0.0",
     "yup": "^0.28.3"
