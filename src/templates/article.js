@@ -49,7 +49,7 @@ function assignComponent(block, index) {
         <Image
           key={index}
           className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
-          src={block.imageattributes.url}
+          src={block.attributes.url}
         />
       )
 
@@ -201,7 +201,7 @@ export const query = graphql`
           }
           ... on WP_CoreImageBlock {
             name
-            imageattributes: attributes {
+            attributes {
               alt
               caption
               url
