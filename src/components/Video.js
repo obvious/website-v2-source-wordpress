@@ -1,5 +1,5 @@
 import React from "react"
-import { BodyText } from "./BodyText"
+import { Figcaption } from "./Figcaption"
 
 export const Video = ({ video, className }) => {
   const extensionRegex = /(?:\.([^.]+))?$/
@@ -12,6 +12,9 @@ export const Video = ({ video, className }) => {
       <video controls={controls} className={className}>
         <source src={src} type={`video/${extension}`} />
       </video>
+      {video.videoattributes.caption && (
+        <Figcaption>{video.videoattributes.caption}</Figcaption>
+      )}
     </>
   )
 }
