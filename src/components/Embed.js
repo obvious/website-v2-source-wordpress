@@ -3,12 +3,12 @@ import "../styles/embed.css"
 import { Figcaption } from "./Figcaption"
 
 export const Embed = ({ embed, className, aspectRatio = "16/9" }) => {
-  const src = embed.embedattributes.url
+  let src = embed.embedattributes.url
   // const style = { "--aspect-ratio": aspectRatio }; as React.CSSProperties;
 
   if (embed.embedattributes.providerNameSlug == "youtube") {
     const embed_id = embed.embedattributes.url.split("v=")[1].split("&")[0]
-    const src = "https://youtube.com/embed/" + embed_id
+    src = "https://youtube.com/embed/" + embed_id
   }
 
   return (
