@@ -12,6 +12,8 @@ import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
 import "../styles/article.css"
 import { Code } from "../components/Code"
+import { Video } from "../components/Video"
+import { Embed } from "../components/Embed"
 
 function assignComponent(block, index) {
   const content = block.originalContent
@@ -103,6 +105,15 @@ function assignComponent(block, index) {
           showLines={block.codeattributes.lineNumbers}
         />
       )
+
+    case "core/video":
+      return <Video video={block} className="mb-18 lg:mb-20" />
+
+    case "core-embed/youtube":
+      return <Embed embed={block} className="mb-18 lg:mb-20" />
+
+    case "core-embed/vimeo":
+      return <Embed embed={block} className="mb-18 lg:mb-20" />
 
     default:
       console.error(block.name, content)
@@ -239,6 +250,37 @@ export const query = graphql`
           }
           ... on WP_CoreSeparatorBlock {
             name
+          }
+          ... on WP_CoreVideoBlock {
+            name
+            videoattributes: attributes {
+              caption
+              src
+              preload
+              controls
+              loop
+              muted
+              playsInline
+            }
+          }
+          ... on WP_CoreEmbedYoutubeBlock {
+            name
+            originalContent
+            embedattributes: attributes {
+              caption
+              providerNameSlug
+              type
+              url
+            }
+          }
+          ... on WP_CoreEmbedVimeoBlock {
+            name
+            embedattributes: attributes {
+              caption
+              providerNameSlug
+              url
+              type
+            }
           }
         }
         content
