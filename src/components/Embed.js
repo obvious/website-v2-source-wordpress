@@ -1,5 +1,6 @@
 import React from "react"
 import "../styles/embed.css"
+import { Figcaption } from "./Figcaption"
 
 export const Embed = ({ embed, className, aspectRatio = "16/9" }) => {
   if (embed.embedattributes.providerNameSlug == "youtube") {
@@ -8,16 +9,17 @@ export const Embed = ({ embed, className, aspectRatio = "16/9" }) => {
     // const style = { "--aspect-ratio": aspectRatio }; as React.CSSProperties;
 
     return (
-      <div
-        className={` ${className} embed-wrapper relative h-auto`}
-      >
-      <iframe
-        className="absolute top-0 left-0 w-full h-full"
-        allow="fullscreen"
-        title={`${embed.embedattributes.providerNameSlug} ${embed.embedattributes.type}`}
-        src={src}
-        strict-origin-when-cross-origin
-      ></iframe>
+      <div className={` ${className} embed-wrapper relative h-auto`}>
+        <iframe
+          className="absolute top-0 left-0 w-full h-full"
+          allow="fullscreen"
+          title={`${embed.embedattributes.providerNameSlug} ${embed.embedattributes.type}`}
+          src={src}
+          strict-origin-when-cross-origin
+        ></iframe>
+        {embed.embedattributes.caption && (
+          <Figcaption>{embed.embedattributes.caption}</Figcaption>
+        )}
       </div>
     )
   }
