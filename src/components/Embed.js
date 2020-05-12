@@ -1,5 +1,4 @@
 import React from "react"
-import "../styles/embed.css"
 import { Figcaption } from "./Figcaption"
 
 export const Embed = ({ embed, className, aspectRatio = "16/9" }) => {
@@ -12,7 +11,7 @@ export const Embed = ({ embed, className, aspectRatio = "16/9" }) => {
   }
 
   return (
-    <div className={` ${className} embed-wrapper relative h-auto`}>
+    <div className={` ${className} relative h-0 aspect-ratio-16/9`}>
       <iframe
         className="absolute top-0 left-0 w-full h-full"
         allow="fullscreen"

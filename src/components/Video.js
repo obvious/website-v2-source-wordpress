@@ -1,6 +1,5 @@
 import React from "react"
 import { Figcaption } from "./Figcaption"
-import "../styles/video.css"
 
 //TODO: confirm exact video playback behavior with design
 export const Video = ({ video, className, aspectRatio = "16/9" }) => {
@@ -12,7 +11,7 @@ export const Video = ({ video, className, aspectRatio = "16/9" }) => {
   // const style = { "--aspect-ratio": aspectRatio } as React.CSSProperties;
   return (
     <div
-      className={`${className} video-wrapper relative h-0`}
+      className={`${className} relative h-0 aspect-ratio-16/9`}
       // style={style}
     >
       <video
