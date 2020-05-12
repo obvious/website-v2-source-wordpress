@@ -14,25 +14,32 @@ import "../styles/article.css"
 import { Code } from "../components/Code"
 
 function assignComponent(block, index) {
-  const name = block.name
   const content = block.originalContent
   const innerBlocks = block.innerBlocks
   // List of all core block components available on the default gutenberg editor
   // TODO: all of these need to be implemented and taken care of in this switch (or disabled on the editor itself)
   // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
-  switch (name) {
+  switch (block.name) {
     case "core/paragraph":
+      //We still use dangerouslySetInnerHTML here because the content field still
+      //gives us html within the response - ex em, strong, a, and code tags
       return (
         <BodyText
           key={index}
           type="body-medium"
           className="text-light/gray-10 my-2 lg:my-5"
-          content={content}
+          content={block.paragraphattributes.content}
         />
       )
 
     case "core/heading":
-      return <Heading key={index} className="my-2 lg:my-5" content={content} />
+      return (
+        <Heading
+          key={index}
+          className="text-gray-10 my-2 lg:my-5"
+          content={content}
+        />
+      )
 
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
@@ -40,12 +47,16 @@ function assignComponent(block, index) {
         <Image
           key={index}
           className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
-          content={content}
+          src={block.attributes.url}
         />
       )
 
     case "core/quote":
-      return <Quote key={index}>{content}</Quote>
+      return (
+        <Quote key={index} author={block.quoteattributes.citation}>
+          {block.quoteattributes.value}
+        </Quote>
+      )
 
     case "core/columns":
       return (
@@ -79,21 +90,22 @@ function assignComponent(block, index) {
           key={index}
           type="body-medium"
           className="text-light/gray-10 my-8 lg:mb-20 ml-8 lg:ml-16"
-          content={content}
+          content={block.listattributes.values}
         />
       )
 
     case "core/code":
       return (
         <Code
-          content={block.attributes.content}
-          language={block.attributes.language}
-          showLines={block.attributes.lineNumbers}
+          key={index}
+          content={block.codeattributes.content}
+          language={block.codeattributes.language}
+          showLines={block.codeattributes.lineNumbers}
         />
       )
 
     default:
-      console.error(name, content)
+      console.error(block.name, content)
   }
 }
 
@@ -176,13 +188,57 @@ export const query = graphql`
               }
             }
           }
-          ... on WP_CoreCodeBlock {
+          parentId
+          ... on WP_CoreParagraphBlock {
+            name
+            paragraphattributes: attributes {
+              ... on WP_CoreParagraphBlockAttributesV3 {
+                content
+              }
+            }
+          }
+          ... on WP_CoreImageBlock {
             name
             attributes {
+              alt
+              caption
+              url
+            }
+            imageFile {
+              childImageSharp {
+                fixed {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+          }
+          ... on WP_CoreCodeBlock {
+            name
+            codeattributes: attributes {
               content
               language
               lineNumbers
             }
+          }
+          ... on WP_CoreHeadingBlock {
+            name
+            originalContent
+          }
+          ... on WP_CoreListBlock {
+            name
+            listattributes: attributes {
+              values
+            }
+          }
+          ... on WP_CoreQuoteBlock {
+            name
+            quoteattributes: attributes {
+              value
+              citation
+            }
+          }
+          ... on WP_CoreSeparatorBlock {
+            name
           }
         }
         content
