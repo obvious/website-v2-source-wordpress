@@ -112,6 +112,9 @@ function assignComponent(block, index) {
     case "core-embed/youtube":
       return <Embed embed={block} className="mb-18 lg:mb-20" />
 
+    case "core-embed/vimeo":
+      return <Embed embed={block} className="mb-18 lg:mb-20" />
+
     default:
       console.error(block.name, content)
   }
@@ -268,6 +271,15 @@ export const query = graphql`
               providerNameSlug
               type
               url
+            }
+          }
+          ... on WP_CoreEmbedVimeoBlock {
+            name
+            embedattributes: attributes {
+              caption
+              providerNameSlug
+              url
+              type
             }
           }
         }
