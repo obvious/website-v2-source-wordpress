@@ -37,10 +37,8 @@ function assignComponent(block, index) {
         <Heading
           key={index}
           className="text-gray-10 my-2 lg:my-5"
-          type={`h${block.headingattributes.level}`}
-        >
-          {block.headingattributes.content}
-        </Heading>
+          content={content}
+        />
       )
 
     case "core/image":
@@ -224,10 +222,7 @@ export const query = graphql`
           }
           ... on WP_CoreHeadingBlock {
             name
-            headingattributes: attributes {
-              content
-              level
-            }
+            originalContent
           }
           ... on WP_CoreListBlock {
             name
