@@ -107,7 +107,8 @@ function assignComponent(block, index) {
       )
 
     case "core/video":
-      return <Video video={block} className="mb-18 lg:mb-20"/>
+      return <Video video={block} className="mb-18 lg:mb-20" />
+
     case "core-embed/youtube":
       return <Embed embed={block} className="mb-18 lg:mb-20" />
 
