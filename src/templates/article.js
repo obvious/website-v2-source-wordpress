@@ -13,6 +13,7 @@ import BackButtonContainerForArticle from "../components/molecules/BackButtonCon
 import "../styles/article.css"
 import { Code } from "../components/Code"
 import { Video } from "../components/Video"
+import { Embed } from "../components/Embed"
 
 function assignComponent(block, index) {
   const content = block.originalContent
@@ -107,6 +108,8 @@ function assignComponent(block, index) {
 
     case "core/video":
       return <Video video={block} className="mb-18 lg:mb-20"/>
+    case "core-embed/youtube":
+      return <Embed embed={block} className="mb-18 lg:mb-20" />
 
     default:
       console.error(block.name, content)
@@ -254,6 +257,16 @@ export const query = graphql`
               loop
               muted
               playsInline
+            }
+          }
+          ... on WP_CoreEmbedYoutubeBlock {
+            name
+            originalContent
+            embedattributes: attributes {
+              caption
+              providerNameSlug
+              type
+              url
             }
           }
         }
