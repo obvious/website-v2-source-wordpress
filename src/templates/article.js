@@ -55,6 +55,17 @@ function assignComponent(block, index) {
         </>
       )
 
+    case "core/image":
+      //TODO: w-full applies on lg, w-super otherwise
+      return (
+        <>
+          <PreviewCompatibleImage
+            image={block}
+            className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
+          />
+        </>
+      )
+
     case "core/quote":
       return (
         <Quote key={index} author={block.quoteattributes.citation}>
@@ -214,19 +225,18 @@ export const query = graphql`
           }
           ... on WP_CoreImageBlock {
             name
-          attributes {
-            alt
-            caption
-            url
-          }
-          imageFile {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-                ...GatsbyImageSharpFluidLimitPresentationSize
+            attributes {
+              alt
+              caption
+              url
+            }
+            imageFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
               }
             }
-          }
           }
           ... on WP_CoreCodeBlock {
             name
