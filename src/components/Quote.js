@@ -6,13 +6,13 @@ import "../styles/quote.css"
 // that accommodates both name and designation.
 export default ({ children, author, bio }) => {
   return (
-    <div className="quote-container my-4 lg:my-10">
+    <div className="quote-container mb-8 lg:mb-20">
       <p
-        className="font-serif font-extrabold text-xl text-grey-10 italic leading-relaxed mb-8"
+        className="font-serif font-extrabold text-xl text-grey-10 italic leading-relaxed"
         dangerouslySetInnerHTML={{ __html: children }}
       />
       {(author || bio) && (
-        <>
+        <div className="mt-8">
           {author && (
             <span
               className="text-xs text-black font-sans font-semibold"
@@ -24,7 +24,7 @@ export default ({ children, author, bio }) => {
               {bio}
             </span>
           )}
-          </>
+          </div>
       )}
     </div>
   )

@@ -29,7 +29,7 @@ function assignComponent(block, index) {
         <BodyText
           key={index}
           type="body-medium"
-          className="text-light/gray-10 my-2 lg:my-5"
+          className="text-light/gray-10 mb-8"
           content={block.paragraphattributes.content}
         />
       )
@@ -38,20 +38,9 @@ function assignComponent(block, index) {
       return (
         <Heading
           key={index}
-          className="text-gray-10 my-2 lg:my-5"
+          className="text-gray-10 mb-6"
           content={content}
         />
-      )
-
-    case "core/image":
-      //TODO: w-full applies on lg, w-super otherwise
-      return (
-        <>
-          <PreviewCompatibleImage
-            image={block}
-            className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
-          />
-        </>
       )
 
     case "core/image":
@@ -158,16 +147,16 @@ export default ({ data }) => {
           articles={publication.publication.article}
         />
       )}
-      <div className="flex flex-col lg:w-2/3 self-end">
+      <div className="flex flex-col lg:w-2/3 self-end mb-18 lg:mb-24">
         {/*TODO: refactor once heading has been refactored to include tag-picking*/}
         <Heading
-          className="text-gray-10 my-3 lg:my-4 break-words-hyphenated"
+          className="text-gray-10 mb-6 lg:mb-8 break-words-hyphenated"
           content={`<h1>${article.title}</h1>`}
         />
         {article.articles.metadata.subtitle && (
           <BodyText
             type="subtitle-medium"
-            className="my-3 lg:my-4 text-light/gray-30"
+            className="mb-6 lg:mb-8 text-light/gray-30"
           >
             {article.articles.metadata.subtitle}
           </BodyText>
@@ -176,7 +165,6 @@ export default ({ data }) => {
           <Byline
             date={date}
             author={article.articles.metadata.author[0].title}
-            className="my-3 lg:my-4"
           />
         )}
       </div>

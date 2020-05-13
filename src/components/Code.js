@@ -5,10 +5,10 @@ import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 SyntaxHighlighter.registerLanguage("kotlin", kotlin)
 
-export const Code = ({ content, language, showLines }) => {
+export const Code = ({ content, language, showLines, className }) => {
   const codeString = content;
   return (
-    <div className="text-xl leading-normal tracking-tight">
+    <div className={`${className} text-xl leading-normal tracking-tight mb-8`}>
       <SyntaxHighlighter
         language={language}
         style={okaidia}
