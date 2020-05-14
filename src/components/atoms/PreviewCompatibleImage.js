@@ -12,7 +12,7 @@ const PreviewCompatibleImage = ({ image, className }) => {
         <GatsbyImage
           className={className}
           fixed={image.imageFile.childImageSharp.fixed}
-          alt="GI fixed"
+          alt=""
         />
       )
     else
@@ -20,7 +20,7 @@ const PreviewCompatibleImage = ({ image, className }) => {
         <GatsbyImage
           className={className}
           fluid={image.imageFile.childImageSharp.fluid}
-          alt="GI fluid"
+          alt=""
         />
       )
   } else {
@@ -29,7 +29,7 @@ const PreviewCompatibleImage = ({ image, className }) => {
       return <SVG className={className || ""} src={image.imageFile.publicURL} />
     } else
       return (
-        <img className={className} src={src} alt="This is from svg else, PCI" />
+        <img className={className} src={src} alt="" />
       )
   }
 }
