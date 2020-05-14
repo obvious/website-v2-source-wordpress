@@ -15,6 +15,7 @@ import { Code } from "../components/Code"
 import { Video } from "../components/Video"
 import { Embed } from "../components/Embed"
 import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
+import { ObviousGridRow } from "../components/atoms/ObviousGrid"
 
 function assignComponent(block, index) {
   const content = block.originalContent
@@ -34,7 +35,7 @@ function assignComponent(block, index) {
           content={block.paragraphattributes.content}
         />
       )
-
+    
     case "core/heading":
       return (
         <Heading
@@ -43,7 +44,7 @@ function assignComponent(block, index) {
           content={content}
         />
       )
-
+    
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return (
@@ -54,7 +55,7 @@ function assignComponent(block, index) {
           />
         </>
       )
-
+    
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return (
@@ -65,40 +66,45 @@ function assignComponent(block, index) {
           />
         </>
       )
-
+    
     case "core/quote":
       return (
         <Quote key={index} author={block.quoteattributes.citation}>
           {block.quoteattributes.value}
         </Quote>
       )
-
+    
+    case "core/column":
+      const GridColumn = ({width, children}) => {
+        const colSpan = Math.floor(width/100*12)
+        return <div className={`col-span-12 md:col-span-${colSpan}`}>{children}</div>
+      }
+      return (
+        <GridColumn width={block.attributes.width}>
+          {innerBlocks && innerBlocks.length ?
+            innerBlocks.map((block, index) => {
+              return assignComponent(block, index)
+            }): null
+          }
+        </GridColumn>
+      )
+    
     case "core/columns":
       return (
-        <div
+        <ObviousGridRow
           key={index}
-          className="article-columns lg:grid lg:gap-8 lg:grid-cols-2"
+          className="article-columns"
         >
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
-            })}
-        </div>
+          innerBlocks.map((block, index) =>
+            assignComponent(block, index)
+          )}
+        </ObviousGridRow>
       )
-
-    case "core/column":
-      return (
-        <div key={index} className="article-column">
-          {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
-            })}
-        </div>
-      )
-
+    
     case "core/separator":
       return <Separator key={index} />
-
+    
     case "core/list":
       return (
         <BodyText
@@ -108,7 +114,7 @@ function assignComponent(block, index) {
           content={block.listattributes.values}
         />
       )
-
+    
     case "core/code":
       return (
         <Code
@@ -118,18 +124,19 @@ function assignComponent(block, index) {
           showLines={block.codeattributes.lineNumbers}
         />
       )
-
+    
     case "core/video":
       return <Video video={block} className="mb-18 lg:mb-20" />
-
+    
     case "core-embed/youtube":
       return <Embed embed={block} className="mb-18 lg:mb-20" />
-
+    
     case "core-embed/vimeo":
       return <Embed embed={block} className="mb-18 lg:mb-20" />
-
+    
     default:
-      console.error(block.name, content)
+      return <></>
+    // console.error(block.name, content)
   }
 }
 
@@ -142,7 +149,7 @@ export default ({ data }) => {
     day: "numeric",
     year: "numeric",
   })
-
+  
   return (
     <ArticleLayout>
       <Helmet>
@@ -193,13 +200,100 @@ export default ({ data }) => {
 
 //The Image block does not work when aliased, unclear why
 export const query = graphql`
-  query($id: ID!, $publicationSlug: String) {
-    WP {
-      article(id: $id) {
-        id
-        title
-        date
-        blocks {
+fragment ArticleCommonBlocks on WP_Block {
+  ... on WP_CoreParagraphBlock {
+    name
+    paragraphattributes: attributes {
+      ... on WP_CoreParagraphBlockAttributesV3 {
+        content
+      }
+    }
+  }
+  ... on WP_CoreImageBlock {
+    name
+    attributes {
+      alt
+      caption
+      url
+    }
+    imageFile {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+  ... on WP_CoreCodeBlock {
+    name
+    codeattributes: attributes {
+      content
+      language
+      lineNumbers
+    }
+  }
+  ... on WP_CoreHeadingBlock {
+    name
+    originalContent
+  }
+  ... on WP_CoreListBlock {
+    name
+    listattributes: attributes {
+      values
+    }
+  }
+  ... on WP_CoreQuoteBlock {
+    name
+    quoteattributes: attributes {
+      value
+      citation
+    }
+  }
+  ... on WP_CoreSeparatorBlock {
+    name
+  }
+  ... on WP_CoreVideoBlock {
+    name
+    videoattributes: attributes {
+      caption
+      src
+      preload
+      controls
+      loop
+      muted
+      playsInline
+    }
+  }
+  ... on WP_CoreEmbedYoutubeBlock {
+    name
+    originalContent
+    embedattributes: attributes {
+      caption
+      providerNameSlug
+      type
+      url
+    }
+  }
+  ... on WP_CoreEmbedVimeoBlock {
+    name
+    embedattributes: attributes {
+      caption
+      providerNameSlug
+      url
+      type
+    }
+  }
+}
+query($id: ID!, $publicationSlug: String) {
+  WP {
+    article(id: $id) {
+      id
+      title
+      date
+      blocks {
+        name
+        originalContent
+        innerBlocks {
           name
           originalContent
           innerBlocks {
@@ -208,28 +302,53 @@ export const query = graphql`
             innerBlocks {
               name
               originalContent
-              innerBlocks {
-                name
-                originalContent
-              }
             }
           }
+        }
+        parentId
+        ...ArticleCommonBlocks
+        ... on WP_CoreColumnsBlock {
           parentId
-          ... on WP_CoreParagraphBlock {
-            name
-            paragraphattributes: attributes {
-              ... on WP_CoreParagraphBlockAttributesV3 {
-                content
+          innerBlocks {
+            ... on WP_CoreColumnBlock {
+              parentId
+              name
+              attributes {
+                width
+              }
+              innerBlocks {
+                ...ArticleCommonBlocks
               }
             }
-          }
-          ... on WP_CoreImageBlock {
             name
-            attributes {
-              alt
-              caption
-              url
+          }
+          name
+        }
+      }
+      content
+      date
+      articles {
+        metadata {
+          author {
+            ... on WP_People {
+              title
             }
+          }
+          subtitle
+        }
+      }
+    }
+    publicationBy(slug: $publicationSlug) {
+      id
+      title
+      slug
+      ... on WP_Publication {
+        publication {
+          description
+          coverimage {
+            altText
+            srcSet
+            sourceUrl
             imageFile {
               childImageSharp {
                 fluid {
@@ -238,132 +357,39 @@ export const query = graphql`
               }
             }
           }
-          ... on WP_CoreCodeBlock {
-            name
-            codeattributes: attributes {
-              content
-              language
-              lineNumbers
-            }
-          }
-          ... on WP_CoreHeadingBlock {
-            name
-            originalContent
-          }
-          ... on WP_CoreListBlock {
-            name
-            listattributes: attributes {
-              values
-            }
-          }
-          ... on WP_CoreQuoteBlock {
-            name
-            quoteattributes: attributes {
-              value
-              citation
-            }
-          }
-          ... on WP_CoreSeparatorBlock {
-            name
-          }
-          ... on WP_CoreVideoBlock {
-            name
-            videoattributes: attributes {
-              caption
-              src
-              preload
-              controls
-              loop
-              muted
-              playsInline
-            }
-          }
-          ... on WP_CoreEmbedYoutubeBlock {
-            name
-            originalContent
-            embedattributes: attributes {
-              caption
-              providerNameSlug
-              type
-              url
-            }
-          }
-          ... on WP_CoreEmbedVimeoBlock {
-            name
-            embedattributes: attributes {
-              caption
-              providerNameSlug
-              url
-              type
-            }
-          }
-        }
-        content
-        date
-        articles {
-          metadata {
-            author {
+          colophon {
+            nameoffield
+            personresponsible {
               ... on WP_People {
                 title
               }
             }
-            subtitle
           }
-        }
-      }
-      publicationBy(slug: $publicationSlug) {
-        id
-        title
-        slug
-        ... on WP_Publication {
-          publication {
-            description
-            coverimage {
-              altText
-              srcSet
-              sourceUrl
-              imageFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-            colophon {
-              nameoffield
-              personresponsible {
-                ... on WP_People {
-                  title
-                }
-              }
-            }
-            iscasestudy
-            article {
-              ... on WP_Article {
-                slug
-                date
-                title
-                articles {
-                  metadata {
-                    author {
-                      ... on WP_People {
-                        title
-                      }
+          iscasestudy
+          article {
+            ... on WP_Article {
+              slug
+              date
+              title
+              articles {
+                metadata {
+                  author {
+                    ... on WP_People {
+                      title
                     }
-                    subtitle
                   }
+                  subtitle
                 }
               }
             }
-            casestudy {
-              ... on WP_CaseStudy {
-                slug
-                title
-                articles {
-                  metadata {
-                    subtitle
-                  }
+          }
+          casestudy {
+            ... on WP_CaseStudy {
+              slug
+              title
+              articles {
+                metadata {
+                  subtitle
                 }
               }
             }
@@ -372,4 +398,6 @@ export const query = graphql`
       }
     }
   }
+}
+
 `
