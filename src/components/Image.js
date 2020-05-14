@@ -3,6 +3,6 @@ import "../styles/Image.css"
 
 export default ({className, src}) => {
   return (
-    <img className={className} src={src} />
+    <img className={className} src={src} alt=""/>
   )
 }

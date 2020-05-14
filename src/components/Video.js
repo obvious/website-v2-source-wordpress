@@ -23,6 +23,7 @@ export const Video = ({ video, className, aspectRatio = "16/9" }) => {
         playsInline={video.videoattributes.playsInline}
       >
         <source src={src} type={`video/${extension}`} />
+        <track/>
       </video>
       {video.videoattributes.caption && (
         <Figcaption>{video.videoattributes.caption}</Figcaption>

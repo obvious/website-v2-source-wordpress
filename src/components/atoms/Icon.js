@@ -1,5 +1,3 @@
-import React from "react"
-
 import { ReactComponent as ChevronDown } from '../../assets/icons/chevron-down.svg'
 import { ReactComponent as ChevronLeft } from '../../assets/icons/chevron-left.svg'
 import { ReactComponent as ChevronRight } from '../../assets/icons/chevron-right.svg'
