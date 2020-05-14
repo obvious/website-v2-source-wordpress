@@ -3,7 +3,6 @@ import React from "react"
 import SVG from "react-inlinesvg"
 
 const PreviewCompatibleImage = ({ image, className }) => {
-  console.log(image)
   const extensionRegex = /(?:\.([^.]+))?$/
   const src = image.sourceUrl ? image.sourceUrl : image.attributes.url
   const extension = extensionRegex.exec(src)[1]

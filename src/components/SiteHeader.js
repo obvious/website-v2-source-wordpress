@@ -69,8 +69,8 @@ export default () => {
                 imageFile {
                   publicURL
                   childImageSharp {
-                    fixed {
-                    ...GatsbyImageSharpFixed
+                    fluid {
+                    ...GatsbyImageSharpFluid
                     }
                   }
                 }
