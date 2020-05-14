@@ -29,7 +29,7 @@ function assignComponent(block, index) {
         <BodyText
           key={index}
           type="body-medium"
-          className="text-light/gray-10 mb-8"
+          className="text-light/gray-10"
           content={block.paragraphattributes.content}
         />
       )
@@ -38,7 +38,7 @@ function assignComponent(block, index) {
       return (
         <Heading
           key={index}
-          className="text-gray-10 mb-6"
+          className="text-gray-10 -mb-2"
           content={content}
         />
       )
@@ -49,7 +49,7 @@ function assignComponent(block, index) {
         <>
           <PreviewCompatibleImage
             image={block}
-            className="w-full w-super my-9 lg:my-10 lg:mx-0 self-center"
+            className="w-full w-super mb-7 lg:mb-9 lg:mx-0 self-center"
           />
         </>
       )
@@ -92,7 +92,7 @@ function assignComponent(block, index) {
         <BodyText
           key={index}
           type="body-medium"
-          className="text-light/gray-10 my-8 lg:mb-20 ml-8 lg:ml-16"
+          className="text-light/gray-10 lg:mb-18 ml-8 lg:ml-16"
           content={block.listattributes.values}
         />
       )
@@ -108,13 +108,13 @@ function assignComponent(block, index) {
       )
 
     case "core/video":
-      return <Video video={block} className="mb-18 lg:mb-20" />
+      return <Video video={block} className="mb-16 lg:mb-18" />
 
     case "core-embed/youtube":
-      return <Embed embed={block} className="mb-18 lg:mb-20" />
+      return <Embed embed={block} className="mb-16 lg:mb-18" />
 
     case "core-embed/vimeo":
-      return <Embed embed={block} className="mb-18 lg:mb-20" />
+      return <Embed embed={block} className="mb-16 lg:mb-18" />
 
     default:
       console.error(block.name, content)
@@ -168,7 +168,10 @@ export default ({ data }) => {
           />
         )}
       </div>
-      <div className="flex flex-col">
+      {/*grid-template-columns: 1fr;*/}
+      {/*grid-template-rows: repeat(12, 1fr);*/}
+
+      <div className="grid grid-flow-row row-gap-8">
         {article.blocks.map((block, index) => assignComponent(block, index))}
       </div>
     </ArticleLayout>

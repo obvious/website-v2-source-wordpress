@@ -8,7 +8,7 @@ SyntaxHighlighter.registerLanguage("kotlin", kotlin)
 export const Code = ({ content, language, showLines, className }) => {
   const codeString = content;
   return (
-    <div className={`${className} text-xl leading-normal tracking-tight mb-8`}>
+    <div className={`${className} text-xl leading-normal tracking-tight`}>
       <SyntaxHighlighter
         language={language}
         style={okaidia}

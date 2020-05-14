@@ -6,7 +6,7 @@ import "../styles/quote.css"
 // that accommodates both name and designation.
 export default ({ children, author, bio }) => {
   return (
-    <div className="quote-container mb-8 lg:mb-20">
+    <div className="quote-container lg:mb-18">
       <p
         className="font-serif font-extrabold text-xl text-grey-10 italic leading-relaxed"
         dangerouslySetInnerHTML={{ __html: children }}
