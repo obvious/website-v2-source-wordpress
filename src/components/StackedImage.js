@@ -30,7 +30,9 @@ export default ({ image, aspectRatio =  '16/21', size = 'large' }) => {
         <div className="relative self-start h-full">
           <div className={`bg-white h-full relative ${sizeBasedClasses[size].innerCard} z-30 shadow-md`}>
             <div className="relative h-full">
-              <PreviewCompatibleImage image={image} />
+              <div className="absolute top-0 left-0 right-0 bottom-0">
+                <PreviewCompatibleImage image={image} className="h-full" />
+              </div>
             </div>
           </div>
           <div className={`bg-white absolute w-full ${sizeBasedClasses[size].outerCardFirst} h-full z-20 shadow-md`}/>

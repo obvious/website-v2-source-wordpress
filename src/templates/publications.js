@@ -119,8 +119,8 @@ export const query = graphql`
                   sourceUrl
                   imageFile {
                     childImageSharp {
-                      fixed {
-                        ...GatsbyImageSharpFixed
+                      fluid {
+                        ...GatsbyImageSharpFluid
                       }
                     }
                   }
