@@ -20,7 +20,6 @@ function assignComponent(block, index) {
   const content = block.originalContent
   const innerBlocks = block.innerBlocks
   // List of all core block components available on the default gutenberg editor
-  // TODO: all of these need to be implemented and taken care of in this switch (or disabled on the editor itself)
   // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
   switch (block.name) {
     case "core/paragraph":
@@ -187,9 +186,6 @@ export default ({ data }) => {
     </ArticleLayout>
   )
 }
-
-//This query only supports three levels of recursion - because we do not plan to use blocks such as 'groups' yet.
-//TODO: Figure out an easier way to do this (possibly with NUWEB-133)
 
 //The Image block does not work when aliased, unclear why
 export const query = graphql`

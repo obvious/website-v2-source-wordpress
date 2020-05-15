@@ -5,7 +5,7 @@ export const Embed = ({ embed, className, aspectRatio = "16/9" }) => {
   let src = embed.embedattributes.url
   // const style = { "--aspect-ratio": aspectRatio }; as React.CSSProperties;
 
-  if (embed.embedattributes.providerNameSlug == "youtube") {
+  if (embed.embedattributes.providerNameSlug === "youtube") {
     const embed_id = embed.embedattributes.url.split("v=")[1].split("&")[0]
     src = "https://youtube.com/embed/" + embed_id
   }

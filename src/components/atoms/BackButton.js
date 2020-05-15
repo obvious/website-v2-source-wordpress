@@ -2,7 +2,7 @@ import { ArrowLeft } from "./Icon"
 import IconButton from "./IconButton"
 import ObviousLink from "./ObviousLink"
 import React from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import StackedImage from "../StackedImage"
 
 const imageVariants = {
