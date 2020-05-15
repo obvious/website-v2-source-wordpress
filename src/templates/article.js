@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
 import Quote from "../components/Quote"
-import Image from "../components/Image"
 import { Heading } from "../components/Heading"
 import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
@@ -68,8 +67,8 @@ function assignComponent(block, index) {
           className="article-columns lg:grid lg:gap-8 lg:grid-cols-2"
         >
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
+            innerBlocks.map(( innerBlock, index) => {
+              return assignComponent(innerBlock, index)
             })}
         </div>
       )
@@ -78,8 +77,8 @@ function assignComponent(block, index) {
       return (
         <div key={index} className="article-column">
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
+            innerBlocks.map((innerBlock, index) => {
+              return assignComponent(innerBlock, index)
             })}
         </div>
       )
