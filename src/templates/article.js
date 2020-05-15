@@ -187,105 +187,19 @@ export const query = graphql`
         title
         date
         blocks {
-          name
-          originalContent
-          innerBlocks {
+          ...AllBlocks
+          ... on WP_CoreColumnsBlock {
             name
-            originalContent
             innerBlocks {
-              name
-              originalContent
-              innerBlocks {
+              ... on WP_CoreColumnBlock {
                 name
-                originalContent
-              }
-            }
-          }
-          parentId
-          ... on WP_CoreParagraphBlock {
-            name
-            paragraphattributes: attributes {
-              ... on WP_CoreParagraphBlockAttributesV3 {
-                content
-              }
-            }
-          }
-          ... on WP_CoreImageBlock {
-            name
-            attributes {
-              alt
-              caption
-              url
-            }
-            imageFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
+                innerBlocks {
+                  ...AllBlocks
                 }
               }
             }
           }
-          ... on WP_CoreCodeBlock {
-            name
-            codeattributes: attributes {
-              content
-              language
-              lineNumbers
-            }
-          }
-          ... on WP_CoreHeadingBlock {
-            name
-            originalContent
-          }
-          ... on WP_CoreListBlock {
-            name
-            listattributes: attributes {
-              values
-            }
-          }
-          ... on WP_CoreQuoteBlock {
-            name
-            quoteattributes: attributes {
-              value
-              citation
-            }
-          }
-          ... on WP_CoreSeparatorBlock {
-            name
-          }
-          ... on WP_CoreVideoBlock {
-            name
-            videoattributes: attributes {
-              caption
-              src
-              preload
-              controls
-              loop
-              muted
-              playsInline
-            }
-          }
-          ... on WP_CoreEmbedYoutubeBlock {
-            name
-            originalContent
-            embedattributes: attributes {
-              caption
-              providerNameSlug
-              type
-              url
-            }
-          }
-          ... on WP_CoreEmbedVimeoBlock {
-            name
-            embedattributes: attributes {
-              caption
-              providerNameSlug
-              url
-              type
-            }
-          }
         }
-        content
         date
         articles {
           metadata {
@@ -356,6 +270,93 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+  }
+`
+
+export const fragment = graphql`
+  fragment AllBlocks on WP_Block {
+    ... on WP_CoreParagraphBlock {
+      name
+      paragraphattributes: attributes {
+        ... on WP_CoreParagraphBlockAttributesV3 {
+          content
+        }
+      }
+    }
+    ... on WP_CoreImageBlock {
+      name
+      attributes {
+        alt
+        caption
+        url
+      }
+      imageFile {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+    ... on WP_CoreCodeBlock {
+      name
+      codeattributes: attributes {
+        content
+        language
+        lineNumbers
+      }
+    }
+    ... on WP_CoreHeadingBlock {
+      name
+      originalContent
+    }
+    ... on WP_CoreListBlock {
+      name
+      listattributes: attributes {
+        values
+      }
+    }
+    ... on WP_CoreQuoteBlock {
+      name
+      quoteattributes: attributes {
+        value
+        citation
+      }
+    }
+    ... on WP_CoreSeparatorBlock {
+      name
+    }
+    ... on WP_CoreVideoBlock {
+      name
+      videoattributes: attributes {
+        caption
+        src
+        preload
+        controls
+        loop
+        muted
+        playsInline
+      }
+    }
+    ... on WP_CoreEmbedYoutubeBlock {
+      name
+      originalContent
+      embedattributes: attributes {
+        caption
+        providerNameSlug
+        type
+        url
+      }
+    }
+    ... on WP_CoreEmbedVimeoBlock {
+      name
+      embedattributes: attributes {
+        caption
+        providerNameSlug
+        url
+        type
       }
     }
   }
