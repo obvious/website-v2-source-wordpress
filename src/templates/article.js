@@ -14,8 +14,9 @@ import { Code } from "../components/Code"
 import { Video } from "../components/Video"
 import { Embed } from "../components/Embed"
 import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
+import { Column } from "../components/Column"
 
-function assignComponent(block, index) {
+export function assignComponent(block, index) {
   const content = block.originalContent
   const innerBlocks = block.innerBlocks
   // List of all core block components available on the default gutenberg editor
@@ -67,21 +68,14 @@ function assignComponent(block, index) {
           className="article-columns lg:grid lg:gap-8 lg:grid-cols-2"
         >
           {innerBlocks &&
-            innerBlocks.map(( innerBlock, index) => {
+            innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
         </div>
       )
 
     case "core/column":
-      return (
-        <div key={index} className="article-column">
-          {innerBlocks &&
-            innerBlocks.map((innerBlock, index) => {
-              return assignComponent(innerBlock, index)
-            })}
-        </div>
-      )
+      return <Column key={index} block={block} />
 
     case "core/separator":
       return <Separator key={index} />
@@ -192,6 +186,9 @@ export const query = graphql`
             innerBlocks {
               ... on WP_CoreColumnBlock {
                 name
+                columnattributes: attributes {
+                  width
+                }
                 innerBlocks {
                   ...AllBlocks
                 }
