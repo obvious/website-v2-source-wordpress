@@ -15,6 +15,7 @@ import { Video } from "../components/Video"
 import { Embed } from "../components/Embed"
 import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
 import { Column } from "../components/Column"
+import { ObviousGridRow } from "../components/atoms/ObviousGrid"
 
 export function assignComponent(block, index) {
   const content = block.originalContent
@@ -65,12 +66,14 @@ export function assignComponent(block, index) {
       return (
         <div
           key={index}
-          className="article-columns lg:grid lg:gap-8 lg:grid-cols-2"
+          className="article-columns"
         >
+          <ObviousGridRow className="w-full">
           {innerBlocks &&
             innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
+          </ObviousGridRow>
         </div>
       )
 
