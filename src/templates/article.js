@@ -16,6 +16,7 @@ import { Embed } from "../components/Embed"
 import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
 import { Column } from "../components/Column"
 import { ObviousGridRow } from "../components/atoms/ObviousGrid"
+import { Columns } from "../components/Columns"
 
 export function assignComponent(block, index) {
   const content = block.originalContent
@@ -63,19 +64,7 @@ export function assignComponent(block, index) {
       )
 
     case "core/columns":
-      return (
-        <div
-          key={index}
-          className="article-columns"
-        >
-          <ObviousGridRow className="w-full">
-          {innerBlocks &&
-            innerBlocks.map((innerBlock, index) => {
-              return assignComponent(innerBlock, index)
-            })}
-          </ObviousGridRow>
-        </div>
-      )
+      return <Columns key={index} block={block} />
 
     case "core/column":
       return <Column key={index} block={block} />
