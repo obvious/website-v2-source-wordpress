@@ -1,7 +1,7 @@
 import React from "react"
 import { assignComponent } from "../templates/article"
 
-export const Column = ({ block, index }) => {
+export const Column = ({ block }) => {
   //This value comes from Gutenberg as an object. On the Gutenberg editor,
   // this is a slidable control, which means that any value that comes from it
   // must be translated to an appropriate col-span length and implemented. It
@@ -17,7 +17,7 @@ export const Column = ({ block, index }) => {
   const columnWidth = block.columnattributes.width
   const columnSize = widthObject[columnWidth]
   return (
-    <div key={index} className={`${columnSize}`}>
+    <div className={`${columnSize}`}>
       {block.innerBlocks &&
         block.innerBlocks.map((innerBlock, index) => {
           return assignComponent(innerBlock, index)
