@@ -10,9 +10,9 @@ export const Column = ({ block }) => {
   // be two columns! This should be implemented using the `columns` attribute
   // on the WP_CORE_COLUMNS block
   const widthObject = {
-    "33.33": "col-span-12 md:col-span-4 md:odd:col-start-1 md:even:col-start-9",
-    "66.66": "col-span-12 md:col-span-8 md:odd:col-start-1 md:even:col-start-5",
-    null: "col-span-12 md:col-span-6 md:odd:col-start-1 md:even:col-start-7",
+    "33.33": "col-span-12 md:col-span-4",
+    "66.66": "col-span-12 md:col-span-8",
+    null: "col-span-12 md:col-span-6",
   }
   const columnWidth = block.columnattributes.width
   const columnSize = widthObject[columnWidth]
