@@ -1,10 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
+import {navigate} from 'gatsby'
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
 import Quote from "../components/Quote"
-import Image from "../components/Image"
 import { Heading } from "../components/Heading"
 import Separator from "../components/Separator"
 import { BodyText } from "../components/BodyText"
@@ -33,7 +33,7 @@ function assignComponent(block, index) {
           content={block.paragraphattributes.content}
         />
       )
-
+    
     case "core/heading":
       return (
         <Heading
@@ -42,7 +42,7 @@ function assignComponent(block, index) {
           content={content}
         />
       )
-
+    
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return (
@@ -53,14 +53,14 @@ function assignComponent(block, index) {
           />
         </>
       )
-
+    
     case "core/quote":
       return (
         <Quote key={index} author={block.quoteattributes.citation}>
           {block.quoteattributes.value}
         </Quote>
       )
-
+    
     case "core/columns":
       return (
         <div
@@ -68,25 +68,25 @@ function assignComponent(block, index) {
           className="article-columns lg:grid lg:gap-8 lg:grid-cols-2"
         >
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
-            })}
+          innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
+            return assignComponent(name, originalContent, innerBlocks, index)
+          })}
         </div>
       )
-
+    
     case "core/column":
       return (
         <div key={index} className="article-column">
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
-            })}
+          innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
+            return assignComponent(name, originalContent, innerBlocks, index)
+          })}
         </div>
       )
-
+    
     case "core/separator":
       return <Separator key={index} />
-
+    
     case "core/list":
       return (
         <BodyText
@@ -96,7 +96,7 @@ function assignComponent(block, index) {
           content={block.listattributes.values}
         />
       )
-
+    
     case "core/code":
       return (
         <Code
@@ -106,16 +106,16 @@ function assignComponent(block, index) {
           showLines={block.codeattributes.lineNumbers}
         />
       )
-
+    
     case "core/video":
       return <Video video={block} className="mb-16 lg:mb-18" />
-
+    
     case "core-embed/youtube":
       return <Embed embed={block} className="mb-16 lg:mb-18" />
-
+    
     case "core-embed/vimeo":
       return <Embed embed={block} className="mb-16 lg:mb-18" />
-
+    
     default:
       console.error(block.name, content)
   }
@@ -130,7 +130,32 @@ export default ({ data }) => {
     day: "numeric",
     year: "numeric",
   })
-
+  
+  
+  
+  useEffect(() => {
+    const handleAnchorLink = (event) => {
+      event.preventDefault();
+      const linkEl = event.target
+      if(['obvious.in', 'www.obvious.in'].includes(linkEl.hostname)) {
+        // Need to check via the graphql API whether linkEl.pathname is available
+        navigate(linkEl.pathname)
+      }
+      else {
+        window.open(linkEl.href, '_blank')
+      }
+    };
+    
+    const articlePageEl = document.getElementById('article-page')
+    
+    const articlePageLinks = articlePageEl.getElementsByTagName("a")
+    
+    Array.from(articlePageLinks).forEach(el => el.addEventListener('click', handleAnchorLink));
+    return () => {
+      Array.from(articlePageLinks).forEach(el => el.removeEventListener('click', handleAnchorLink));
+    };
+  }, []);
+  
   return (
     <ArticleLayout>
       <Helmet>
@@ -147,32 +172,34 @@ export default ({ data }) => {
           articles={publication.publication.article}
         />
       )}
-      <div className="flex flex-col lg:w-2/3 self-end mb-18 lg:mb-24">
-        {/*TODO: refactor once heading has been refactored to include tag-picking*/}
-        <Heading
-          className="text-gray-10 mb-6 lg:mb-8 break-words-hyphenated"
-          content={`<h1>${article.title}</h1>`}
-        />
-        {article.articles.metadata.subtitle && (
-          <BodyText
-            type="subtitle-medium"
-            className="mb-6 lg:mb-8 text-light/gray-30"
-          >
-            {article.articles.metadata.subtitle}
-          </BodyText>
-        )}
-        {article.articles.metadata.author && (
-          <Byline
-            date={date}
-            author={article.articles.metadata.author[0].title}
+      <div id="article-page">
+        <div className="flex flex-col lg:w-2/3 self-end mb-18 lg:mb-24">
+          {/*TODO: refactor once heading has been refactored to include tag-picking*/}
+          <Heading
+            className="text-gray-10 mb-6 lg:mb-8 break-words-hyphenated"
+            content={`<h1>${article.title}</h1>`}
           />
-        )}
-      </div>
-      {/*grid-template-columns: 1fr;*/}
-      {/*grid-template-rows: repeat(12, 1fr);*/}
-
-      <div className="grid grid-flow-row row-gap-8">
-        {article.blocks.map((block, index) => assignComponent(block, index))}
+          {article.articles.metadata.subtitle && (
+            <BodyText
+              type="subtitle-medium"
+              className="mb-6 lg:mb-8 text-light/gray-30"
+            >
+              {article.articles.metadata.subtitle}
+            </BodyText>
+          )}
+          {article.articles.metadata.author && (
+            <Byline
+              date={date}
+              author={article.articles.metadata.author[0].title}
+            />
+          )}
+        </div>
+        {/*grid-template-columns: 1fr;*/}
+        {/*grid-template-rows: repeat(12, 1fr);*/}
+        
+        <div className="grid grid-flow-row row-gap-8">
+          {article.blocks.map((block, index) => assignComponent(block, index))}
+        </div>
       </div>
     </ArticleLayout>
   )
