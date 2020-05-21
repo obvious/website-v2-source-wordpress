@@ -2,8 +2,8 @@ import React from "react"
 import { assignComponent } from "../templates/article"
 
 export const Column = ({ block }) => {
-  //This value comes from Gutenberg as an object. On the Gutenberg editor,
-  // this is a slidable control, which means that any value that comes from it
+  // The value of `block.columnattributes.width` comes from Gutenberg as an object.
+  // On the Gutenberg editor, it exists as a slidable control, which means that any value that comes from it
   // must be translated to an appropriate col-span length and implemented. It
   // probably makes more sense to write a small utility to do this.
   // Another assumption this piece of code relies on, is that there will only

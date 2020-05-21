@@ -24,8 +24,9 @@ export function assignComponent(block, index) {
   // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
   switch (block.name) {
     case "core/paragraph":
-      //We still use dangerouslySetInnerHTML here because the content field still
-      //gives us html within the response - ex em, strong, a, and code tags
+      // We use dangerouslySetInnerHTML within Paragraph and Heading blocks
+      // because the content field gives us html tags in them -
+      // em, strong, a tags
       return (
         <BodyText
           key={index}
