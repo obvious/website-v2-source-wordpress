@@ -3,9 +3,9 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
-import Quote from "../components/Quote"
+import { Quote } from "../components/Quote"
 import { Heading } from "../components/Heading"
-import Separator from "../components/Separator"
+import { Separator } from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
@@ -15,7 +15,6 @@ import { Video } from "../components/Video"
 import { Embed } from "../components/Embed"
 import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
 import { Column } from "../components/Column"
-import { ObviousGridRow } from "../components/atoms/ObviousGrid"
 import { Columns } from "../components/Columns"
 
 export function assignComponent(block, index) {
@@ -38,22 +37,16 @@ export function assignComponent(block, index) {
 
     case "core/heading":
       return (
-        <Heading
-          key={index}
-          className="text-gray-10 -mb-2"
-          content={content}
-        />
+        <Heading key={index} className="text-gray-10 -mb-2" content={content} />
       )
 
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return (
-        <>
-          <PreviewCompatibleImage
-            image={block}
-            className="w-full w-super mb-7 lg:mb-9 lg:mx-0 self-center"
-          />
-        </>
+        <PreviewCompatibleImage
+          image={block}
+          className="w-full w-super mb-7 lg:mb-9 lg:mx-0 self-center"
+        />
       )
 
     case "core/quote":

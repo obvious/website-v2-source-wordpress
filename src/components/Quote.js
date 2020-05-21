@@ -4,7 +4,7 @@ import "../styles/quote.css"
 //TODO: Display separators above and below quote on mobile screens
 //Author has been dangerously set to account for the break in the citation value
 // that accommodates both name and designation.
-export default ({ children, author, bio }) => {
+export const Quote = ({ children, author, bio }) => {
   return (
     <div className="quote-container lg:mb-18">
       <p
