@@ -17,7 +17,7 @@ import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
 import { Column } from "../components/Column"
 import { Columns } from "../components/Columns"
 
-export function assignComponent(block, index) {
+function assignComponent(block, index) {
   const content = block.originalContent
   const innerBlocks = block.innerBlocks
   // List of all core block components available on the default gutenberg editor
@@ -60,8 +60,8 @@ export function assignComponent(block, index) {
     case "core/columns":
       return (
         <Columns key={index} >
-          {block.innerBlocks &&
-            block.innerBlocks.map((innerBlock, index) => {
+          {innerBlocks &&
+           innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
         </Columns>
@@ -70,8 +70,8 @@ export function assignComponent(block, index) {
     case "core/column":
       return (
         <Column key={index} width={block.columnattributes.width}>
-          {block.innerBlocks &&
-            block.innerBlocks.map((innerBlock, index) => {
+          {innerBlocks &&
+           innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
         </Column>
