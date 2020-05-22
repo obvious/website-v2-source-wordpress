@@ -127,7 +127,11 @@ export default ({ data }) => {
   // This function checks whether any clicked link is an internal or external one
   // and routes things accordingly.
   useEffect(() => {
-    const links = [...document.links]
+    const links = [
+      ...document
+        .getElementsByClassName("article-container")[0]
+        .getElementsByTagName("a"),
+    ]
     links.map(link => {
       link.addEventListener("click", event => {
         let domainName = link.href.split("/")[2]
@@ -139,7 +143,10 @@ export default ({ data }) => {
           domainName.split(".")[0] === "not"
         ) {
           event.preventDefault()
-          const slug = link.href.split('/').splice(3).join('/')
+          const slug = link.href
+            .split("/")
+            .splice(3)
+            .join("/")
           return navigate(slug)
         }
       })
