@@ -1,5 +1,5 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React, { useEffect } from "react"
+import { graphql, navigate } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
@@ -122,6 +122,28 @@ export default ({ data }) => {
     month: "long",
     day: "numeric",
     year: "numeric",
+  })
+
+  // This function checks whether any clicked link is an internal or external one
+  // and routes things accordingly.
+  useEffect(() => {
+    const links = [...document.links]
+    links.map(link => {
+      link.addEventListener("click", event => {
+        let domainName = link.href.split("/")[2]
+        if (
+          domainName.split(":")[0] === "localhost" ||
+          //TODO: Change this when deployed to actual domain
+          // There has to be a better way to do this though.
+          // This won't currently work on deploy links, for example.
+          domainName.split(".")[0] === "not"
+        ) {
+          event.preventDefault()
+          const slug = link.href.split('/').splice(3).join('/')
+          return navigate(slug)
+        }
+      })
+    })
   })
 
   return (
