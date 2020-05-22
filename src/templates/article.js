@@ -58,7 +58,14 @@ export function assignComponent(block, index) {
       )
 
     case "core/columns":
-      return <Columns key={index} block={block} />
+      return (
+        <Columns key={index} >
+          {block.innerBlocks &&
+            block.innerBlocks.map((innerBlock, index) => {
+              return assignComponent(innerBlock, index)
+            })}
+        </Columns>
+      )
 
     case "core/column":
       return (

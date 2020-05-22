@@ -1,14 +1,10 @@
 import React from "react"
 import { ObviousGridRow } from "./atoms/ObviousGrid"
-import { assignComponent } from "../templates/article"
 
-export const Columns = ({ block }) => {
+export const Columns = ({ children }) => {
   return (
     <ObviousGridRow className="w-full">
-      {block.innerBlocks &&
-        block.innerBlocks.map((innerBlock, index) => {
-          return assignComponent(innerBlock, index)
-        })}
+      {children}
     </ObviousGridRow>
   )
 }
