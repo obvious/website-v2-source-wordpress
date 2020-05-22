@@ -1,21 +1,13 @@
 import React from "react"
+import { getColSpan } from "../utils/column-utils"
 import { assignComponent } from "../templates/article"
 
 export const Column = ({ block }) => {
-  // The value of `block.columnattributes.width` comes from Gutenberg as an object.
-  // On the Gutenberg editor, it exists as a slidable control, which means that any value that comes from it
-  // must be translated to an appropriate col-span length and implemented. It
-  // probably makes more sense to write a small utility to do this.
   // Another assumption this piece of code relies on, is that there will only
   // be two columns! This should be implemented using the `columns` attribute
   // on the WP_CORE_COLUMNS block
-  const widthObject = {
-    "33.33": "col-span-12 md:col-span-4",
-    "66.66": "col-span-12 md:col-span-8",
-    null: "col-span-12 md:col-span-6",
-  }
   const columnWidth = block.columnattributes.width
-  const columnSize = widthObject[columnWidth]
+  const columnSize = getColSpan(columnWidth)
   return (
     <div className={`${columnSize}`}>
       {block.innerBlocks &&
