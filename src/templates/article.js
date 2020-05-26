@@ -3,10 +3,9 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
-import Quote from "../components/Quote"
-import Image from "../components/Image"
+import { Quote } from "../components/Quote"
 import { Heading } from "../components/Heading"
-import Separator from "../components/Separator"
+import { Separator } from "../components/Separator"
 import { BodyText } from "../components/BodyText"
 import { Byline } from "../components/Byline"
 import BackButtonContainerForArticle from "../components/molecules/BackButtonContainerForArticle"
@@ -15,6 +14,8 @@ import { Code } from "../components/Code"
 import { Video } from "../components/Video"
 import { Embed } from "../components/Embed"
 import PreviewCompatibleImage from "../components/atoms/PreviewCompatibleImage"
+import { Column } from "../components/Column"
+import { Columns } from "../components/Columns"
 
 function assignComponent(block, index) {
   const content = block.originalContent
@@ -23,8 +24,9 @@ function assignComponent(block, index) {
   // https://gist.github.com/DavidPeralvarez/37c8c148f890d946fadb2c25589baf00#file-core-blocks-txt
   switch (block.name) {
     case "core/paragraph":
-      //We still use dangerouslySetInnerHTML here because the content field still
-      //gives us html within the response - ex em, strong, a, and code tags
+      // We use dangerouslySetInnerHTML within Paragraph and Heading blocks
+      // because the content field gives us html tags in them -
+      // em, strong, a tags
       return (
         <BodyText
           key={index}
@@ -36,22 +38,16 @@ function assignComponent(block, index) {
 
     case "core/heading":
       return (
-        <Heading
-          key={index}
-          className="text-gray-10 -mb-2"
-          content={content}
-        />
+        <Heading key={index} className="text-gray-10 -mb-2" content={content} />
       )
 
     case "core/image":
       //TODO: w-full applies on lg, w-super otherwise
       return (
-        <>
-          <PreviewCompatibleImage
-            image={block}
-            className="w-full w-super mb-7 lg:mb-9 lg:mx-0 self-center"
-          />
-        </>
+        <PreviewCompatibleImage
+          image={block}
+          className="w-full mb-7 lg:mb-9 lg:mx-0 self-center"
+        />
       )
 
     case "core/quote":
@@ -63,25 +59,22 @@ function assignComponent(block, index) {
 
     case "core/columns":
       return (
-        <div
-          key={index}
-          className="article-columns lg:grid lg:gap-8 lg:grid-cols-2"
-        >
+        <Columns key={index} >
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
+           innerBlocks.map((innerBlock, index) => {
+              return assignComponent(innerBlock, index)
             })}
-        </div>
+        </Columns>
       )
 
     case "core/column":
       return (
-        <div key={index} className="article-column">
+        <Column key={index} width={block.columnattributes.width}>
           {innerBlocks &&
-            innerBlocks.map(({ name, originalContent, innerBlocks }, index) => {
-              return assignComponent(name, originalContent, innerBlocks, index)
+           innerBlocks.map((innerBlock, index) => {
+              return assignComponent(innerBlock, index)
             })}
-        </div>
+        </Column>
       )
 
     case "core/separator":
@@ -187,105 +180,22 @@ export const query = graphql`
         title
         date
         blocks {
-          name
-          originalContent
-          innerBlocks {
+          ...AllBlocks
+          ... on WP_CoreColumnsBlock {
             name
-            originalContent
             innerBlocks {
-              name
-              originalContent
-              innerBlocks {
+              ... on WP_CoreColumnBlock {
                 name
-                originalContent
-              }
-            }
-          }
-          parentId
-          ... on WP_CoreParagraphBlock {
-            name
-            paragraphattributes: attributes {
-              ... on WP_CoreParagraphBlockAttributesV3 {
-                content
-              }
-            }
-          }
-          ... on WP_CoreImageBlock {
-            name
-            attributes {
-              alt
-              caption
-              url
-            }
-            imageFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
+                columnattributes: attributes {
+                  width
+                }
+                innerBlocks {
+                  ...AllBlocks
                 }
               }
             }
           }
-          ... on WP_CoreCodeBlock {
-            name
-            codeattributes: attributes {
-              content
-              language
-              lineNumbers
-            }
-          }
-          ... on WP_CoreHeadingBlock {
-            name
-            originalContent
-          }
-          ... on WP_CoreListBlock {
-            name
-            listattributes: attributes {
-              values
-            }
-          }
-          ... on WP_CoreQuoteBlock {
-            name
-            quoteattributes: attributes {
-              value
-              citation
-            }
-          }
-          ... on WP_CoreSeparatorBlock {
-            name
-          }
-          ... on WP_CoreVideoBlock {
-            name
-            videoattributes: attributes {
-              caption
-              src
-              preload
-              controls
-              loop
-              muted
-              playsInline
-            }
-          }
-          ... on WP_CoreEmbedYoutubeBlock {
-            name
-            originalContent
-            embedattributes: attributes {
-              caption
-              providerNameSlug
-              type
-              url
-            }
-          }
-          ... on WP_CoreEmbedVimeoBlock {
-            name
-            embedattributes: attributes {
-              caption
-              providerNameSlug
-              url
-              type
-            }
-          }
         }
-        content
         date
         articles {
           metadata {
@@ -356,6 +266,93 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+  }
+`
+
+export const fragment = graphql`
+  fragment AllBlocks on WP_Block {
+    ... on WP_CoreParagraphBlock {
+      name
+      paragraphattributes: attributes {
+        ... on WP_CoreParagraphBlockAttributesV3 {
+          content
+        }
+      }
+    }
+    ... on WP_CoreImageBlock {
+      name
+      attributes {
+        alt
+        caption
+        url
+      }
+      imageFile {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+    ... on WP_CoreCodeBlock {
+      name
+      codeattributes: attributes {
+        content
+        language
+        lineNumbers
+      }
+    }
+    ... on WP_CoreHeadingBlock {
+      name
+      originalContent
+    }
+    ... on WP_CoreListBlock {
+      name
+      listattributes: attributes {
+        values
+      }
+    }
+    ... on WP_CoreQuoteBlock {
+      name
+      quoteattributes: attributes {
+        value
+        citation
+      }
+    }
+    ... on WP_CoreSeparatorBlock {
+      name
+    }
+    ... on WP_CoreVideoBlock {
+      name
+      videoattributes: attributes {
+        caption
+        src
+        preload
+        controls
+        loop
+        muted
+        playsInline
+      }
+    }
+    ... on WP_CoreEmbedYoutubeBlock {
+      name
+      originalContent
+      embedattributes: attributes {
+        caption
+        providerNameSlug
+        type
+        url
+      }
+    }
+    ... on WP_CoreEmbedVimeoBlock {
+      name
+      embedattributes: attributes {
+        caption
+        providerNameSlug
+        url
+        type
       }
     }
   }

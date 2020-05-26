@@ -1,14 +1,6 @@
-@media(max-width: 1024px) {
-    .article-column {
-        @apply flex flex-col
-    }
-
-}
-
 .break-words-hyphenated {
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    @apply break-words
-
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  @apply break-words;
 }
