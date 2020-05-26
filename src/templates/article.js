@@ -133,15 +133,15 @@ export default ({ data }) => {
         .getElementsByTagName("a"),
     ]
     links.map(link => {
-      link.addEventListener("click", event => {
+      const handleClick = event => {
         event.preventDefault()
         if (link.host.includes("obvious.in")) {
           return navigate(link.pathname)
         } else {
-          console.log("Heading out!")
-          window.open(link.href, "_blank", "noopener")
+          window.open(link.href, "_blank")
         }
-      })
+      }
+      link.addEventListener("click", handleClick)
     })
   }, [])
 
