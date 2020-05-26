@@ -11,29 +11,21 @@ const PreviewCompatibleImage = ({ image, className }) => {
   if (image.imageFile && image.imageFile.childImageSharp) {
     if (image.imageFile.childImageSharp.fixed)
       return (
-        <>
-          <GatsbyImage
-            className={className}
-            fixed={image.imageFile.childImageSharp.fixed}
-            alt=""
-          />
+        <div className={className}>
+          <GatsbyImage fixed={image.imageFile.childImageSharp.fixed} alt="" />
           {image.attributes && image.attributes.caption && (
             <figcaption>{image.attributes.caption}</figcaption>
           )}
-        </>
+        </div>
       )
     else
       return (
-        <>
-          <GatsbyImage
-            className={className}
-            fluid={image.imageFile.childImageSharp.fluid}
-            alt=""
-          />
+        <div className={className}>
+          <GatsbyImage fluid={image.imageFile.childImageSharp.fluid} alt="" />
           {image.attributes && image.attributes.caption && (
             <figcaption>{image.attributes.caption}</figcaption>
           )}
-        </>
+        </div>
       )
   } else {
     if (extension === "svg") {
