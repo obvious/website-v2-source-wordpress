@@ -134,24 +134,16 @@ export default ({ data }) => {
     ]
     links.map(link => {
       link.addEventListener("click", event => {
-        let domainName = link.href.split("/")[2]
-        if (
-          domainName.split(":")[0] === "localhost" ||
-          //TODO: Change this when deployed to actual domain
-          // There has to be a better way to do this though.
-          // This won't currently work on deploy links, for example.
-          domainName.split(".")[0] === "not"
-        ) {
-          event.preventDefault()
-          const slug = link.href
-            .split("/")
-            .splice(3)
-            .join("/")
-          return navigate(slug)
+        event.preventDefault()
+        if (link.host.includes("obvious.in")) {
+          return navigate(link.pathname)
+        } else {
+          console.log("Heading out!")
+          window.open(link.href, "_blank", "noopener")
         }
       })
     })
-  })
+  }, [])
 
   return (
     <ArticleLayout>
