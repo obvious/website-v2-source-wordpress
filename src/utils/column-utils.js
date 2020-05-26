@@ -1,5 +1,4 @@
 export const getColSpan = (width, maxWidth = 12) => {
-  console.log(width, maxWidth)
   if (!width) {
     return `col-span-12 md:col-span-6`
   } else {
