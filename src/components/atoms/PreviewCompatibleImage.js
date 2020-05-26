@@ -6,13 +6,17 @@ import "../../styles/Image.css"
 const PreviewCompatibleImage = ({ image, className }) => {
   const extensionRegex = /(?:\.([^.]+))?$/
   const src = image.sourceUrl ? image.sourceUrl : image.attributes.url
+  const alt = image.attributes ? image.attributes.alt : ""
   const extension = extensionRegex.exec(src)[1]
   //TODO: filter out gifs
   if (image.imageFile && image.imageFile.childImageSharp) {
     if (image.imageFile.childImageSharp.fixed)
       return (
         <div className={className}>
-          <GatsbyImage fixed={image.imageFile.childImageSharp.fixed} alt="" />
+          <GatsbyImage
+            fixed={image.imageFile.childImageSharp.fixed}
+            alt={alt}
+          />
           {image.attributes && image.attributes.caption && (
             <figcaption>{image.attributes.caption}</figcaption>
           )}
@@ -21,7 +25,10 @@ const PreviewCompatibleImage = ({ image, className }) => {
     else
       return (
         <div className={className}>
-          <GatsbyImage fluid={image.imageFile.childImageSharp.fluid} alt="" />
+          <GatsbyImage
+            fluid={image.imageFile.childImageSharp.fluid}
+            alt={alt}
+          />
           {image.attributes && image.attributes.caption && (
             <figcaption>{image.attributes.caption}</figcaption>
           )}
