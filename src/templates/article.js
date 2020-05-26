@@ -46,7 +46,7 @@ function assignComponent(block, index) {
       return (
         <PreviewCompatibleImage
           image={block}
-          className="w-full w-super mb-7 lg:mb-9 lg:mx-0 self-center"
+          className="w-full mb-7 lg:mb-9 lg:mx-0 self-center"
         />
       )
 
