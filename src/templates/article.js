@@ -59,9 +59,9 @@ function assignComponent(block, index) {
 
     case "core/columns":
       return (
-        <Columns key={index} >
+        <Columns key={index}>
           {innerBlocks &&
-           innerBlocks.map((innerBlock, index) => {
+            innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
         </Columns>
@@ -71,7 +71,7 @@ function assignComponent(block, index) {
       return (
         <Column key={index} width={block.columnattributes.width}>
           {innerBlocks &&
-           innerBlocks.map((innerBlock, index) => {
+            innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
         </Column>
@@ -135,7 +135,11 @@ export default ({ data }) => {
     links.map(link => {
       const handleClick = event => {
         event.preventDefault()
-        if (link.host.includes("obvious.in")) {
+        if (
+          link.host.includes("www.obvious.in") ||
+          link.host.includes("content.obvious.in") ||
+          link.host.includes("not.obvious.in")
+        ) {
           return navigate(link.pathname)
         } else {
           window.open(link.href, "_blank")
