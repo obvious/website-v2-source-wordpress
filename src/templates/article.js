@@ -1,5 +1,5 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React, { useEffect } from "react"
+import { graphql, navigate } from "gatsby"
 import { Helmet } from "react-helmet"
 
 import ArticleLayout from "../layouts/ArticleLayout"
@@ -59,9 +59,9 @@ function assignComponent(block, index) {
 
     case "core/columns":
       return (
-        <Columns key={index} >
+        <Columns key={index}>
           {innerBlocks &&
-           innerBlocks.map((innerBlock, index) => {
+            innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
         </Columns>
@@ -71,7 +71,7 @@ function assignComponent(block, index) {
       return (
         <Column key={index} width={block.columnattributes.width}>
           {innerBlocks &&
-           innerBlocks.map((innerBlock, index) => {
+            innerBlocks.map((innerBlock, index) => {
               return assignComponent(innerBlock, index)
             })}
         </Column>
@@ -123,6 +123,31 @@ export default ({ data }) => {
     day: "numeric",
     year: "numeric",
   })
+
+  // This function checks whether any clicked link is an internal or external one
+  // and routes things accordingly.
+  useEffect(() => {
+    const links = [
+      ...document
+        .getElementsByClassName("article-container")[0]
+        .getElementsByTagName("a"),
+    ]
+    links.map(link => {
+      const handleClick = event => {
+        event.preventDefault()
+        if (
+          link.host.includes("www.obvious.in") ||
+          link.host.includes("content.obvious.in") ||
+          link.host.includes("not.obvious.in")
+        ) {
+          return navigate(link.pathname)
+        } else {
+          window.open(link.href, "_blank")
+        }
+      }
+      link.addEventListener("click", handleClick)
+    })
+  }, [])
 
   return (
     <ArticleLayout>
