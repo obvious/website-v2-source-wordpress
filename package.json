@@ -58,7 +58,7 @@
     "babel-loader": "^8.0.6",
     "gatsby-source-graphql": "^2.1.33",
     "lodash": "^4.17.15",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "prettier": "^1.19.1",
     "tailwindcss": "^1.2.0"
   },
