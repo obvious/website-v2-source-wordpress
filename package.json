@@ -35,7 +35,7 @@
     "gatsby-plugin-transition-link": "^1.17.7",
     "gatsby-source-filesystem": "^2.2.2",
     "gatsby-transformer-sharp": "^2.4.4",
-    "gsap": "^3.1.1",
+    "gsap": "^3.6.0",
     "lodash.kebabcase": "^4.1.1",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
