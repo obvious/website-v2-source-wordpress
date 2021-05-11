@@ -57,7 +57,7 @@
     "@storybook/react": "^5.3.13",
     "babel-loader": "^8.0.6",
     "gatsby-source-graphql": "^2.1.33",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
     "tailwindcss": "^1.2.0"
